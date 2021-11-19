@@ -7,17 +7,17 @@ site: bookdown::bookdown_site
 
 # Introduction
 
-Watching movies is one of the most popular activities in our daily life. So with time going by, the movie genre changes a lot, and is there any relationships between movie gengres and the ratings, or between the directors and movie genres? 
+Watching movies is one of the most popular activities in our daily life. So with time going by, the movie genre have changed a lot. Are there any relationships between movie genres and the ratings, or between the directors and movie genres? 
 
 Our goal is to explore some interesting facts about different movie genres.
 
 We will find out three main questions as follows:
 
-(1). How have the genres of movies been changing since last century?
-  We will use title.basics.tsv.gz on https://datasets.imdbws.com/. It has not only tconst, which identifies the title of each movie, but also “startYear” and “genres” features so we can visualize the change of genre popularity since 1900.
+## How have the genres of movies been changing since last century?
+  We will use **title.basics.tsv.gz** on https://datasets.imdbws.com/. It has not only `tconst`, which identifies the title of each movie, but also `startYear` and `genres` features so we can visualize the change of genre popularity since 1900.
   
-(2). What was the relationship between genres and ratings? For example, what genres were more likely to gain higher ratings?
-  we will use title.ratings.tsv.gz and title.basics.tsv.gz on https://datasets.imdbws.com/. There are features “tconst”, “averageRatiing” and “numVotes” in title.ratings.tsv.gz. The feature “tconst” identifies the title of each movie and links the “genres” feature in title.basics.tsv.gz. With these features, we can visualize the relationship between genres and ratings.
+## What was the relationship between genres and ratings? For example, what genres were more likely to gain higher ratings?
+  We will use **title.ratings.tsv.gz** and **title.basics.tsv.gz** on https://datasets.imdbws.com/. There are features `tconst`, `averageRating` and `numVotes` in **title.ratings.tsv.gz**. The feature `tconst` identifies the title of each movie and links the `genres` feature in **title.basics.tsv.gz**. With these features, we can visualize the relationship between genres and ratings.
   
-(3). For each director, did he/she have a preference in any genres?
-  we can first group movies by directors using title.crew.tsv.gz and title.basics.tsv.gz. For each director, we will explore his/her movies and genres so we could conclude if the director preferred certain genres.
+## For each director, did he/she have a preference in any genres?
+  We can first group movies by directors using **title.crew.tsv.gz** and **title.basics.tsv.gz**. For each director, we will explore his/her movies and genres so we could conclude if the director preferred certain genres.

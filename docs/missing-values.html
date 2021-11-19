@@ -21,10 +21,10 @@
   
   
 
-<meta name="author" content="Yiran Shu" />
+<meta name="author" content="Yiran Shu, Qingyi Zhang, Tianxiang Li" />
 
 
-<meta name="date" content="2021-11-18" />
+<meta name="date" content="2021-11-19" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
@@ -54,6 +54,43 @@
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
+<style type="text/css">
+div.sourceCode { overflow-x: auto; }
+table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
+  margin: 0; padding: 0; vertical-align: baseline; border: none; }
+table.sourceCode { width: 100%; line-height: 100%; }
+td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
+td.sourceCode { padding-left: 5px; }
+code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code > span.dt { color: #902000; } /* DataType */
+code > span.dv { color: #40a070; } /* DecVal */
+code > span.bn { color: #40a070; } /* BaseN */
+code > span.fl { color: #40a070; } /* Float */
+code > span.ch { color: #4070a0; } /* Char */
+code > span.st { color: #4070a0; } /* String */
+code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code > span.ot { color: #007020; } /* Other */
+code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code > span.fu { color: #06287e; } /* Function */
+code > span.er { color: #ff0000; font-weight: bold; } /* Error */
+code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
+code > span.cn { color: #880000; } /* Constant */
+code > span.sc { color: #4070a0; } /* SpecialChar */
+code > span.vs { color: #4070a0; } /* VerbatimString */
+code > span.ss { color: #bb6688; } /* SpecialString */
+code > span.im { } /* Import */
+code > span.va { color: #19177c; } /* Variable */
+code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code > span.op { color: #666666; } /* Operator */
+code > span.bu { } /* BuiltIn */
+code > span.ex { } /* Extension */
+code > span.pp { color: #bc7a00; } /* Preprocessor */
+code > span.at { color: #7d9029; } /* Attribute */
+code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+</style>
 
 
 <link rel="stylesheet" href="style.css" type="text/css" />
@@ -72,10 +109,23 @@
 <li><a href="./">Movie Genres</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a></li>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-have-the-genres-of-movies-been-changing-since-last-century"><i class="fa fa-check"></i><b>1.1</b> How have the genres of movies been changing since last century?</a></li>
+<li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#what-was-the-relationship-between-genres-and-ratings-for-example-what-genres-were-more-likely-to-gain-higher-ratings"><i class="fa fa-check"></i><b>1.2</b> What was the relationship between genres and ratings? For example, what genres were more likely to gain higher ratings?</a></li>
+<li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#for-each-director-did-heshe-have-a-preference-in-any-genres"><i class="fa fa-check"></i><b>1.3</b> For each director, did he/she have a preference in any genres?</a></li>
+</ul></li>
 <li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
 <li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
-<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a></li>
+<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a><ul>
+<li class="chapter" data-level="4.1" data-path="missing-values.html"><a href="missing-values.html#repuired-libraries"><i class="fa fa-check"></i><b>4.1</b> Repuired libraries</a></li>
+<li class="chapter" data-level="4.2" data-path="missing-values.html"><a href="missing-values.html#load-and-show-the-initial-data"><i class="fa fa-check"></i><b>4.2</b> Load and show the initial data</a></li>
+<li class="chapter" data-level="4.3" data-path="missing-values.html"><a href="missing-values.html#replace-n-with-na"><i class="fa fa-check"></i><b>4.3</b> Replace &quot;\\N&quot; with NA</a></li>
+<li class="chapter" data-level="4.4" data-path="missing-values.html"><a href="missing-values.html#show-the-data-after-transformation"><i class="fa fa-check"></i><b>4.4</b> Show the data after transformation</a></li>
+<li class="chapter" data-level="4.5" data-path="missing-values.html"><a href="missing-values.html#missing-patterns"><i class="fa fa-check"></i><b>4.5</b> Missing patterns</a><ul>
+<li class="chapter" data-level="4.5.1" data-path="missing-values.html"><a href="missing-values.html#missing-values-by-column"><i class="fa fa-check"></i><b>4.5.1</b> Missing values by column</a></li>
+<li class="chapter" data-level="4.5.2" data-path="missing-values.html"><a href="missing-values.html#show-the-missing-patterns"><i class="fa fa-check"></i><b>4.5.2</b> Show the missing patterns</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
@@ -100,7 +150,68 @@
             <section class="normal" id="section-">
 <div id="missing-values" class="section level1">
 <h1><span class="header-section-number">Chapter 4</span> Missing values</h1>
+<div id="repuired-libraries" class="section level2">
+<h2><span class="header-section-number">4.1</span> Repuired libraries</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">library</span>(tidyverse)
+<span class="kw">library</span>(readr)</code></pre></div>
+</div>
+<div id="load-and-show-the-initial-data" class="section level2">
+<h2><span class="header-section-number">4.2</span> Load and show the initial data</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">basic &lt;-<span class="st"> </span><span class="kw">read_tsv</span>(<span class="st">&quot;data/name.basics.tsv.gz&quot;</span>)
+<span class="kw">head</span>(basic)</code></pre></div>
+<pre><code>## # A tibble: 6 x 6
+##   nconst    primaryName     birthYear deathYear primaryProfession                   knownForTitles                         
+##   &lt;chr&gt;     &lt;chr&gt;           &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;                               &lt;chr&gt;                                  
+## 1 nm0000001 Fred Astaire    1899      &quot;1987&quot;    soundtrack,actor,miscellaneous      tt0053137,tt0031983,tt0072308,tt0050419
+## 2 nm0000002 Lauren Bacall   1924      &quot;2014&quot;    actress,soundtrack                  tt0117057,tt0071877,tt0038355,tt0037382
+## 3 nm0000003 Brigitte Bardot 1934      &quot;\\N&quot;     actress,soundtrack,music_department tt0049189,tt0057345,tt0054452,tt0056404
+## 4 nm0000004 John Belushi    1949      &quot;1982&quot;    actor,soundtrack,writer             tt0077975,tt0080455,tt0072562,tt0078723
+## 5 nm0000005 Ingmar Bergman  1918      &quot;2007&quot;    writer,director,actor               tt0050976,tt0060827,tt0050986,tt0083922
+## 6 nm0000006 Ingrid Bergman  1915      &quot;1982&quot;    actress,soundtrack,producer         tt0034583,tt0077711,tt0038109,tt0036855</code></pre>
+<p>From the output table, we can see that the missing values in this dataset are represented with &quot;\\N&quot;. Next, we are going to replace &quot;\\N&quot; with NA.</p>
+</div>
+<div id="replace-n-with-na" class="section level2">
+<h2><span class="header-section-number">4.3</span> Replace &quot;\\N&quot; with NA</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r">basic<span class="op">$</span>nconst &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">N&quot;</span>, <span class="ot">NA</span>, basic<span class="op">$</span>nconst, <span class="dt">fix=</span><span class="ot">TRUE</span>)
+basic<span class="op">$</span>primaryName &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">N&quot;</span>, <span class="ot">NA</span>, basic<span class="op">$</span>primaryName, <span class="dt">fix=</span><span class="ot">TRUE</span>)
+basic<span class="op">$</span>birthYear &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">N&quot;</span>, <span class="ot">NA</span>, basic<span class="op">$</span>birthYear, <span class="dt">fix=</span><span class="ot">TRUE</span>)
+basic<span class="op">$</span>deathYear&lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">N&quot;</span>, <span class="ot">NA</span>,basic<span class="op">$</span>deathYear, <span class="dt">fix=</span><span class="ot">TRUE</span>)
+basic<span class="op">$</span>primaryProfession &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">N&quot;</span>, <span class="ot">NA</span>, basic<span class="op">$</span>primaryProfession, <span class="dt">fix=</span><span class="ot">TRUE</span>)
+basic<span class="op">$</span>knownForTitles &lt;-<span class="st"> </span><span class="kw">gsub</span>(<span class="st">&quot;</span><span class="ch">\\</span><span class="st">N&quot;</span>, <span class="ot">NA</span>, basic<span class="op">$</span>knownForTitles, <span class="dt">fix=</span><span class="ot">TRUE</span>)</code></pre></div>
+</div>
+<div id="show-the-data-after-transformation" class="section level2">
+<h2><span class="header-section-number">4.4</span> Show the data after transformation</h2>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">head</span>(basic)</code></pre></div>
+<pre><code>## # A tibble: 6 x 6
+##   nconst    primaryName     birthYear deathYear primaryProfession                   knownForTitles                         
+##   &lt;chr&gt;     &lt;chr&gt;           &lt;chr&gt;     &lt;chr&gt;     &lt;chr&gt;                               &lt;chr&gt;                                  
+## 1 nm0000001 Fred Astaire    1899      1987      soundtrack,actor,miscellaneous      tt0053137,tt0031983,tt0072308,tt0050419
+## 2 nm0000002 Lauren Bacall   1924      2014      actress,soundtrack                  tt0117057,tt0071877,tt0038355,tt0037382
+## 3 nm0000003 Brigitte Bardot 1934      &lt;NA&gt;      actress,soundtrack,music_department tt0049189,tt0057345,tt0054452,tt0056404
+## 4 nm0000004 John Belushi    1949      1982      actor,soundtrack,writer             tt0077975,tt0080455,tt0072562,tt0078723
+## 5 nm0000005 Ingmar Bergman  1918      2007      writer,director,actor               tt0050976,tt0060827,tt0050986,tt0083922
+## 6 nm0000006 Ingrid Bergman  1915      1982      actress,soundtrack,producer         tt0034583,tt0077711,tt0038109,tt0036855</code></pre>
+</div>
+<div id="missing-patterns" class="section level2">
+<h2><span class="header-section-number">4.5</span> Missing patterns</h2>
+<div id="missing-values-by-column" class="section level3">
+<h3><span class="header-section-number">4.5.1</span> Missing values by column</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">colSums</span>(<span class="kw">is.na</span>(basic)) <span class="op">%&gt;%</span>
+<span class="st">  </span><span class="kw">sort</span>(<span class="dt">decreasing =</span> <span class="ot">TRUE</span>)</code></pre></div>
+<pre><code>##         deathYear         birthYear primaryProfession    knownForTitles            nconst       primaryName 
+##          11142577          10800160           2430129           2060798                 0                 0</code></pre>
+</div>
+<div id="show-the-missing-patterns" class="section level3">
+<h3><span class="header-section-number">4.5.2</span> Show the missing patterns</h3>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">source</span>(<span class="st">&quot;scripts/visna.R&quot;</span>)
+<span class="kw">visna</span>(basic)</code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-11-1.png" width="672" /></p>
+<div class="sourceCode"><pre class="sourceCode r"><code class="sourceCode r"><span class="kw">visna</span>(basic, <span class="dt">percent=</span><span class="ot">TRUE</span>)</code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-11-2.png" width="672" /></p>
+<p>From the graph, we can see that there are no missing values in columns <code>nconst</code> and <code>primaryName</code>. Most missing values are in columns <code>deathYear</code> and <code>birthYear</code>. This might be due to the difficulty of getting the specific birth and death time and the fact that some people are not dead. Only a minority of missing values are in columns <code>primaryProfession</code> and <code>knownForTitles</code>. Furthermore, <code>deathYear</code> and <code>birthYear</code> are both missing in most rows with missing data. It might be due to the high correlation between these 2 columns. Only a very small proportion of rows have no missing values.</p>
 
+</div>
+</div>
 </div>
             </section>
 
