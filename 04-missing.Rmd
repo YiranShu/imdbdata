@@ -29,3 +29,6 @@ visna(basic)
 visna(basic,percent=TRUE)
 ```
 
+From the graph, it is obvious that no missing values in tconst, and almost no missing values in Primary Name. 
+The birth year and death year are having the largest amount of missing values maybe because it is hard to get the specific birth and death time. 
+
