@@ -7,8 +7,9 @@ site: bookdown::bookdown_site
 
 # Introduction
 
-Our goal is to explore interesting facts about different movie genres.
-We will find out three questions as follows:
+Watching movies is one of the most popular activities in our daily life. So with time going by, the movie genre changes a lot, and is there any relationships between movie gengres and the ratings, or between the directors and movie genres? 
+Our goal is to explore some interesting facts about different movie genres.
+We will find out three main questions as follows:
 (1). How have the genres of movies been changing since last century?
 (2). What was the relationship between genres and ratings? For example, what genres were more likely to gain higher ratings?
 (3). For each director, did he/she have a preference in any genres?
