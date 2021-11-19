@@ -1,1 +1,26 @@
 # Missing values
+
+```{r}
+library(tidyverse)
+library(readr)
+```
+
+
+## Load data and replace \N with NA
+```{r}
+basic <- read_tsv("data/title.basics.tsv.gz")
+basic$directors <- gsub("\\N", NA, basic$directors, fix=TRUE)
+basic$writers <- gsub("\\N", NA, basic$writers, fix=TRUE)
+colSums(is.na(basic)) %>%
+  sort(decreasing = TRUE)
+rowSums(is.na(basic)) %>%
+  sort(decreasing = TRUE)
+```
+
+
+## Show the graph of missing data
+```{r}
+source("scripts/visna.R")
+visna(basic)
+```
+
