@@ -1,6 +1,6 @@
 --- 
 title: "Movie Genres"
-author: "Yiran Shu"
+author: "Yiran Shu, Qingyi Zhang"
 date: "`r Sys.Date()`"
 site: bookdown::bookdown_site
 ---
