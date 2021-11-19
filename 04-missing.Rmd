@@ -6,11 +6,15 @@ library(readr)
 ```
 
 
-## Load data and replace \N with NA
+# Load data and replace \N with NA
 ```{r}
-basic <- read_tsv("data/title.basics.tsv.gz")
-basic$directors <- gsub("\\N", NA, basic$directors, fix=TRUE)
-basic$writers <- gsub("\\N", NA, basic$writers, fix=TRUE)
+basic <- read_tsv("data/name.basic.tsv")
+basic$nconst <- gsub("\\N",NA,basic$nconst,fix=TRUE)
+basic$primaryName <- gsub("\\N",NA,basic$primaryName,fix=TRUE)
+basic$birthYear <- gsub("\\N",NA,basic$birthYear,fix=TRUE)
+basic$deathYear<- gsub("\\N",NA,basic$deathYear,fix=TRUE)
+basic$primaryProfession <- gsub("\\N",NA,basic$primaryProfession,fix=TRUE)
+basic$knownForTitles <- gsub("\\N",NA,basic$knownForTitles,fix=TRUE)
 colSums(is.na(basic)) %>%
   sort(decreasing = TRUE)
 rowSums(is.na(basic)) %>%
@@ -22,5 +26,6 @@ rowSums(is.na(basic)) %>%
 ```{r}
 source("scripts/visna.R")
 visna(basic)
+visna(basic,percent=TRUE)
 ```
 
