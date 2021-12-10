@@ -1,1 +1,93 @@
 # Data transformation
+
+```{r, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = TRUE)
+```
+
+## Missing-values
+
+```{r}
+library(tidyverse)
+library(readr)
+library(grid)
+library(gridExtra)
+source("scripts/visna.R")
+source("scripts/subN.R")
+```
+
+
+```{r,eval=FALSE}
+title.ratings <- read_tsv("data/title.ratings.tsv.gz")
+name.basics <- read_tsv("data/name.basics.tsv.gz") # 
+# title.akas <- read_tsv("../data/title.akas.tsv.gz") # 每部电影的别名，用处不大
+title.basics <- read_tsv("data/title.basics.tsv.gz") # 可以只筛选movie类型
+title.crew <- read_tsv("data/title.crew.tsv.gz")
+# title.episode <- read_tsv("../data/title.episode.tsv.gz") # 只要movie，这个是电视剧就不需要了
+title.principals <- read_tsv("data/title.principals.tsv.gz") # job 和 characters 可以去掉
+```
+
+```{r,eval=FALSE}
+title.basics <- title.basics %>%
+  filter(titleType=='movie')
+title.basics <- subN(title.basics)
+
+name.basics <- subN(name.basics)
+
+title.crew <- subN(title.crew)
+
+title.principals <- title.principals %>%
+  select(-c('job', 'characters'))
+title.principals <- subN(title.principals)
+
+
+save(title.basics, file='data/title.basics.RData')
+save(name.basics, file='data/name.basics.RData')
+save(title.crew, file='data/title.crew.RData')
+save(title.principals, file='data/title.principals.RData')
+save(title.ratings, file='data/title.ratings.RData')
+```
+
+```{r, eval=FALSE}
+tg = title.basics %>%
+  select(c('tconst', 'genres'))
+
+c = 1
+title.genres = tg[1,]
+for (r in 1:dim(tg)[1]){
+  if (r%%10000==0) print(r)
+  if (r%%10000==1){
+    print('newbind')
+    newbind = tg[r,]
+  }
+  
+  row = tg[r,]
+  if (is.na(row$genres)==TRUE){
+    c = 1 # pass
+  }
+  else{
+    gs = strsplit(row$genres, ',')[[1]]
+    for (i in 1:length(gs)){
+      newbind <- rbind(newbind, c(row$tconst, gs[i]))
+    }
+  }
+  
+  if (r%%10000==9999 | r==dim(tg)[1]){
+    print('merge')
+    title.genres <- rbind(title.genres, newbind[2:nrow(newbind),])
+  }
+}
+
+title.genres <- title.genres[2:nrow(title.genres),]
+
+save(title.genres, file='data/title.genres.RData')
+```
+
+
+```{r}
+load('data/title.basics.RData')
+#load('../data/name.basics.RData')
+#load('../data/title.crew.RData')
+#load('../data/title.principals.RData')
+load('data/title.ratings.RData')
+load('data/title.genres.RData')
+```
