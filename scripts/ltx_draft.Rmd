@@ -1,0 +1,228 @@
+---
+title: "ltx"
+author: "Tianxiang Li"
+date: "12/9/2021"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+## R Markdown
+
+```{r}
+library(tidyverse)
+library(readr)
+library(grid)
+library(gridExtra)
+source("../scripts/visna.R")
+source("../scripts/subN.R")
+```
+
+
+
+```{r}
+title.ratings <- read_tsv("../data/title.ratings.tsv.gz")
+name.basics <- read_tsv("../data/name.basics.tsv.gz") # 
+# title.akas <- read_tsv("../data/title.akas.tsv.gz") # 每部电影的别名，用处不大
+title.basics <- read_tsv("../data/title.basics.tsv.gz") # 可以只筛选movie类型
+title.crew <- read_tsv("../data/title.crew.tsv.gz")
+# title.episode <- read_tsv("../data/title.episode.tsv.gz") # 只要movie，这个是电视剧就不需要了
+title.principals <- read_tsv("../data/title.principals.tsv.gz") # job 和 characters 可以去掉
+```
+
+
+```{r}
+title.basics <- title.basics %>%
+  filter(titleType=='movie')
+title.basics <- subN(title.basics)
+
+name.basics <- subN(name.basics)
+
+title.crew <- subN(title.crew)
+
+title.principals <- title.principals %>%
+  select(-c('job', 'characters'))
+title.principals <- subN(title.principals)
+
+
+save(title.basics, file='../data/title.basics.RData')
+save(name.basics, file='../data/name.basics.RData')
+save(title.crew, file='../data/title.crew.RData')
+save(title.principals, file='../data/title.principals.RData')
+save(title.ratings, file='../data/title.ratings.RData')
+```
+
+
+```{r}
+tg = title.basics %>%
+  select(c('tconst', 'genres'))
+
+c = 1
+title.genres = tg[1,]
+for (r in 1:dim(tg)[1]){
+  if (r%%10000==0) print(r)
+  if (r%%10000==1){
+    print('newbind')
+    newbind = tg[r,]
+  }
+  
+  row = tg[r,]
+  if (is.na(row$genres)==TRUE){
+    c = 1 # pass
+  }
+  else{
+    gs = strsplit(row$genres, ',')[[1]]
+    for (i in 1:length(gs)){
+      newbind <- rbind(newbind, c(row$tconst, gs[i]))
+    }
+  }
+  
+  if (r%%10000==9999 | r==dim(tg)[1]){
+    print('merge')
+    title.genres <- rbind(title.genres, newbind[2:nrow(newbind),])
+  }
+}
+
+title.genres <- title.genres[2:nrow(title.genres),]
+
+save(title.genres, file='../data/title.genres.RData')
+```
+
+
+```{r}
+load('../data/title.basics.RData')
+load('../data/name.basics.RData')
+load('../data/title.crew.RData')
+load('../data/title.principals.RData')
+load('../data/title.ratings.RData')
+load('../data/title.genres.RData')
+```
+
+```{r}
+title.genres %>%
+  group_by(genres) %>%
+  count(sort=TRUE)
+```
+```{r}
+main_genres <- c('Documentary', 'Comedy', 'Action', 'Romance', 'Crime', 'Horror', 'Adventure', 'Biography', 'Sci-Fi', 'Music', 'War', 'Animation')
+
+```
+
+```{r}
+x <- left_join(title.genres, title.basics, by='tconst')
+```
+
+```{r}
+df <- x %>% 
+  filter(startYear<=2020) %>%
+  mutate(decade=strtoi(startYear)-strtoi(startYear)%%5) %>%
+  group_by(decade, genres.x) %>%
+  count() %>%
+  ungroup()
+
+ggplot(df, aes(decade, n, group=genres.x, color=genres.x)) + geom_line() 
+```
+
+
+
+```{r}
+
+main_genres <- c( 'Drama','Comedy','Music','Documentary','Action', 'Romance', "Thriller",'Crime', 'Horror', 'Adventure', 'Biography', 'Sci-Fi')
+
+x <- left_join(title.genres, title.basics, by='tconst')
+x <- left_join(x, title.ratings, by='tconst')
+
+df <- x %>% 
+  filter(startYear<=2020,startYear>=1980, genres.x %in% main_genres, is.na(numVotes)==FALSE, is.na(averageRating)==FALSE) %>%
+  mutate(totalratings=numVotes*averageRating) %>%
+  group_by(startYear, genres.x) %>%
+  summarise(rating2=sum(totalratings)/sum(numVotes), .groups = 'drop') %>%
+  ungroup() 
+
+
+xlabels = c(1980:2020)
+for (i in 1:length(xlabels)){
+  if (strtoi(xlabels[i])%%5!=0){
+    xlabels[i] <- ""
+  }
+}
+
+g2 <-ggplot(df, aes(startYear, fct_rev(factor(genres.x)), fill = rating2)) +
+  geom_tile(color = "white") +
+  coord_equal() +
+  scale_fill_gradient(low="white", high="blue", guide = guide_colourbar(title='Weighted \n Rating')) +
+  scale_x_discrete(labels=xlabels) +
+  xlab("") +
+  ylab("Genre")
+
+
+main_genres <- c( 'Drama','Comedy','Music','Documentary','Action', 'Romance', "Thriller",'Crime', 'Horror', 'Adventure', 'Biography', 'Sci-Fi')
+
+
+
+df <- x %>% 
+  filter(startYear<=2020,startYear>=1980, genres.x %in% main_genres, is.na(numVotes)==FALSE, is.na(averageRating)==FALSE) %>%
+  group_by(startYear, genres.x) %>%
+  summarise(rating=mean(averageRating), .groups = 'drop') %>%
+  ungroup() 
+
+
+xlabels = c(1980:2020)
+for (i in 1:length(xlabels)){
+  if (strtoi(xlabels[i])%%5!=0){
+    xlabels[i] <- ""
+  }
+}
+
+g1 <- ggplot(df, aes(startYear, fct_rev(factor(genres.x)), fill = rating)) +
+  geom_tile(color = "white") +
+  coord_equal() +
+  scale_fill_gradient(low="white", high="blue", guide = guide_colourbar(title='Avg Rating')) +
+  scale_x_discrete(labels=xlabels) +
+  xlab("") +
+  ylab("Genre")
+
+
+grid.arrange(g1,g2,nrow=2)
+```
+
+```{r}
+
+main_genres <- c( 'Music','Documentary','Action', 'Romance', "Thriller",'Crime', 'Horror', 'Adventure', 'Biography', 'Sci-Fi')
+
+x <- left_join(title.genres, title.basics, by='tconst')
+x <- left_join(x, title.ratings, by='tconst')
+
+df <- x %>% 
+  filter(startYear<=2020,startYear>=1950, genres.x %in% main_genres, is.na(numVotes)==FALSE, is.na(averageRating)==FALSE) %>%
+  mutate(totalratings=numVotes*averageRating) %>%
+  group_by(startYear, genres.x) %>%
+  summarise(weightedrating=sum(totalratings)/sum(numVotes)) %>%
+  ungroup()
+
+ggplot(df, aes(startYear, genres.x, fill = weightedrating)) +
+  geom_tile(color = "white") +
+  coord_equal() +
+  scale_fill_gradient(low="white", high="blue")
+
+```
+
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+```{r}
+
+```
+
+
+
+
+
