@@ -8,6 +8,9 @@ library(tidyverse)
 library(readr)
 library(grid)
 library(gridExtra)
+library(rlist)
+library(forcats)
+library(ggridges)
 source("scripts/visna.R")
 source("scripts/subN.R")
 ```
@@ -19,6 +22,106 @@ load('data/title.basics.RData')
 #load('../data/title.principals.RData')
 load('data/title.ratings.RData')
 load('data/title.genres.RData')
+```
+
+
+```{r}
+title.genres %>% 
+	group_by(genres) %>% 
+	summarise(count = n()) %>% 
+	ggplot(aes(x = reorder(genres, count), y=count/sum(count))) + 
+  geom_bar(stat="identity", fill="lightblue") + 
+  xlab("Genres") +
+  ylab("Frequency") +
+  ggtitle("Frequency of All Kinds of Genres") +
+  coord_flip()
+```
+
+```{r}
+main_genres <- c('Drama', 'Documentary', 'Comedy', 'Action', 'Romance', 'Thriller', 'Crime')
+
+
+title_genre <- title.genres[title.genres$genres %in% main_genres, ]
+df <- left_join(title_genre, title.basics, by='tconst')
+  
+df %>%
+  filter(!is.na(startYear)) %>%
+  group_by(startYear, genres.x) %>%
+  summarize(genre_count = n()) %>%
+  ungroup() %>%
+  rename(genres = genres.x) %>%
+  ggplot(aes(x=startYear, y=genre_count, colour=fct_relevel(genres, main_genres))) +
+  geom_line(size=1) + 
+  xlab("Year") + 
+  ylab("Count") + 
+  ggtitle("Frequency of Different Genres Changed Over Time") + 
+  scale_colour_discrete("Genres")
+```
+
+
+```{r fig.height = 12, fig.width = 12}
+main_genres <- c('Drama', 'Documentary', 'Comedy', 'Action', 'Romance', 'Thriller', 'Crime', 'Horror', 'Adventure')
+
+plots = list()
+for(genre in main_genres) {
+  title_genre <- title.genres[title.genres$genres == genre, ]
+  df <- left_join(title_genre, title.basics, by='tconst')
+  
+  g <- df %>%
+    filter(!is.na(startYear)) %>%
+    group_by(startYear) %>%
+    summarize(genre_count = n()) %>%
+    ggplot(aes(x=startYear, y=genre_count, group=1)) +
+    geom_line(color="lightblue", size=1) + 
+    xlab("Year") + 
+    ylab("Count") + 
+    ggtitle(genre)
+  
+  plots <- list.append(plots, g)
+}
+
+grid.arrange(grobs=plots, ncol=3)
+```
+
+
+```{r}
+main_genres <- c('Drama', 'Documentary', 'Comedy', 'Action', 'Romance', 'Thriller', 'Crime', 'Horror', 'Adventure')
+
+title_genre <- title.genres[title.genres$genres %in% main_genres, ]
+df <- left_join(title_genre, title.ratings, by='tconst')
+
+df %>%
+  filter(!is.na(averageRating)) %>%
+  ggplot(aes(x = reorder(genres, averageRating, median), y = averageRating)) +
+  geom_boxplot(fill = "light blue") +
+  xlab("Genres") + 
+  ylab("Rating") +
+  coord_flip() +
+  ggtitle("Boxplots of Average Rating by Genres") +
+  theme(plot.title = element_text(hjust = 0.5))
+```
+
+```{r}
+main_genres <- c('Documentary', 'Drama', 'Romance', 'Comedy', 'Action', 'Thriller')
+
+
+title_genre <- title.genres[title.genres$genres %in% main_genres, ]
+df <- left_join(title_genre, title.ratings, by='tconst')
+df <- left_join(df, title.basics, by='tconst')
+  
+df %>%
+  filter(startYear >= 1900) %>%
+  filter(!is.na(averageRating) & (!is.na(startYear))) %>%
+  group_by(startYear, genres.x) %>%
+  summarize(average_rating_by_genres = mean(averageRating)) %>%
+  ungroup() %>%
+  rename(genres = genres.x) %>%
+  ggplot(aes(x=startYear, y=average_rating_by_genres, colour=fct_relevel(genres, main_genres))) +
+  geom_line(size=1) + 
+  xlab("Year") + 
+  ylab("Average Rating") + 
+  ggtitle("Average Rating of Different Genres Changed Over Time") + 
+  scale_colour_discrete("Genres")
 ```
 
 
@@ -83,6 +186,10 @@ g1 <- ggplot(df, aes(startYear, fct_rev(factor(genres.x)), fill = rating)) +
 
 grid.arrange(g1,g2,nrow=2)
 ```
+
+
+
+
 
 This is an interesting plot about the ratings of different genres changing with time. ...
 

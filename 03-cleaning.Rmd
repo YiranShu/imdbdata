@@ -38,14 +38,17 @@ title.crew <- subN(title.crew)
 title.principals <- title.principals %>%
   select(-c('job', 'characters'))
 title.principals <- subN(title.principals)
-
-
-save(title.basics, file='data/title.basics.RData')
-save(name.basics, file='data/name.basics.RData')
-save(title.crew, file='data/title.crew.RData')
-save(title.principals, file='data/title.principals.RData')
-save(title.ratings, file='data/title.ratings.RData')
 ```
+
+```{r}
+title.basics$startYear <- as.integer(title.basics$startYear)
+title.basics$endYear <- as.integer(title.basics$endYear)
+title.basics$runtimeMinutes <- as.integer(title.basics$runtimeMinutes)
+
+name.basics$birthYear <- as.integer(name.basics$birthYear)
+name.basics$deathYear <- as.integer(name.basics$deathYear)
+```
+
 
 ```{r, eval=FALSE}
 tg = title.basics %>%
@@ -84,10 +87,15 @@ save(title.genres, file='data/title.genres.RData')
 
 
 ```{r}
-load('data/title.basics.RData')
-#load('../data/name.basics.RData')
-#load('../data/title.crew.RData')
-#load('../data/title.principals.RData')
-load('data/title.ratings.RData')
-load('data/title.genres.RData')
+unique(title.genres$genres)
+```
+
+
+
+```{r}
+save(title.basics, file='data/title.basics.RData')
+save(name.basics, file='data/name.basics.RData')
+save(title.crew, file='data/title.crew.RData')
+save(title.principals, file='data/title.principals.RData')
+save(title.ratings, file='data/title.ratings.RData')
 ```
