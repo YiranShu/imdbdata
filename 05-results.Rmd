@@ -1,7 +1,281 @@
 # Results
 
 
-## Year-Ratings
+
+## Movie ratings of different years
+
+```{r, eval=FALSE}
+library(tidyverse)
+library(readr)
+library(grid)
+library(gridExtra)
+library(ggridges)
+library(treemap)
+library("patchwork")
+source("scripts/visna.R")
+source("scripts/subN.R")
+```
+
+```{r, eval=FALSE}
+load('data/title.basics.RData')
+#load('../data/name.basics.RData')
+#load('../data/title.crew.RData')
+#load('../data/title.principals.RData')
+load('data/title.ratings.RData')
+load('data/title.genres.RData')
+```
+
+
+### Ratings for all movies
+IMDB rating is a good reference if we want to know the quality of different movies. Do different genres have obviously different average ratings? Has the quality of movies changed over time? We can find something from the figure below:
+
+```{r}
+main_genres <- c( 'Drama','Comedy','Music','Documentary','Action', 'Romance', "Thriller",'Crime', 'Horror', 'Adventure', 'Biography', 'Sci-Fi')
+
+x <- left_join(title.genres, title.basics, by='tconst')
+x <- left_join(x, title.ratings, by='tconst')
+
+df <- x %>% 
+  filter(startYear<=2020,startYear>=1980, genres.x %in% main_genres, is.na(numVotes)==FALSE, is.na(averageRating)==FALSE) %>%
+  mutate(totalratings=numVotes*averageRating) %>%
+  group_by(startYear, genres.x) %>%
+  summarise(rating2=sum(totalratings)/sum(numVotes), .groups = 'drop') %>%
+  ungroup() 
+
+
+xlabels = c(1980:2020)
+for (i in 1:length(xlabels)){
+  if (strtoi(xlabels[i])%%5!=0){
+    xlabels[i] <- ""
+  }
+}
+
+g2 <-ggplot(df, aes(startYear, fct_rev(factor(genres.x)), fill = rating2)) +
+  geom_tile(color = "white") +
+  coord_equal() +
+  scale_fill_gradient(low="white", high="blue", guide = guide_colourbar(title='Weighted \n Rating')) +
+  scale_x_discrete(labels=xlabels) +
+  xlab("") +
+  ylab("")
+
+
+main_genres <- c( 'Drama','Comedy','Music','Documentary','Action', 'Romance', "Thriller",'Crime', 'Horror', 'Adventure', 'Biography', 'Sci-Fi')
+
+
+
+df <- x %>% 
+  filter(startYear<=2020,startYear>=1980, genres.x %in% main_genres, is.na(numVotes)==FALSE, is.na(averageRating)==FALSE) %>%
+  group_by(startYear, genres.x) %>%
+  summarise(rating=mean(averageRating), .groups = 'drop') %>%
+  ungroup() 
+
+
+xlabels = c(1980:2020)
+for (i in 1:length(xlabels)){
+  if (strtoi(xlabels[i])%%5!=0){
+    xlabels[i] <- ""
+  }
+}
+
+g1 <- ggplot(df, aes(startYear, fct_rev(factor(genres.x)), fill = rating)) +
+  geom_tile(color = "white") +
+  coord_equal() +
+  scale_fill_gradient(low="white", high="blue", guide = guide_colourbar(title='Avg Rating')) +
+  scale_x_discrete(labels=xlabels) +
+  xlab("") +
+  ylab("")
+
+
+g1 / g2  +    # Create grid of plots with title
+  plot_annotation(title = "Ratings of different genres", caption="Year",
+                  theme = theme(plot.title = element_text(size = 15), plot.caption =element_text(size=12,hjust = 0.5,vjust=6) ))
+
+```
+
+This is an interesting plot about the ratings of different genres changing with time. The top one calculates the average ratings of movies from each genre and each year. It seems that `Documentary`, `Biograph` and `Music` have the highest ratings, while ratings for `Horro` movies are the lowest. And there is no obvious trend along the `Year` dimension.  
+
+However, let's consider this situation: there are two `Action` movies in 2050.One gets 10000 votes of 10 star, one gets gets 1 vote of 0 star. The average rating would be 5 star. This seems a little unfair, right?  
+
+So we also use `weighted average`, where weights are their number of votes, and we get the bottom plot. Surprisingly, the ratings between different genres are not so large as we thought.  `Documentary` and `Biography` are not much higher than the others, although `Horro` still seems the lowest. 
+
+Another interesting discovery is that there is a trend along time: movies before 2000 clearly have higher weighted ratings than movies after 2000. Maybe this is a reflection that the quality of movies in recent years are not as well as before?
+
+
+### Rating distributions for 100 best movies
+Now that we have a view of ratings of all movies, what about those top-rating movies? Do people have preference among different genres when they are rating? We select 100 top-rating movies of different genres and plot their distributions:
+
+```{r}
+main_genres <- c( 'Drama','Comedy','Music','Documentary','Action', 'Romance', "Thriller",'Crime', 'Horror', 'Adventure', 'Biography', 'Sci-Fi')
+
+x <- left_join(title.genres, title.ratings, by='tconst')
+
+x1 <- x %>%
+  filter(genres %in% main_genres, numVotes>5000) %>%
+  group_by(genres) %>%
+  mutate(r=rank(averageRating*(-1))) %>%
+  ungroup() %>%
+  filter(r<=100)
+
+x2 <- left_join(x1, title.basics, by='tconst')
+
+x2$genres.x <- with(x2 ,reorder(genres.x,averageRating,median))
+
+
+x <- left_join(title.genres, title.ratings, by='tconst')
+
+x1 <- x %>%
+  filter(genres %in% main_genres) %>%
+  group_by(genres) %>%
+  mutate(r=rank(averageRating*(-1))) %>%
+  ungroup() %>%
+  filter(r<=100)
+
+x22 <- left_join(x1, title.basics, by='tconst')
+
+#x2$genres.x <- with(x2 ,reorder(genres.x,averageRating,median))
+
+library(ggridges)
+g <- ggplot() +
+  geom_density_ridges(data = x2, aes(y = genres.x, x = averageRating), alpha=0.8,color='white', fill='lightslateblue')+
+  geom_density_ridges(data = x22, aes(y = genres.x, x = averageRating), alpha=0.2,color=rgb(0,0,0, alpha=0, maxColorValue = 1),
+                      fill='red') +
+  ylab("")+xlab("Rating")+
+  ggtitle('Rating distributions for 100 top-rating movies of each genre')
+g
+
+```
+
+If we select movies from all of them, we get the red distributions. But if we only consider movies with more than 5000 votes, we get the purple ones. We find that `Documentary` has the highest median if we consider all movies, but it gets lower if we exclude those without enough votes. It turns out that there are many documentary movies only have 20 or 50 votes with almost 10 star ratings. It's the same with biography and music movies. 
+
+If we exclude these not well-know works, we can get a picture of the preferences of the most population. It shows that people tend to give higher ratings for `Romance` movies, while it's very hard for `Horro` movies to get high scores. 
+
+
+## Movie titles
+### Most common words in titles
+Do movies of different genres prefer different words in titles? For example, maybe there are a lot of `heart` in `Romance` movies titles? Here we select 15 most common words from `Action`, `Animation`, `Romance`, `Sci_Fi` (meaningless words like 'the', 'to' are excluded):
+
+```{r}
+main_genres <- c( 'Drama','Comedy','Music','Documentary','Action', 'Romance', "Thriller",'Crime', 'Horror', 'Adventure', 'Biography', 'Sci-Fi')
+
+x <- left_join(title.genres, title.basics, by='tconst')
+
+x1 <- x %>%
+  filter(startYear>=1990, startYear<=2020)
+
+
+WordFreq <- function(text) {
+  txt = text[text!=""]
+  txt = tolower(txt)
+  txtList = lapply(txt, strsplit," ")
+  txtChar = unlist(txtList)
+  txtChar = gsub("\\.|,|\\!|:|;|\\?","",txtChar) #clean symbol(.,!:;?)
+  txtChar = txtChar[txtChar!=""]
+  data = as.data.frame(table(txtChar))
+  colnames(data) = c("Word","freq")
+  ordFreq = data[order(data$freq,decreasing=T),]
+  meaningless = c('the','of','a','and','2','3','in','movie','an','last','i','you','my','me','man','en','del','le','un','der','les','to','one','no','not','it','from','-','de','la','el','&','for','on','is','with','at','ka','ii','ang','up','ng','na','your')
+  ordFreq <- ordFreq %>% filter(!(Word %in% meaningless))
+  return(ordFreq)
+}
+
+text = x1 %>% filter(genres.x=='Romance') %>%
+  select(primaryTitle)
+ordFreq1 <- WordFreq(text)
+ordFreq1$genre <- 'Romance' 
+text = x1 %>% filter(genres.x=='Action') %>%
+  select(primaryTitle)
+ordFreq2 <- WordFreq(text)
+ordFreq2$genre <- 'Action'
+text = x1 %>% filter(genres.x=='Animation') %>%
+  select(primaryTitle)
+ordFreq3 <- WordFreq(text)
+ordFreq3$genre <- ''
+text = x1 %>% filter(genres.x=='Sci-Fi') %>%
+  select(primaryTitle)
+ordFreq4 <- WordFreq(text)
+ordFreq4$genre <- 'Sci-Fi'
+
+ordFreq <- rbind(ordFreq1[1:15,], ordFreq2[1:15,])
+
+
+g1 <- ggplot(ordFreq1[1:15,], aes(x=freq, y=fct_reorder(Word, freq))) +
+  geom_segment( aes(x=0, xend=freq, y=fct_reorder(Word, freq), yend=fct_reorder(Word, freq)), color="skyblue") +
+  geom_point( color="blue", size=1, alpha=0.6) +
+  ggtitle("Guess 1") +
+  theme_light() +
+  ylab("") +  xlab("") +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.border = element_blank(),
+    axis.ticks.y = element_blank()
+  )
+
+g2 <- ggplot(ordFreq2[1:15,], aes(x=freq, y=fct_reorder(Word, freq))) +
+  geom_segment( aes(x=0, xend=freq, y=fct_reorder(Word, freq), yend=fct_reorder(Word, freq)), color="skyblue") +
+  geom_point( color="blue", size=1, alpha=0.6) +
+  ggtitle("Guess 2") +
+  theme_light() +
+  scale_x_continuous(breaks = c(0,100,200,300,400), labels=c(0,"",200,"",400))+
+  ylab("") +
+  xlab("") +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.border = element_blank(),
+    axis.ticks.y = element_blank()
+  )
+
+g3 <- ggplot(ordFreq3[1:15,], aes(x=freq, y=fct_reorder(Word, freq))) +
+  geom_segment( aes(x=0, xend=freq, y=fct_reorder(Word, freq), yend=fct_reorder(Word, freq)), color="skyblue") +
+  geom_point( color="blue", size=1, alpha=0.6) +
+  ggtitle("Guess 4") +
+  theme_light() +
+  ylab("") +
+  xlab("") +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.border = element_blank(),
+    axis.ticks.y = element_blank()
+  )
+
+g4 <- ggplot(ordFreq4[1:15,], aes(x=freq, y=fct_reorder(Word, freq))) +
+  geom_segment( aes(x=0, xend=freq, y=fct_reorder(Word, freq), yend=fct_reorder(Word, freq)), color="skyblue") +
+  geom_point( color="blue", size=1, alpha=0.6) +
+  ggtitle("Guess 3") +
+  theme_light() +
+  xlab("") +
+  ylab("") +
+  theme(
+    panel.grid.major.y = element_blank(),
+    panel.border = element_blank(),
+    axis.ticks.y = element_blank()
+  )
+
+
+ggp_all <- (g1 |g2 | g4 | g3) +    # Create grid of plots with title
+  plot_annotation(title = "Most common words in different genres' titles", caption="Frequence",
+                  theme = theme(plot.title = element_text(size = 15), plot.caption =element_text(size=12,hjust = 0.5,vjust=6) ))
+ggp_all 
+```
+
+The genre of each plot is hidden. Can you match these four plots with the four genres?  
+
+It should be easy. The first one, with 'love' having highest frequency, is `Romance`. We can also see 'girl', 'heart', 'wedding' in these titles. The second one have 'vs', 'blood', 'hero', so it's obvious `Action`. What about 'alien', 'space', 'star'? `Sci_fi` movies love these topics! And lastly, for little children, 'little', 'magic', 'christmas'. It must be `Animation`. Do you get them all right?  
+
+Also we can notice that 'love' is one of the most common words for many genres. Maybe love is the eternal theme for human! 
+
+
+
+### Length of Titles
+
+
+
+
+
+
+
+
+
+
 
 ```{r}
 library(tidyverse)
@@ -188,8 +462,4 @@ grid.arrange(g1,g2,nrow=2)
 ```
 
 
-
-
-
-This is an interesting plot about the ratings of different genres changing with time. ...
 
