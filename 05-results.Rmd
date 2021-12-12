@@ -149,6 +149,82 @@ If we select movies from all of them, we get the red distributions. But if we on
 
 If we exclude these not well-know works, we can get a picture of the preferences of the most population. It shows that people tend to give higher ratings for `Romance` movies, while it's very hard for `Horro` movies to get high scores. 
 
+## Number of votes
+As we can see, those movies with few votes can cause big difference when we are analysing the data. What are these movies like? We select those movies with less than 5,000 votes on IMDB and see where they come from: 
+
+```{r}
+x <- left_join(title.genres, title.ratings, by='tconst')
+
+x1 <- x %>%
+  filter(numVotes<5000)
+
+x2 <- left_join(x1, title.basics, by='tconst')
+
+x3 <- x2 %>%
+  group_by(genres.x) %>%
+  summarise(c=n()) %>%
+  ungroup()
+    
+library(treemap)
+treemap(x3, index="genres.x", vSize="c", type="index",
+        title='Movies (votes<5000)',fontsize.title=12)
+```
+
+These movies mostly come from `Drama`, `Comedy`, `Documentary`, which is not very surprising. However, we can sense that they may have different ratings, because when we exclude these movies, the average ratings of different genres change differently. 
+
+So now we plot the ratings of these movies and get this:
+
+```{r, fig.width=8,fig.height=6}
+x <- left_join(title.genres, title.ratings, by='tconst')
+main_genres = c('Documentary', 'Horror', 'Action', 'Drama')
+x1 <- x %>%
+  filter(numVotes<5000,numVotes>0, genres %in% main_genres)
+
+
+cl <- function(r){
+  if (r>=0 & r<4) return('0-4')
+  if (r>=4 & r<6) return('4-6')
+  if (r>=6 & r<8) return('6-8')
+  if (r>=8 & r<=10) return('8-10')
+}
+
+x1$rating1 <- lapply(x1$averageRating, cl)
+x1$rating2 <- unlist(x1$rating1)
+x1$Rating <- fct_rev(factor(x1$rating2))
+x1$genres <- factor(x1$genres)
+#levels(x1$genres) <- c('Documentary', 'Drama','Crime','Action','Horror')
+x1$Genre <- fct_rev(fct_relevel(x1$genres,'Documentary', 'Drama','Action','Horror'))
+
+library(Lock5withR)
+library(vcd)
+mosaic(Rating~Genre, direction = c("v","h"),x1,main='Ratings of movies (votes<5000)')
+```
+
+As we can see, among these movies, `Documentary` mostly have 6-8 stars, while `Horro` movies mostly have 0-6 stars. This proves what we think: there exists many documentary movies with small number of votes but very high ratings. 
+
+
+
+## Dependency between votes, ratings and runtime
+Now we may wonder if votes and ratings have some relationship. The graph below shows the relationship among three variables: votes, ratings, and runtime. Note that we only select popular movies (with number of votes larger than 200,000) to exclude those 'noisy' less popular movies.
+
+```{r}
+main_genres <- c( 'Drama','Comedy','Music','Documentary','Action','Sci-Fi')
+x <- left_join(title.basics, title.ratings, by='tconst')
+x$runtimeMinutes <- as.integer(x$runtimeMinutes)
+x$numVotes <- x$numVotes/1e3
+
+x1 <- x%>%
+  filter(genres %in% main_genres,is.na(runtimeMinutes)==FALSE, is.na(averageRating)==FALSE, is.na(numVotes)==FALSE, runtimeMinutes<400,startYear>=1940,startYear<=2020, numVotes>200)
+x1$votes_in_thousand <- x1$numVotes
+  
+x2 <- x1 %>%select(runtimeMinutes, averageRating, votes_in_thousand)
+library(GGally)
+ggpairs(x2, aes(alpha=0.5))
+
+```
+
+The average rating and number of votes have obvious relationship. This is not difficult to understand: better movies are usually more popular so more people would vote. We also find that longer movies tend to have higher ratings. This is an interesting discovery. One reason could be that longer movies usually come from those with meaningful topics, while entertainment movies are usually shorter. 
+
 
 ## Movie titles
 ### Most common words in titles
@@ -264,12 +340,45 @@ It should be easy. The first one, with 'love' having highest frequency, is `Roma
 Also we can notice that 'love' is one of the most common words for many genres. Maybe love is the eternal theme for human! 
 
 
-
 ### Length of Titles
+What's the average length of movie titles and does it change with time? We plot the average length of titles:
+
+```{r}
+main_genres <- c('Comedy','Music','Documentary','Action','Sci-Fi')
+x <- left_join(title.genres, title.basics, by='tconst')
+
+x1 <- x %>%
+  filter(genres.x %in% main_genres) %>%
+  mutate(decade=strtoi(startYear)-strtoi(startYear)%%4)
+
+x1$len_title = lapply(x1$primaryTitle, function(t){return(length(strsplit(t," ")[[1]]))})
+x1$len_title = as.integer(x1$len_title)
+x1$genres.x <- with(x1 ,reorder(genres.x,len_title,median))
 
 
+xlabels = c(1920:2020)
+for (i in 1:length(xlabels)){
+  if (strtoi(xlabels[i])%%10!=0){
+    xlabels[i] <- ""
+  }
+}
 
 
+x2 <- x1 %>%   filter(genres.x %in% main_genres, decade>=1940, decade<=2020) %>%
+  group_by(genres.x, decade) %>%
+  summarise(len=mean(len_title),low=len-sd(len_title)/30,high=len+sd(len_title)/30 ,.groups='drop') 
+x2$genres.x <- fct_relevel(x2$genres.x, 'Music', 'Documentary', 'Comedy', 'Action', 'Sci-Fi')
+
+x2 %>% ggplot(aes(x=decade, y=len, color=genres.x))+
+  geom_line()+
+  ggtitle('Average length of movie titles')+
+  ylab('Length') +xlab('')+
+  guides(color=guide_legend(title="Genre"))
+
+```
+
+
+We can see that at first they don't have much difference, but as time develops `Music` and `Documentary` have longer titles with average length of 4, and `Comedy`, `Action`, `Sci-Fi` have shorter average titles. It can also be noticed that their average title length was decreasing from 1970 to 2000, but after 2000 their length has been increasing. 
 
 
 
