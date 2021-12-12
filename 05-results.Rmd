@@ -461,5 +461,42 @@ g1 <- ggplot(df, aes(startYear, fct_rev(factor(genres.x)), fill = rating)) +
 grid.arrange(g1,g2,nrow=2)
 ```
 
+## Analysis of Director
+### Top 10 directors in action genre
+```{r}
+load("data/name.basics.RData")
+```
 
+```{r}
+top_10 <- inner_join(title.genres, title.crew, by="tconst") %>%
+  filter(!is.na(directors)) %>% filter(genres=="Action") %>% 
+  inner_join(name.basics %>% select(nconst, primaryName), by=c("directors"="nconst")) %>%
+  group_by(directors, primaryName) %>% summarise(count=n()) %>%
+  arrange(desc(count)) %>% head(10) 
+ggplot(data=top_10, aes(x=reorder(primaryName, count), y=count)) + geom_col(fill="cornflowerblue") + coord_flip() +
+  labs(x="Director", y="Number of movies", 
+       title="Top 10 directors (Action)")
+```
+
+### Distribution of genres for the top 10 directors
+```{r}
+inner_join(title.genres, title.crew, by="tconst") %>%
+  filter(!is.na(directors))  %>%
+  filter(directors %in% top_10$directors) %>%
+  group_by(genres) %>% summarise(count=n()) %>%
+  ggplot(aes(x=reorder(genres, count), y=count)) + geom_col(fill="cornflowerblue") + coord_flip() +
+  labs(x="Genres", y="Number of movies")
+```
+
+### Average rating of top 10 directors by genre
+```{r}
+inner_join(title.genres, title.crew, by="tconst") %>%
+  filter(!is.na(directors)) %>% 
+  filter(directors %in% top_10$directors) %>%
+  inner_join(title.ratings, by="tconst") %>%
+   inner_join(name.basics %>% select(nconst, primaryName), by=c("directors"="nconst")) %>%
+  group_by(genres, primaryName) %>% summarise(rating=mean(averageRating)) %>%
+  ggplot(aes(x=primaryName, y=genres, fill=rating)) + geom_tile() +
+  theme (axis.text.x = element_text (angle = 90, vjust = 1, hjust=1)) 
+```
 
