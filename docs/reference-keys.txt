@@ -9,7 +9,6 @@ title.basics
 name.basics
 title.ratings
 title.crew
-title.principals
 issues
 data-transformation
 missing-values

@@ -152,7 +152,6 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="2.2.2" data-path="data-sources.html"><a href="data-sources.html#name.basics"><i class="fa fa-check"></i><b>2.2.2</b> name.basics</a></li>
 <li class="chapter" data-level="2.2.3" data-path="data-sources.html"><a href="data-sources.html#title.ratings"><i class="fa fa-check"></i><b>2.2.3</b> title.ratings</a></li>
 <li class="chapter" data-level="2.2.4" data-path="data-sources.html"><a href="data-sources.html#title.crew"><i class="fa fa-check"></i><b>2.2.4</b> title.crew</a></li>
-<li class="chapter" data-level="2.2.5" data-path="data-sources.html"><a href="data-sources.html#title.principals"><i class="fa fa-check"></i><b>2.2.5</b> title.principals</a></li>
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="data-sources.html"><a href="data-sources.html#issues"><i class="fa fa-check"></i><b>2.3</b> Issues</a></li>
 </ul></li>
@@ -192,7 +191,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="5.5" data-path="results.html"><a href="results.html#analysis-of-director"><i class="fa fa-check"></i><b>5.5</b> Analysis of Director</a>
 <ul>
-<li class="chapter" data-level="5.5.1" data-path="results.html"><a href="results.html#top-10-directors-in-action-genre"><i class="fa fa-check"></i><b>5.5.1</b> Top 10 directors in action genre</a></li>
+<li class="chapter" data-level="5.5.1" data-path="results.html"><a href="results.html#top-10-directors-in-action-genre"><i class="fa fa-check"></i><b>5.5.1</b> Top 10 directors in ‘Action’ genre</a></li>
 <li class="chapter" data-level="5.5.2" data-path="results.html"><a href="results.html#distribution-of-genres-for-the-top-10-directors"><i class="fa fa-check"></i><b>5.5.2</b> Distribution of genres for the top 10 directors</a></li>
 <li class="chapter" data-level="5.5.3" data-path="results.html"><a href="results.html#average-rating-of-top-10-directors-by-genre"><i class="fa fa-check"></i><b>5.5.3</b> Average rating of top 10 directors by genre</a></li>
 </ul></li>
@@ -224,18 +223,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <h2><span class="header-section-number">4.1</span> title.bacis</h2>
 <div id="missing-values-by-column" class="section level3" number="4.1.1">
 <h3><span class="header-section-number">4.1.1</span> Missing values by column</h3>
-<div class="sourceCode" id="cb32"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb32-1"><a href="missing-values-1.html#cb32-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(title.basics)) <span class="sc">%&gt;%</span></span>
-<span id="cb32-2"><a href="missing-values-1.html#cb32-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sort</span>(<span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
+<div class="sourceCode" id="cb28"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb28-1"><a href="missing-values-1.html#cb28-1" aria-hidden="true" tabindex="-1"></a><span class="fu">colSums</span>(<span class="fu">is.na</span>(title.basics)) <span class="sc">%&gt;%</span></span>
+<span id="cb28-2"><a href="missing-values-1.html#cb28-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">sort</span>(<span class="at">decreasing =</span> <span class="cn">TRUE</span>)</span></code></pre></div>
 <pre><code>##        endYear runtimeMinutes      startYear         genres         tconst      titleType   primaryTitle  originalTitle        isAdult 
 ##         594338         220659          76086          71319              0              0              0              0              0</code></pre>
 </div>
 <div id="missing-patterns" class="section level3" number="4.1.2">
 <h3><span class="header-section-number">4.1.2</span> Missing patterns</h3>
-<div class="sourceCode" id="cb34"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb34-1"><a href="missing-values-1.html#cb34-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;scripts/visna.R&quot;</span>)</span>
-<span id="cb34-2"><a href="missing-values-1.html#cb34-2" aria-hidden="true" tabindex="-1"></a><span class="fu">visna</span>(title.basics)</span></code></pre></div>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-36-1.png" width="672" /></p>
-<div class="sourceCode" id="cb35"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb35-1"><a href="missing-values-1.html#cb35-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visna</span>(title.basics, <span class="at">percent=</span><span class="cn">TRUE</span>)</span></code></pre></div>
-<p><img src="finalproj_files/figure-html/unnamed-chunk-36-2.png" width="672" /></p>
+<div class="sourceCode" id="cb30"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb30-1"><a href="missing-values-1.html#cb30-1" aria-hidden="true" tabindex="-1"></a><span class="fu">source</span>(<span class="st">&quot;scripts/visna.R&quot;</span>)</span>
+<span id="cb30-2"><a href="missing-values-1.html#cb30-2" aria-hidden="true" tabindex="-1"></a><span class="fu">visna</span>(title.basics)</span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-34-1.png" width="672" /></p>
+<div class="sourceCode" id="cb31"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb31-1"><a href="missing-values-1.html#cb31-1" aria-hidden="true" tabindex="-1"></a><span class="fu">visna</span>(title.basics, <span class="at">percent=</span><span class="cn">TRUE</span>)</span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-34-2.png" width="672" /></p>
 <p>From the graph, we can see that there are no missing values in columns <code>nconst</code> and <code>primaryName</code>. Most missing values are in columns <code>deathYear</code> and <code>birthYear</code>. This might be due to the difficulty of getting the specific birth and death time and the fact that some people are not dead. Only a minority of missing values are in columns <code>primaryProfession</code> and <code>knownForTitles</code>. Furthermore, <code>deathYear</code> and <code>birthYear</code> are both missing in most rows with missing data. It might be due to the high correlation between these 2 columns. Only a very small proportion of rows have no missing values.</p>
 
 </div>

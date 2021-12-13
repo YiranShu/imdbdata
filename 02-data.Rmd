@@ -10,7 +10,7 @@ library(readr)
 ```
 
 ## URL of data sources
-Our data are collected from a website of IMDB (https://datasets.imdbws.com/). Collecting the datasets is pretty straightforward. We just downloaded the `tsv.gz` files we need. These files are `title.ratings.tsv.gz`, `name.basics.tsv.gz`, `title.basics.tsv.gz`, `title.crew.tsv.gz`, and `title.principals.tsv.gz`.
+Our data are collected from a website of IMDB (https://datasets.imdbws.com/). Collecting the datasets is pretty straightforward. We just downloaded the `tsv.gz` files we need. These files are `title.ratings.tsv.gz`, `name.basics.tsv.gz`, `title.basics.tsv.gz`,  and `title.crew.tsv.gz`.
 
 ## Basic information
 ```{r, echo=FALSE, eval=FALSE}
@@ -18,7 +18,6 @@ title.ratings <- read_tsv("data/title.ratings.tsv.gz")
 name.basics <- read_tsv("data/name.basics.tsv.gz") # 
 title.basics <- read_tsv("data/title.basics.tsv.gz") 
 title.crew <- read_tsv("data/title.crew.tsv.gz")
-title.principals <- read_tsv("data/title.principals.tsv.gz")
 ```
 
 ```{r, echo=FALSE}
@@ -129,32 +128,6 @@ The number of rows in the dataframe of `title.crew` is:
 
 ```{r}
 nrow(title.crew)
-```
-### title.principals
-
-Here are the first few rows of the dataframe of `title.principals`. 
-```{r}
-head(title.principals)
-```
-
-`title.principals` contains the principal cast/crew for titles.
-
-tconst (chr) - alphanumeric unique identifier of the title
-
-ordering (chr) – a number to uniquely identify rows for a given titleId
-
-nconst (chr) - alphanumeric unique identifier of the name/person
-
-category (chr) - the category of job that person was in
-
-job (chr) - the specific job title if applicable, else '\N'
-
-characters (chr) - the name of the character played if applicable, else '\N'
-
-The number of rows in the dataframe of `title.principals` is: 
-
-```{r}
-nrow(title.principals)
 ```
 
 ## Issues

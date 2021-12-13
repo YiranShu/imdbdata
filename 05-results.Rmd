@@ -147,7 +147,7 @@ g
 
 If we select movies from all of them, we get the red distributions. But if we only consider movies with more than 5000 votes, we get the purple ones. We find that `Documentary` has the highest median if we consider all movies, but it gets lower if we exclude those without enough votes. It turns out that there are many documentary movies only have 20 or 50 votes with almost 10 star ratings. It's the same with biography and music movies. 
 
-If we exclude these not well-know works, we can get a picture of the preferences of the most population. It shows that people tend to give higher ratings for `Romance` movies, while it's very hard for `Horro` movies to get high scores. 
+If we exclude these not well-known works, we can get a picture of the preferences of the most population. It shows that people tend to give higher ratings for `Romance` movies, while it's very hard for `Horro` movies to get high scores. 
 
 ## Number of votes
 As we can see, those movies with few votes can cause big difference when we are analysing the data. What are these movies like? We select those movies with less than 5,000 votes on IMDB and see where they come from: 
@@ -387,10 +387,6 @@ This part we will analyze the relationship between directors and genre types, wh
 
 ### Top 10 directors in 'Action' genre
 
-```{r}
-load("data/name.basics.RData")
-```
-
 ```{r fig.height=18, fig.width=12}
 library(plotly)
 p1 <- title.genres %>% group_by(genres) %>% summarise(count=n()) %>% arrange(desc(count)) %>%
@@ -496,7 +492,7 @@ g1 / g2  +    # Create grid of plots with title
                   theme = theme(plot.title = element_text(size = 15), plot.caption =element_text(size=12,hjust = 0.5,vjust=6) ))
 ```
 
-The average rating graph are almost the same as the waighted rating graph. From the two graphs, it is obvious that there is no apparent relationship between the number of movies a director made and the rating he got. You can see director Godfrey Ho has about average rate 4-5 in all genres, which is not a high rating. In 'Action' movies, He also did not have high ratings, which implies that it does not mean the more 'Action' moveis you made, the higher rating you can get. 
+The average rating graph are almost the same as the weighted rating graph. From the two graphs, it is obvious that there is no apparent relationship between the number of movies a director made and the rating he got. You can see director Godfrey Ho has about average rate 4-5 in all genres, which is not a high rating. In 'Action' movies, He also did not have high ratings, which implies that it does not mean the more 'Action' movies you made, the higher rating you can get. 
 
 However, there is an interesting phenomenon. You can see that for each director, there has a relationship between different genres. Let's see director Cheh Chang. The overall rating of his movies is about 6-7. There does not have a big gap between the highest average ratings and the lowest ratings. 
 
