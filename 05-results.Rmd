@@ -382,7 +382,13 @@ We can see that at first they don't have much difference, but as time develops `
 
 
 ## Analysis of Director
-### Top 10 directors in action genre
+
+This part we will analyze the relationship between directors and genre types, which contain features of some directors. Do you want to know is there any preference of each director? You will figure out in the following analysis. 
+
+### Top 10 directors in 'Action' genre
+
+Here I choose 'Action' movies to do some specific analysis. Since with the development of technology, more and more directors try to make 'Action' moveis in 2D, 3D and 4D. It becomes popular in young people. So Let's see what we can get from the graphs. 
+To begin with, you will see through the first graph, the top 10 directors in 'Action' genre, the director called Godfrey Ho made about 120 'Action' movies, while other directors only made less than 90 'Action' movies. Does it mean Godfrey has preference in 'Action' moveis or he also made a lot of other genres? So here comes to the next graph. 
 
 ```{r}
 top_10 <- inner_join(title.genres, title.crew, by="tconst") %>%
@@ -406,6 +412,8 @@ inner_join(title.genres, title.crew, by="tconst") %>%
 ```
 
 ### Average rating of top 10 directors by genre
+
+
 ```{r}
 inner_join(title.genres, title.crew, by="tconst") %>%
   filter(!is.na(directors)) %>% 
