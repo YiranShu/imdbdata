@@ -387,26 +387,49 @@ This part we will analyze the relationship between directors and genre types, wh
 
 ### Top 10 directors in 'Action' genre
 
-Here I choose 'Action' movies to do some specific analysis. Since with the development of technology, more and more directors try to make 'Action' moveis in 2D, 3D and 4D. It becomes popular in young people. So Let's see what we can get from the graphs. 
-
-To begin with, you will see through the first graph, the top 10 directors in 'Action' genre, the director called Godfrey Ho made about 120 'Action' movies, while other directors only made less than 90 'Action' movies. Does it mean Godfrey has preference in 'Action' moveis or he also made a lot of other genres? So here comes to the next graph. 
-
-In the second graph, it shows the distribution of each genre of Godfrey Ho. 
-
 ```{r}
+load("data/name.basics.RData")
+```
+
+```{r fig.height=18, fig.width=12}
+library(plotly)
+p1 <- title.genres %>% group_by(genres) %>% summarise(count=n()) %>% arrange(desc(count)) %>%
+  head(10) %>% ggplot(aes(x=reorder(genres, count), y=count)) + geom_col(fill="cornflowerblue") +
+  labs(x="Genres", y="Number of movies",
+                     title="Number of movies by genres") 
+
 top_10 <- inner_join(title.genres, title.crew, by="tconst") %>%
   filter(!is.na(directors)) %>% filter(genres=="Action") %>% 
   inner_join(name.basics %>% select(nconst, primaryName), by=c("directors"="nconst")) %>%
   group_by(directors, primaryName) %>% summarise(count=n()) %>%
   arrange(desc(count)) %>% head(10) 
-ggplot(data=top_10, aes(x=reorder(primaryName, count), y=count)) + 
-       geom_col(fill="cornflowerblue") + 
-       coord_flip() +
-       labs(x="Director", y="Number of movies", 
-       title="Top 10 directors (Action)")
+
+p2 <- ggplot(data=top_10, aes(x=reorder(primaryName, count), y=count)) + geom_col(fill="cornflowerblue") + 
+  labs(x="Director", y="Number of movies", 
+       title="Top 10 directors (Drama)") 
+# ggplotly(p)
+p3 <- inner_join(title.genres, title.crew, by="tconst") %>%
+  filter(!is.na(directors))  %>%
+  filter(directors %in% c(top_10$directors[1], top_10$directors[10])) %>%
+  inner_join(name.basics, by=c("directors"="nconst")) %>%
+  group_by(genres, primaryName) %>% summarise(count=n()) %>%
+  ggplot(aes(x=genres, y=count,fill=primaryName)) + geom_col(position=position_dodge()) +
+  labs(fill="Director")
+grid.arrange(p1, p2,p3,  nrow=3)
 ```
 
+First, let's see the most popular genre that directors like to make. Obviouly, it is 'Drama', then 'Documentary' and 'Comedy'.
+
+Here I choose 'Action' movies to do some specific analysis. Since with the development of technology, more and more directors try to make 'Action' moveis in 2D, 3D and 4D. It becomes popular in young people. So Let's see what we can get from the graphs. 
+
+To begin with, you will see the top 10 directors in 'Action' genre, the director called Godfrey Ho made about 120 'Action' movies, while other directors only made less than 90 'Action' movies. Does it mean Godfrey has preference in 'Action' moveis or he also made a lot of other genres? So here comes to the next graph. 
+
+In the next graph, it shows director Godfrey Ho and Francis Posadas, which are the first director and the last director in 'Action' genre. You can see from the graph that Godfrey Ho has a strong preference in 'Action' movies. As for Francis Posadas, he prefers to make 'Action' and 'Drama'. And both of them made less other genre movies. 
+
 ### Distribution of genres for the top 10 directors
+
+Are you curious about the other genres the top 10 directors in 'Action' made? In this part you can see the exact number using your mouse. When you put your mouse on the bar of 'Action', you can see the exact number of 'Action' movies which is 683. 
+
 ```{r}
 inner_join(title.genres, title.crew, by="tconst") %>%
   filter(!is.na(directors))  %>%
@@ -418,25 +441,62 @@ inner_join(title.genres, title.crew, by="tconst") %>%
          labs(x="Genres", y="Number of movies")
 ```
 
+In the graph, we can see 'Drama', 'Comedy' and 'Romance' follows 'Action' movies, which the top 10 directors like to make. It does not match with the overall regular pattern. And only a few directors made 3 'Documentary' movies, which means directors in other geners made a lot of 'Documentary' and made it come to the second top number of movies. 
+
+
 ### Average rating of top 10 directors by genre
 
-In this part, the goal I want to achieve is to figure out whether a director like Godfrey Ho made a lot of 'Action' moives has higher ratings in 'Action' movies than other genres or not. The more 'Action' movies one director made, the higher rating he could get in 'Action' movies? Here I also use two types of ratings, average rating and weighted rating, to avoid unfairness. 
+In this part, the goal I want to achieve is to figure out whether a director like Godfrey Ho made a lot of 'Action' moives has higher ratings in 'Action' movies than other genres or not. Does it mean the more 'Action' movies one director made, the higher rating he could get in 'Action' movies? Here I also use two types of ratings, average rating and weighted rating, to avoid unfairness. 
 
-In the average rating graph, it is obvious that there is no apparent relationship between the number of movies a director made and the rating he got. You can see director Godfrey Ho has about average rate 5 in all genres, which is not a high rating. In 'Action' movies, He also did not have high ratings, which implies that it does not mean the more 'Action' moveis you made, the higher rating you can get. 
+```{r fig.width=10, fig.height=12}
+main_genres <- c( 'Drama','Comedy','Music','Documentary','Action', 'Romance', "Thriller",'Crime', 'Horror', 'Adventure', 'Biography', 'Sci-Fi')
 
-However, there is an interesting phenomenon. You can see that for each director, there has a relationship between different genres. Let's see director Cheh Chang. The overall rating of his movies is about 6-7. There does not have a big gap between the highest average ratings and the lowest ratings. 
-
-
-
-```{r}
-inner_join(title.genres, title.crew, by="tconst") %>%
+x <- left_join(title.genres, title.basics, by='tconst')
+x <- left_join(x, title.ratings, by='tconst')
+x <- left_join(x, title.crew,  by="tconst") %>%
   filter(!is.na(directors)) %>% 
   filter(directors %in% top_10$directors) %>%
-  inner_join(title.ratings, by="tconst") %>%
-   inner_join(name.basics %>% select(nconst, primaryName), by=c("directors"="nconst")) %>%
-  group_by(genres, primaryName) %>% summarise(rating=mean(averageRating)) %>%
-  ggplot(aes(x=primaryName, y=genres, fill=rating)) + 
-         geom_tile() +
-         theme (axis.text.x = element_text (angle = 90, vjust = 1, hjust=1)) 
+  inner_join(name.basics, by=c("directors"="nconst"))
+
+df <- x %>% 
+  filter(genres.x %in% main_genres, is.na(numVotes)==FALSE, is.na(averageRating)==FALSE) %>%
+  mutate(totalratings=numVotes*averageRating) %>%
+  group_by(primaryName, genres.x) %>%
+  summarise(rating2=sum(totalratings)/sum(numVotes), .groups = 'drop') %>%
+  ungroup() 
+
+xlabels = rep("", 10)
+
+g2 <-ggplot(df, aes(primaryName, fct_rev(factor(genres.x)), fill = rating2)) +
+  geom_tile(color = "white") +
+  coord_equal() +
+  scale_fill_gradient(low="white", high="blue", guide = guide_colourbar(title='Weighted \n Rating')) +
+   xlab("") +
+  ylab("") +
+   theme (axis.text.x = element_text (angle = 90, vjust = 1, hjust=1)) 
+
+main_genres <- c( 'Drama','Comedy','Music','Documentary','Action', 'Romance', "Thriller",'Crime', 'Horror', 'Adventure', 'Biography', 'Sci-Fi')
+
+df <- x %>% 
+  filter(genres.x %in% main_genres, is.na(numVotes)==FALSE, is.na(averageRating)==FALSE) %>%
+  group_by(primaryName, genres.x) %>%
+  summarise(rating=mean(averageRating), .groups = 'drop') %>%
+  ungroup() 
+
+g1 <- ggplot(df, aes(primaryName, fct_rev(factor(genres.x)), fill = rating)) +
+  geom_tile(color = "white") +
+  coord_equal() +
+  scale_fill_gradient(low="white", high="blue", guide = guide_colourbar(title='Avg Rating')) +
+  xlab("") +
+  ylab("") +
+   theme (axis.text.x = element_text (angle = 90, vjust = 1, hjust=1)) 
+
+g1 / g2  +    # Create grid of plots with title
+  plot_annotation(title = "Ratings of different genres", caption="directors",
+                  theme = theme(plot.title = element_text(size = 15), plot.caption =element_text(size=12,hjust = 0.5,vjust=6) ))
 ```
+
+The average rating graph are almost the same as the waighted rating graph. From the two graphs, it is obvious that there is no apparent relationship between the number of movies a director made and the rating he got. You can see director Godfrey Ho has about average rate 4-5 in all genres, which is not a high rating. In 'Action' movies, He also did not have high ratings, which implies that it does not mean the more 'Action' moveis you made, the higher rating you can get. 
+
+However, there is an interesting phenomenon. You can see that for each director, there has a relationship between different genres. Let's see director Cheh Chang. The overall rating of his movies is about 6-7. There does not have a big gap between the highest average ratings and the lowest ratings. 
 
