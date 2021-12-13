@@ -11,13 +11,16 @@ Watching movies is one of the most popular activities in our daily life. So with
 
 Our goal is to explore some interesting facts about different movie genres.
 
-We will find out three main questions as follows:
-
-## How have the genres of movies been changing since last century?
-  We will use **title.basics.tsv.gz** on https://datasets.imdbws.com/. It has not only `tconst`, which identifies the title of each movie, but also `startYear` and `genres` features so we can visualize the change of genre popularity since 1900.
+We will find out these questions:
   
 ## What was the relationship between genres and ratings? For example, what genres were more likely to gain higher ratings?
   We will use **title.ratings.tsv.gz** and **title.basics.tsv.gz** on https://datasets.imdbws.com/. There are features `tconst`, `averageRating` and `numVotes` in **title.ratings.tsv.gz**. The feature `tconst` identifies the title of each movie and links the `genres` feature in **title.basics.tsv.gz**. With these features, we can visualize the relationship between genres and ratings.
   
+## What are the most common words in movie titles of different genres?
+  We will use **title.basics.tsv.gz** to explore the most commonly used words in movie titles of different genres. In addition, we will explore how the lengths of movie titles of different genres have changed over time. 
+
 ## For each director, did he/she have a preference in any genres?
   We can first group movies by directors using **title.crew.tsv.gz** and **title.basics.tsv.gz**. For each director, we will explore his/her movies and genres so we could conclude if the director preferred certain genres.
+  
+## How have the genres of movies been changing since last century?
+  We will use **title.basics.tsv.gz** on https://datasets.imdbws.com/. It has not only `tconst`, which identifies the title of each movie, but also `startYear` and `genres` features so we visualized the change of popularity of dramas, documentaries, comedies, thrillers, action movies and romantic movies since 1915 in the interactive component. 

@@ -18,40 +18,41 @@ function get_order_list(data) {
 var w = 600;
 var h = 300;
 
-var svg = d3.select("#plot")
-  .append("svg")
-    .attr("width", w)
-    .attr("height", h);
+var svg = d3.select("#thesvg")
 
-var data = [[0.020, 0.111, 0.026, 0.473, 0.054, 0.005], 
-            [0.022, 0.091, 0.026, 0.305, 0.056, 0.004], 
-            [0.044, 0.116, 0.049, 0.443, 0.091, 0.007], 
-            [0.029, 0.185, 0.077, 0.435, 0.116, 0.007], 
-            [0.049, 0.233, 0.066, 0.410, 0.125, 0.010], 
-            [0.042, 0.269, 0.037, 0.386, 0.122, 0.018],
-            [0.048, 0.199, 0.047, 0.431, 0.112, 0.020], 
-            [0.046, 0.212, 0.057, 0.444, 0.102, 0.020], 
-            [0.059, 0.208, 0.044, 0.450, 0.118, 0.026], 
-            [0.093, 0.212, 0.057, 0.429, 0.108, 0.032], 
-            [0.108, 0.174, 0.056, 0.389, 0.103, 0.036], 
-            [0.101, 0.171, 0.075, 0.368, 0.082, 0.039], 
-            [0.101, 0.173, 0.090, 0.355, 0.069, 0.037], 
-            [0.101, 0.166, 0.095, 0.364, 0.069, 0.039], 
-            [0.123, 0.168, 0.090, 0.361, 0.071, 0.050], 
-            [0.135, 0.171, 0.118, 0.341, 0.078, 0.064], 
-            [0.110, 0.186, 0.167, 0.346, 0.094, 0.067], 
-            [0.094, 0.195, 0.241, 0.359, 0.100, 0.069], 
-            [0.068, 0.182, 0.315, 0.350, 0.075, 0.063], 
-            [0.0711, 0.181, 0.351, 0.363, 0.0706, 0.077], 
-            [0.073, 0.165, 0.318, 0.338, 0.063, 0.079]];
+
+var data = [[0.212 ,1.179 ,0.592 ,0.275 ,5.027 ,0.052 ,0.57 ,0.023 ,0.054 ], 
+[0.246 ,1.022 ,0.403 ,0.294 ,3.437 ,0.057 ,0.628 ,0.017 ,0.044 ], 
+[0.459 ,1.211 ,0.312 ,0.508 ,4.629 ,0.036 ,0.947 ,0.013 ,0.077 ], 
+[0.292 ,1.853 ,0.613 ,0.772 ,4.368 ,0.066 ,1.161 ,0.027 ,0.074 ], 
+[0.489 ,2.368 ,0.818 ,0.671 ,4.157 ,0.073 ,1.262 ,0.039 ,0.099 ], 
+[0.299 ,1.954 ,0.452 ,0.27 ,2.79 ,0.086 ,0.873 ,0.029 ,0.131 ], 
+[0.352 ,1.465 ,0.672 ,0.343 ,3.166 ,0.072 ,0.816 ,0.021 ,0.146 ], 
+[0.461 ,2.135 ,0.824 ,0.576 ,4.455 ,0.082 ,1.019 ,0.083 ,0.2 ], 
+[0.719 ,2.53 ,1.037 ,0.541 ,5.483 ,0.248 ,1.435 ,0.172 ,0.308 ], 
+[1.267 ,2.888 ,1.235 ,0.775 ,5.849 ,0.307 ,1.476 ,0.136 ,0.44 ], 
+[1.85 ,2.986 ,1.519 ,0.966 ,6.681 ,0.345 ,1.776 ,0.216 ,0.613 ], 
+[2.005 ,3.382 ,1.638 ,1.493 ,7.292 ,0.726 ,1.634 ,0.195 ,0.783 ], 
+[1.996 ,3.429 ,1.344 ,1.775 ,7.022 ,0.574 ,1.366 ,0.236 ,0.729 ], 
+[2.096 ,3.424 ,1.133 ,1.976 ,7.521 ,0.699 ,1.419 ,0.319 ,0.796 ], 
+[2.738 ,3.742 ,1.45 ,2.002 ,8.051 ,0.978 ,1.581 ,0.416 ,1.117 ], 
+[2.953 ,3.733 ,1.594 ,2.577 ,7.445 ,0.806 ,1.709 ,0.34 ,1.403 ], 
+[2.502 ,4.254 ,1.486 ,3.826 ,7.912 ,0.814 ,2.141 ,0.458 ,1.535 ], 
+[2.677 ,5.573 ,1.742 ,6.911 ,10.272 ,1.256 ,2.871 ,0.447 ,1.967 ], 
+[3.07 ,8.289 ,2.216 ,14.337 ,15.915 ,2.711 ,3.42 ,0.709 ,2.868 ], 
+[5.018 ,12.762 ,3.343 ,24.78 ,25.537 ,4.937 ,4.975 ,1.542 ,5.394 ], 
+[6.421 ,14.478 ,4.167 ,27.922 ,29.684 ,6.457 ,5.561 ,1.935 ,6.953 ]];
+
+
+var xdata = [5.027 ,3.437 ,4.629 ,4.368 ,4.157 ,2.79 ,3.166 ,4.455 ,5.483 ,5.849 ,6.681 ,7.292 ,7.022 ,7.521 ,8.051 ,7.445 ,7.912 ,10.272 ,15.915 ,25.537 ,29.684 ];
 
 var years = ["1915-1920", "1920-1925", "1925-1930", "1930-1935", "1935-1940", "1940-1945", "1945-1950", "1950-1955", 
              "1955-1960", "1960-1965", "1965-1970", "1970-1975", "1975-1980", "1980-1985", "1985-1990", "1990-1995", 
              "1995-2000", "2000-2005", "2005-2010", "2010-2015", "2015-2020"]
 
 var order = get_order_list(data);
-var names = ["Action", "Comedy", "Documentary", "Drama", "Romance", "Thriller"];
-var colors = ["darkolivegreen", "darkgoldenrod", "lightsalmon", "mediumpurple", "lightpink", "lightskyblue"];
+var names = ["Action", "Comedy", "Crime","Documentary", "Drama", "Horror","Romance","Sci-Fi", "Thriller"];
+var colors = ["darkolivegreen", "darkgoldenrod", "lightsalmon", "mediumpurple", "lightpink", "lightskyblue","indianred", "lightseagreen", "purple"];
 // var titles = ["1915-1920", ]
 
 var width_multiplier = w;
@@ -59,12 +60,14 @@ var y_multiplier = 25;
 var x_pos = 100;
 var height = 20;
 var font_size = "14px";
-var prefix = "Proportion of Different Genres During ";
+var prefix = "Number(in thousand) of Different Genres During ";
+
+
+var xmax=0.6
 
 var xScale = d3.scaleLinear()
-                .domain([0, 0.6])
+                .domain([0, xdata[0]])
                 .range([0, w * 0.6])
-
 
 var xAxis = d3.axisBottom().scale(xScale);
 
@@ -82,10 +85,13 @@ svg.append("text")
     .attr("text-anchor", "middle") 
     .text(prefix + years[0]);
 
+
+
+
 for (let j = 0; j < names.length; j++) {
     svg.append("rect")
         .attr("id", names[j])
-        .attr("width", data[0][j] * width_multiplier)
+        .attr('width',  xScale(data[0][j]) )
         .attr("height", height)
         .attr("x", x_pos)
         .attr("y", order[0][j] * y_multiplier)
@@ -103,210 +109,62 @@ for (let j = 0; j < names.length; j++) {
 
 var dur = 1500;
 
-for (let j = 0; j < names.length; j++) {
-    svg.select("#" + names[j])
-        .transition()
-        .duration(dur)
-        .attr('width', data[1][j] * width_multiplier)
-        .attr('y', order[1][j] * y_multiplier)
-        .transition()
-        .duration(dur)
-        .attr('width', data[2][j] * width_multiplier)
-        .attr('y', order[2][j] * y_multiplier)
-        .transition()
-        .duration(dur)
-        .attr('width', data[3][j] * width_multiplier)
-        .attr('y', order[3][j] * y_multiplier)
-        .transition()
-        .duration(dur)
-        .attr('width', data[4][j] * width_multiplier)
-        .attr('y', order[4][j] * y_multiplier)
-        .transition()
-        .duration(dur)
-        .attr('width', data[5][j] * width_multiplier)
-        .attr('y', order[5][j] * y_multiplier)
-        .transition()
-        .duration(dur)
-        .attr('width', data[6][j] * width_multiplier)
-        .attr('y', order[6][j] * y_multiplier)
-        .transition()
-        .duration(dur)
-        .attr('width', data[7][j] * width_multiplier)
-        .attr('y', order[7][j] * y_multiplier)
-        .transition()
-        .duration(dur)
-        .attr('width', data[8][j] * width_multiplier)
-        .attr('y', order[8][j] * y_multiplier)
-        .transition()
-        .duration(dur)
-        .attr('width', data[9][j] * width_multiplier)
-        .attr('y', order[9][j] * y_multiplier)
-        .transition()
-        .duration(dur)
-        .attr('width', data[10][j] * width_multiplier)
-        .attr('y', order[10][j] * y_multiplier)
-        .transition()
-        .duration(dur)
-        .attr('width', data[11][j] * width_multiplier)
-        .attr('y', order[11][j] * y_multiplier)
-        .transition()
-        .duration(dur)
-        .attr('width', data[12][j] * width_multiplier)
-        .attr('y', order[12][j] * y_multiplier)
-        .transition()
-        .duration(dur)
-        .attr('width', data[13][j] * width_multiplier)
-        .attr('y', order[13][j] * y_multiplier)
-        .transition()
-        .duration(dur)
-        .attr('width', data[14][j] * width_multiplier)
-        .attr('y', order[14][j] * y_multiplier)
-        .transition()
-        .duration(dur)
-        .attr('width', data[15][j] * width_multiplier)
-        .attr('y', order[15][j] * y_multiplier)
-        .transition()
-        .duration(dur)
-        .attr('width', data[16][j] * width_multiplier)
-        .attr('y', order[16][j] * y_multiplier)
-        .transition()
-        .duration(dur)
-        .attr('width', data[17][j] * width_multiplier)
-        .attr('y', order[17][j] * y_multiplier)
-        .transition()
-        .duration(dur)
-        .attr('width', data[18][j] * width_multiplier)
-        .attr('y', order[18][j] * y_multiplier)
-        .transition()
-        .duration(dur)
-        .attr('width', data[19][j] * width_multiplier)
-        .attr('y', order[19][j] * y_multiplier)
-        .transition()
-        .duration(dur)
-        .attr('width', data[20][j] * width_multiplier)
-        .attr('y', order[20][j] * y_multiplier)
 
-    svg.select("#" + names[j] + "_font")
-        .transition()
-        .duration(dur)
-        .attr("y", order[1][j] * y_multiplier + y_multiplier - 0.5 * height) 
-        .transition()
-        .duration(dur)
-        .attr("y", order[2][j] * y_multiplier + y_multiplier - 0.5 * height)
-        .transition()
-        .duration(dur)
-        .attr("y", order[3][j] * y_multiplier + y_multiplier - 0.5 * height)
-        .transition()
-        .duration(dur)
-        .attr("y", order[4][j] * y_multiplier + y_multiplier - 0.5 * height)
-        .transition()
-        .duration(dur)
-        .attr("y", order[5][j] * y_multiplier + y_multiplier - 0.5 * height)
-        .transition()
-        .duration(dur)
-        .attr("y", order[6][j] * y_multiplier + y_multiplier - 0.5 * height)
-        .transition()
-        .duration(dur)
-        .attr("y", order[7][j] * y_multiplier + y_multiplier - 0.5 * height)
-        .transition()
-        .duration(dur)
-        .attr("y", order[8][j] * y_multiplier + y_multiplier - 0.5 * height)
-        .transition()
-        .duration(dur)
-        .attr("y", order[9][j] * y_multiplier + y_multiplier - 0.5 * height)
-        .transition()
-        .duration(dur)
-        .attr("y", order[10][j] * y_multiplier + y_multiplier - 0.5 * height)
-        .transition()
-        .duration(dur)
-        .attr("y", order[11][j] * y_multiplier + y_multiplier - 0.5 * height)
-        .transition()
-        .duration(dur)
-        .attr("y", order[12][j] * y_multiplier + y_multiplier - 0.5 * height)
-        .transition()
-        .duration(dur)
-        .attr("y", order[13][j] * y_multiplier + y_multiplier - 0.5 * height)
-        .transition()
-        .duration(dur)
-        .attr("y", order[14][j] * y_multiplier + y_multiplier - 0.5 * height)
-        .transition()
-        .duration(dur)
-        .attr("y", order[15][j] * y_multiplier + y_multiplier - 0.5 * height)
-        .transition()
-        .duration(dur)
-        .attr("y", order[16][j] * y_multiplier + y_multiplier - 0.5 * height)
-        .transition()
-        .duration(dur)
-        .attr("y", order[17][j] * y_multiplier + y_multiplier - 0.5 * height)
-        .transition()
-        .duration(dur)
-        .attr("y", order[18][j] * y_multiplier + y_multiplier - 0.5 * height)
-        .transition()
-        .duration(dur)
-        .attr("y", order[19][j] * y_multiplier + y_multiplier - 0.5 * height)
-        .transition()
-        .duration(dur)
-        .attr("y", order[20][j] * y_multiplier + y_multiplier - 0.5 * height) 
+var i=0;
 
+animate2();
+
+
+function sleep(ms) {
+    return new Promise(resolve => setTimeout(resolve, ms));
+  }
+
+function update(i){
+    xScale.domain([0, xdata[i]]);
+    for (let j = 0; j < names.length; j++) {
+        svg.select("#" + names[j])
+            .transition()
+            .duration(dur)
+            .attr('width',  xScale(data[i][j]) )
+            .attr('y', order[i][j] * y_multiplier);
+        svg.select("#" + names[j] + "_font")
+            .transition()
+            .duration(dur)
+            .attr("y", order[i][j] * y_multiplier + y_multiplier - 0.5 * height);
+    }
     svg.select("#years")
         .transition()
         .duration(dur)
-        .text(prefix + years[1])
+        .text(prefix + years[i]);
+    
+    
+
+    svg.select(".xAxis")
         .transition()
-        .duration(dur)
-        .text(prefix + years[2])
-        .transition()
-        .duration(dur)
-        .text(prefix + years[3])
-        .transition()
-        .duration(dur)
-        .text(prefix + years[4])
-        .transition()
-        .duration(dur)
-        .text(prefix + years[5])
-        .transition()
-        .duration(dur)
-        .text(prefix + years[6])
-        .transition()
-        .duration(dur)
-        .text(prefix + years[7])
-        .transition()
-        .duration(dur)
-        .text(prefix + years[8])
-        .transition()
-        .duration(dur)
-        .text(prefix + years[9])
-        .transition()
-        .duration(dur)
-        .text(prefix + years[10])
-        .transition()
-        .duration(dur)
-        .text(prefix + years[11])
-        .transition()
-        .duration(dur)
-        .text(prefix + years[12])
-        .transition()
-        .duration(dur)
-        .text(prefix + years[13])
-        .transition()
-        .duration(dur)
-        .text(prefix + years[14])
-        .transition()
-        .duration(dur)
-        .text(prefix + years[15])
-        .transition()
-        .duration(dur)
-        .text(prefix + years[16])
-        .transition()
-        .duration(dur)
-        .text(prefix + years[17])
-        .transition()
-        .duration(dur)
-        .text(prefix + years[18])
-        .transition()
-        .duration(dur)
-        .text(prefix + years[19])
-        .transition()
-        .duration(dur)
-        .text(prefix + years[20])
+        .duration(1000)
+        .ease(d3.easeLinear)
+        .call(xAxis);
+
+
 }
+
+function step(){
+    if (i==20){
+        i=0;
+    }
+    update(i);
+    i = i+1;
+}
+
+
+async function animate2() {
+    d3.select("#svgtypo").attr("fill", "white");
+    for (let k = 1; k <= 20; k++) {
+        update(k);
+        await sleep(1500);
+    }
+    d3.select("#svgtypo").attr("fill", "red");
+}
+
+
+
