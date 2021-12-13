@@ -1,2 +1,15 @@
 # Conclusion
 
+The goals of our project is to find out some interesting things in the field of 'Movies'. Before doing the research we did not have any idea about the relationship between ratings and genres or the relationship genres and directors. However now we have basic ideas about 'Movies'. Here are some conclusions we have found:
+
+1. Using average ratings and weighted ratings came out difference results.
+2. There is a trend along time: movies before 2000 clearly have higher weighted ratings than movies after 2000. 
+3. Large number of movies with less than 5000 votes comes from ‘Drama’, ‘Comedy’ and ‘Documentary’. 
+4. There exists many documentary movies with small number of votes but very high ratings.
+5. The higher the rating is, the more the number of votes.
+6. Longer movies tend to have higher ratings. 
+7. ‘Love’ is one of the most common words for many genres.
+8. The director who made a lot of movies in one genre does not mean he has a high ratings in this genre. 
+9. Each director's ratings of different genre are almost the same. 
+
+And we still have some limitations. For example, based on conclusion 2, we did not really know the exact reason that caused the trend. So we may need some further research on the causes. Also since there are a lot of movies with less than 5000 votes and we did not analyze it specificly, it may have some other interesitng conclusions we can find through it. Another important direction we want to figure out is the relationship between diffrent genres and directors. Since the data here has more than 220000 directors, it is really hard to analyze all the directors in such a short time. Now we only analyzed one genre 'Action' movies. So we can do further analyze based on different genres: finding out top 10 directors in each genre, any overlap between each genres etc. Therefore, there still many things we can do in the future to enhance our knowledge in movies. 
