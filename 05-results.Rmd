@@ -383,12 +383,15 @@ We can see that at first they don't have much difference, but as time develops `
 
 ## Analysis of Director
 
-This part we will analyze the relationship between directors and genre types, which contain features of some directors. Do you want to know is there any preference of each director? You will figure out in the following analysis. 
+This part we will analyze the relationship between directors and genre types, which contains features of some directors. Do you want to know is there any preference of each director? You will figure out in the following analysis. 
 
 ### Top 10 directors in 'Action' genre
 
 Here I choose 'Action' movies to do some specific analysis. Since with the development of technology, more and more directors try to make 'Action' moveis in 2D, 3D and 4D. It becomes popular in young people. So Let's see what we can get from the graphs. 
+
 To begin with, you will see through the first graph, the top 10 directors in 'Action' genre, the director called Godfrey Ho made about 120 'Action' movies, while other directors only made less than 90 'Action' movies. Does it mean Godfrey has preference in 'Action' moveis or he also made a lot of other genres? So here comes to the next graph. 
+
+In the second graph, it shows the distribution of each genre of Godfrey Ho. 
 
 ```{r}
 top_10 <- inner_join(title.genres, title.crew, by="tconst") %>%
@@ -396,8 +399,10 @@ top_10 <- inner_join(title.genres, title.crew, by="tconst") %>%
   inner_join(name.basics %>% select(nconst, primaryName), by=c("directors"="nconst")) %>%
   group_by(directors, primaryName) %>% summarise(count=n()) %>%
   arrange(desc(count)) %>% head(10) 
-ggplot(data=top_10, aes(x=reorder(primaryName, count), y=count)) + geom_col(fill="cornflowerblue") + coord_flip() +
-  labs(x="Director", y="Number of movies", 
+ggplot(data=top_10, aes(x=reorder(primaryName, count), y=count)) + 
+       geom_col(fill="cornflowerblue") + 
+       coord_flip() +
+       labs(x="Director", y="Number of movies", 
        title="Top 10 directors (Action)")
 ```
 
@@ -407,11 +412,20 @@ inner_join(title.genres, title.crew, by="tconst") %>%
   filter(!is.na(directors))  %>%
   filter(directors %in% top_10$directors) %>%
   group_by(genres) %>% summarise(count=n()) %>%
-  ggplot(aes(x=reorder(genres, count), y=count)) + geom_col(fill="cornflowerblue") + coord_flip() +
-  labs(x="Genres", y="Number of movies")
+  ggplot(aes(x=reorder(genres, count), y=count)) + 
+         geom_col(fill="cornflowerblue") + 
+         coord_flip() +
+         labs(x="Genres", y="Number of movies")
 ```
 
 ### Average rating of top 10 directors by genre
+
+In this part, the goal I want to achieve is to figure out whether a director like Godfrey Ho made a lot of 'Action' moives has higher ratings in 'Action' movies than other genres or not. The more 'Action' movies one director made, the higher rating he could get in 'Action' movies? Here I also use two types of ratings, average rating and weighted rating, to avoid unfairness. 
+
+In the average rating graph, it is obvious that there is no apparent relationship between the number of movies a director made and the rating he got. You can see director Godfrey Ho has about average rate 5 in all genres, which is not a high rating. In 'Action' movies, He also did not have high ratings, which implies that it does not mean the more 'Action' moveis you made, the higher rating you can get. 
+
+However, there is an interesting phenomenon. You can see that for each director, there has a relationship between different genres. Let's see director Cheh Chang. The overall rating of his movies is about 6-7. There does not have a big gap between the highest average ratings and the lowest ratings. 
+
 
 
 ```{r}
@@ -421,7 +435,8 @@ inner_join(title.genres, title.crew, by="tconst") %>%
   inner_join(title.ratings, by="tconst") %>%
    inner_join(name.basics %>% select(nconst, primaryName), by=c("directors"="nconst")) %>%
   group_by(genres, primaryName) %>% summarise(rating=mean(averageRating)) %>%
-  ggplot(aes(x=primaryName, y=genres, fill=rating)) + geom_tile() +
-  theme (axis.text.x = element_text (angle = 90, vjust = 1, hjust=1)) 
+  ggplot(aes(x=primaryName, y=genres, fill=rating)) + 
+         geom_tile() +
+         theme (axis.text.x = element_text (angle = 90, vjust = 1, hjust=1)) 
 ```
 
