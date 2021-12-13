@@ -4,9 +4,7 @@
 knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = TRUE)
 ```
 
-## Missing-values
-
-```{r}
+```{r, echo=FALSE}
 library(tidyverse)
 library(readr)
 library(grid)
@@ -14,19 +12,33 @@ library(gridExtra)
 source("scripts/visna.R")
 source("scripts/subN.R")
 ```
-
-
-```{r,eval=FALSE}
+```{r, echo=FALSE, eval=FALSE}
 title.ratings <- read_tsv("data/title.ratings.tsv.gz")
 name.basics <- read_tsv("data/name.basics.tsv.gz") # 
-# title.akas <- read_tsv("../data/title.akas.tsv.gz") # 每部电影的别名，用处不大
 title.basics <- read_tsv("data/title.basics.tsv.gz") # 可以只筛选movie类型
 title.crew <- read_tsv("data/title.crew.tsv.gz")
-# title.episode <- read_tsv("../data/title.episode.tsv.gz") # 只要movie，这个是电视剧就不需要了
 title.principals <- read_tsv("data/title.principals.tsv.gz") # job 和 characters 可以去掉
 ```
 
-```{r,eval=FALSE}
+```{r, echo=FALSE}
+load('data/title.basics.RData')
+load('data/name.basics.RData')
+load('data/title.crew.RData')
+load('data/title.ratings.RData')
+load('data/title.genres.RData')
+```
+
+## Missing values
+
+### Initial data
+```{r}
+head(title.basics)
+```
+We can see that missing values in this dataset are represented with "\\\\N".
+
+
+### Replace "\\\\N" with NA
+```{r, eval=FALSE}
 title.basics <- title.basics %>%
   filter(titleType=='movie')
 title.basics <- subN(title.basics)
@@ -40,7 +52,14 @@ title.principals <- title.principals %>%
 title.principals <- subN(title.principals)
 ```
 
+### Data after transformation of missing values
 ```{r}
+head(title.basics)
+```
+
+## Correct data type of columns
+We can see from the output of the previous `head` function that some columns had wrong data types. For example, `startYear` and `endYear` should be integer columns. So we have to correct them.
+```{r, eval=FALSE}
 title.basics$startYear <- as.integer(title.basics$startYear)
 title.basics$endYear <- as.integer(title.basics$endYear)
 title.basics$runtimeMinutes <- as.integer(title.basics$runtimeMinutes)
@@ -49,11 +68,11 @@ name.basics$birthYear <- as.integer(name.basics$birthYear)
 name.basics$deathYear <- as.integer(name.basics$deathYear)
 ```
 
-
-```{r, eval=FALSE}
+## Genres
+We can see from the output of the previous `head` function that a movie might have multiple genres separated by comma. So we would like to extract them and create a dataframe `title.genres` of pairs of movie id and a single genre.
+```{r, echo=FALSE, eval=FALSE}
 tg = title.basics %>%
   select(c('tconst', 'genres'))
-
 c = 1
 title.genres = tg[1,]
 for (r in 1:dim(tg)[1]){
@@ -79,20 +98,39 @@ for (r in 1:dim(tg)[1]){
     title.genres <- rbind(title.genres, newbind[2:nrow(newbind),])
   }
 }
-
 title.genres <- title.genres[2:nrow(title.genres),]
-
-save(title.genres, file='data/title.genres.RData')
 ```
 
 
+The dataframe of `title.genres` looks like this:
+```{r}
+head(title.genres)
+```
+
+These are all genres:
 ```{r}
 unique(title.genres$genres)
 ```
 
+This plot shows frequencies of all kinds of genres.
+```{r, echo=FALSE}
+title.genres %>% 
+	group_by(genres) %>% 
+	summarise(count = n()) %>% 
+	ggplot(aes(x = reorder(genres, count), y=count/sum(count))) + 
+  geom_bar(stat="identity", fill="lightblue") + 
+  xlab("Genres") +
+  ylab("Frequency") +
+  ggtitle("Frequency of All Kinds of Genres") +
+  coord_flip()
+```
 
+We can see that the number of dramas is the largest, almost twice as large as the number of documentaries and comedies. The frequencies of action movies, romantic movies, thrillers, crime movies, horror movies and adventure movies are close and more than the frequencies of other genres. In the `interactive component` section, we will mainly analyze some interesting facts about the most frequent genres.
 
-```{r}
+## Save the transformed dataframes
+Finally, we want to save the transformed dataframes so that we can load them anytime we want without perfroming the transformation again.
+```{r, eval=FALSE}
+save(title.genres, file='data/title.genres.RData')
 save(title.basics, file='data/title.basics.RData')
 save(name.basics, file='data/name.basics.RData')
 save(title.crew, file='data/title.crew.RData')

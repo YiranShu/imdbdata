@@ -1,31 +1,31 @@
 # Results
 
+```{r, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = TRUE)
+```
 
-
-## Movie ratings of different years
-
-```{r, eval=FALSE}
+```{r, echo=FALSE}
 library(tidyverse)
 library(readr)
 library(grid)
 library(gridExtra)
 library(ggridges)
 library(treemap)
+library(rlist)
 library("patchwork")
 source("scripts/visna.R")
 source("scripts/subN.R")
 ```
 
-```{r, eval=FALSE}
+```{r, echo=FALSE}
 load('data/title.basics.RData')
-#load('../data/name.basics.RData')
-#load('../data/title.crew.RData')
-#load('../data/title.principals.RData')
+load('data/name.basics.RData')
+load('data/title.crew.RData')
 load('data/title.ratings.RData')
 load('data/title.genres.RData')
 ```
 
-
+## Movie ratings of different years
 ### Ratings for all movies
 IMDB rating is a good reference if we want to know the quality of different movies. Do different genres have obviously different average ratings? Has the quality of movies changed over time? We can find something from the figure below:
 
@@ -381,200 +381,8 @@ x2 %>% ggplot(aes(x=decade, y=len, color=genres.x))+
 We can see that at first they don't have much difference, but as time develops `Music` and `Documentary` have longer titles with average length of 4, and `Comedy`, `Action`, `Sci-Fi` have shorter average titles. It can also be noticed that their average title length was decreasing from 1970 to 2000, but after 2000 their length has been increasing. 
 
 
-
-
-
-
-
-```{r}
-library(tidyverse)
-library(readr)
-library(grid)
-library(gridExtra)
-library(rlist)
-library(forcats)
-library(ggridges)
-source("scripts/visna.R")
-source("scripts/subN.R")
-```
-
-```{r}
-load('data/title.basics.RData')
-#load('../data/name.basics.RData')
-#load('../data/title.crew.RData')
-#load('../data/title.principals.RData')
-load('data/title.ratings.RData')
-load('data/title.genres.RData')
-```
-
-
-```{r}
-title.genres %>% 
-	group_by(genres) %>% 
-	summarise(count = n()) %>% 
-	ggplot(aes(x = reorder(genres, count), y=count/sum(count))) + 
-  geom_bar(stat="identity", fill="lightblue") + 
-  xlab("Genres") +
-  ylab("Frequency") +
-  ggtitle("Frequency of All Kinds of Genres") +
-  coord_flip()
-```
-
-```{r}
-main_genres <- c('Drama', 'Documentary', 'Comedy', 'Action', 'Romance', 'Thriller', 'Crime')
-
-
-title_genre <- title.genres[title.genres$genres %in% main_genres, ]
-df <- left_join(title_genre, title.basics, by='tconst')
-  
-df %>%
-  filter(!is.na(startYear)) %>%
-  group_by(startYear, genres.x) %>%
-  summarize(genre_count = n()) %>%
-  ungroup() %>%
-  rename(genres = genres.x) %>%
-  ggplot(aes(x=startYear, y=genre_count, colour=fct_relevel(genres, main_genres))) +
-  geom_line(size=1) + 
-  xlab("Year") + 
-  ylab("Count") + 
-  ggtitle("Frequency of Different Genres Changed Over Time") + 
-  scale_colour_discrete("Genres")
-```
-
-
-```{r fig.height = 12, fig.width = 12}
-main_genres <- c('Drama', 'Documentary', 'Comedy', 'Action', 'Romance', 'Thriller', 'Crime', 'Horror', 'Adventure')
-
-plots = list()
-for(genre in main_genres) {
-  title_genre <- title.genres[title.genres$genres == genre, ]
-  df <- left_join(title_genre, title.basics, by='tconst')
-  
-  g <- df %>%
-    filter(!is.na(startYear)) %>%
-    group_by(startYear) %>%
-    summarize(genre_count = n()) %>%
-    ggplot(aes(x=startYear, y=genre_count, group=1)) +
-    geom_line(color="lightblue", size=1) + 
-    xlab("Year") + 
-    ylab("Count") + 
-    ggtitle(genre)
-  
-  plots <- list.append(plots, g)
-}
-
-grid.arrange(grobs=plots, ncol=3)
-```
-
-
-```{r}
-main_genres <- c('Drama', 'Documentary', 'Comedy', 'Action', 'Romance', 'Thriller', 'Crime', 'Horror', 'Adventure')
-
-title_genre <- title.genres[title.genres$genres %in% main_genres, ]
-df <- left_join(title_genre, title.ratings, by='tconst')
-
-df %>%
-  filter(!is.na(averageRating)) %>%
-  ggplot(aes(x = reorder(genres, averageRating, median), y = averageRating)) +
-  geom_boxplot(fill = "light blue") +
-  xlab("Genres") + 
-  ylab("Rating") +
-  coord_flip() +
-  ggtitle("Boxplots of Average Rating by Genres") +
-  theme(plot.title = element_text(hjust = 0.5))
-```
-
-```{r}
-main_genres <- c('Documentary', 'Drama', 'Romance', 'Comedy', 'Action', 'Thriller')
-
-
-title_genre <- title.genres[title.genres$genres %in% main_genres, ]
-df <- left_join(title_genre, title.ratings, by='tconst')
-df <- left_join(df, title.basics, by='tconst')
-  
-df %>%
-  filter(startYear >= 1900) %>%
-  filter(!is.na(averageRating) & (!is.na(startYear))) %>%
-  group_by(startYear, genres.x) %>%
-  summarize(average_rating_by_genres = mean(averageRating)) %>%
-  ungroup() %>%
-  rename(genres = genres.x) %>%
-  ggplot(aes(x=startYear, y=average_rating_by_genres, colour=fct_relevel(genres, main_genres))) +
-  geom_line(size=1) + 
-  xlab("Year") + 
-  ylab("Average Rating") + 
-  ggtitle("Average Rating of Different Genres Changed Over Time") + 
-  scale_colour_discrete("Genres")
-```
-
-
-
-```{r}
-
-main_genres <- c( 'Drama','Comedy','Music','Documentary','Action', 'Romance', "Thriller",'Crime', 'Horror', 'Adventure', 'Biography', 'Sci-Fi')
-
-x <- left_join(title.genres, title.basics, by='tconst')
-x <- left_join(x, title.ratings, by='tconst')
-
-df <- x %>% 
-  filter(startYear<=2020,startYear>=1980, genres.x %in% main_genres, is.na(numVotes)==FALSE, is.na(averageRating)==FALSE) %>%
-  mutate(totalratings=numVotes*averageRating) %>%
-  group_by(startYear, genres.x) %>%
-  summarise(rating2=sum(totalratings)/sum(numVotes), .groups = 'drop') %>%
-  ungroup() 
-
-
-xlabels = c(1980:2020)
-for (i in 1:length(xlabels)){
-  if (strtoi(xlabels[i])%%5!=0){
-    xlabels[i] <- ""
-  }
-}
-
-g2 <-ggplot(df, aes(startYear, fct_rev(factor(genres.x)), fill = rating2)) +
-  geom_tile(color = "white") +
-  coord_equal() +
-  scale_fill_gradient(low="white", high="blue", guide = guide_colourbar(title='Weighted \n Rating')) +
-  scale_x_discrete(labels=xlabels) +
-  xlab("Year") +
-  ylab("Genre")
-
-
-main_genres <- c( 'Drama','Comedy','Music','Documentary','Action', 'Romance', "Thriller",'Crime', 'Horror', 'Adventure', 'Biography', 'Sci-Fi')
-
-
-
-df <- x %>% 
-  filter(startYear<=2020,startYear>=1980, genres.x %in% main_genres, is.na(numVotes)==FALSE, is.na(averageRating)==FALSE) %>%
-  group_by(startYear, genres.x) %>%
-  summarise(rating=mean(averageRating), .groups = 'drop') %>%
-  ungroup() 
-
-
-xlabels = c(1980:2020)
-for (i in 1:length(xlabels)){
-  if (strtoi(xlabels[i])%%5!=0){
-    xlabels[i] <- ""
-  }
-}
-
-g1 <- ggplot(df, aes(startYear, fct_rev(factor(genres.x)), fill = rating)) +
-  geom_tile(color = "white") +
-  coord_equal() +
-  scale_fill_gradient(low="white", high="blue", guide = guide_colourbar(title='Avg Rating')) +
-  scale_x_discrete(labels=xlabels) +
-  xlab("Year") +
-  ylab("Genre")
-
-
-grid.arrange(g1,g2,nrow=2)
-```
-
 ## Analysis of Director
 ### Top 10 directors in action genre
-```{r}
-load("data/name.basics.RData")
-```
 
 ```{r}
 top_10 <- inner_join(title.genres, title.crew, by="tconst") %>%

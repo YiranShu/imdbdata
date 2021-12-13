@@ -1,2 +1,163 @@
 # Data sources
 
+```{r, include=FALSE}
+knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = TRUE)
+```
+
+```{r, echo=FALSE}
+library(tidyverse)
+library(readr)
+```
+
+## URL of data sources
+Our data are collected from a website of IMDB (https://datasets.imdbws.com/). Collecting the datasets is pretty straightforward. We just downloaded the `tsv.gz` files we need. These files are `title.ratings.tsv.gz`, `name.basics.tsv.gz`, `title.basics.tsv.gz`, `title.crew.tsv.gz`, and `title.principals.tsv.gz`.
+
+## Basic information
+```{r, echo=FALSE, eval=FALSE}
+title.ratings <- read_tsv("data/title.ratings.tsv.gz")
+name.basics <- read_tsv("data/name.basics.tsv.gz") # 
+title.basics <- read_tsv("data/title.basics.tsv.gz") 
+title.crew <- read_tsv("data/title.crew.tsv.gz")
+title.principals <- read_tsv("data/title.principals.tsv.gz")
+```
+
+```{r, echo=FALSE}
+load('data/title.basics.RData')
+load('data/name.basics.RData')
+load('data/title.crew.RData')
+load('data/title.ratings.RData')
+load('data/title.genres.RData')
+```
+
+
+### title.basics
+
+Here are the first few rows of the dataframe of `title.basics`. 
+```{r}
+head(title.basics)
+```
+
+`title.basics` contains some basic information for movie or tv show titles.
+
+tconst (chr) - alphanumeric unique identifier of the title
+
+titleType (chr) – the type/format of the title (e.g. movie, short, tvseries, tvepisode, video, etc)
+
+primaryTitle (chr) – the more popular title / the title used by the filmmakers on promotional materials at the point of release
+
+originalTitle (chr) - original title, in the original language
+
+isAdult (dbl) - 0: non-adult title; 1: adult title
+
+startYear (chr) – represents the release year of a title. In the case of TV Series, it is the series start year
+
+endYear (chr) – TV Series end year. ‘\N’ for all other title types
+
+runtimeMinutes (chr) – primary runtime of the title, in minutes
+
+genres (chr) – includes up to three genres associated with the title
+
+The number of rows in the dataframe of `title.basics` is: 
+
+```{r}
+nrow(title.basics)
+```
+
+### name.basics
+
+Here are the first few rows of the dataframe of `title.basics`. 
+```{r}
+head(name.basics)
+```
+
+`name.basics` contains some basic information of people.
+
+nconst (chr) - alphanumeric unique identifier of the name/person
+
+primaryName (chr) – name by which the person is most often credited
+
+birthYear (chr) – birth year
+
+deathYear (chr) – death year
+
+primaryProfession (chr) – the top-3 professions of the person
+
+knownForTitles (chr) – titles the person is known for
+
+The number of rows in the dataframe of `name.basics` is: 
+
+```{r}
+nrow(name.basics)
+```
+
+### title.ratings
+
+Here are the first few rows of the dataframe of `title.ratings`. 
+```{r}
+head(title.ratings)
+```
+
+`title.ratings` contains the IMDb rating and votes information for titles.
+
+tconst (chr) - alphanumeric unique identifier of the title 
+
+averageRating (dbl) – weighted average of all the individual user ratings
+
+numVotes (dbl) - number of votes the title has received
+
+The number of rows in the dataframe of `title.ratings` is: 
+
+```{r}
+nrow(title.ratings)
+```
+### title.crew
+
+Here are the first few rows of the dataframe of `title.crew`. 
+```{r}
+head(title.crew)
+```
+
+`title.crew` contains the director and writer information for all the titles in IMDb.
+
+tconst (chr) - alphanumeric unique identifier of the title
+
+directors (chr) - director(s) of the given title
+
+writers (chr) – writer(s) of the given title
+
+The number of rows in the dataframe of `title.crew` is: 
+
+```{r}
+nrow(title.crew)
+```
+### title.principals
+
+Here are the first few rows of the dataframe of `title.principals`. 
+```{r}
+head(title.principals)
+```
+
+`title.principals` contains the principal cast/crew for titles.
+
+tconst (chr) - alphanumeric unique identifier of the title
+
+ordering (chr) – a number to uniquely identify rows for a given titleId
+
+nconst (chr) - alphanumeric unique identifier of the name/person
+
+category (chr) - the category of job that person was in
+
+job (chr) - the specific job title if applicable, else '\N'
+
+characters (chr) - the name of the character played if applicable, else '\N'
+
+The number of rows in the dataframe of `title.principals` is: 
+
+```{r}
+nrow(title.principals)
+```
+
+## Issues
+
+There are some issues with the datasets. First, the data types of some columns are wrong. For example, `runtimeMinutes` should be integers rather than strings. Second, the missing values are represented with "\\\\N". In the next section, we will transform the datasets so that they have correct data types and NA as missing values.
+

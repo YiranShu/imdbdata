@@ -24,15 +24,16 @@
 <meta name="author" content="Yiran Shu, Qingyi Zhang, Tianxiang Li" />
 
 
-<meta name="date" content="2021-11-19" />
+<meta name="date" content="2021-12-13" />
 
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <meta name="apple-mobile-web-app-capable" content="yes" />
   <meta name="apple-mobile-web-app-status-bar-style" content="black" />
   
   
-<link rel="prev" href="missing-values.html"/>
+<link rel="prev" href="missing-values-1.html"/>
 <link rel="next" href="interactive-component.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -55,41 +56,68 @@
 
 
 <style type="text/css">
-div.sourceCode { overflow-x: auto; }
-table.sourceCode, tr.sourceCode, td.lineNumbers, td.sourceCode {
-  margin: 0; padding: 0; vertical-align: baseline; border: none; }
-table.sourceCode { width: 100%; line-height: 100%; }
-td.lineNumbers { text-align: right; padding-right: 4px; padding-left: 4px; color: #aaaaaa; border-right: 1px solid #aaaaaa; }
-td.sourceCode { padding-left: 5px; }
-code > span.kw { color: #007020; font-weight: bold; } /* Keyword */
-code > span.dt { color: #902000; } /* DataType */
-code > span.dv { color: #40a070; } /* DecVal */
-code > span.bn { color: #40a070; } /* BaseN */
-code > span.fl { color: #40a070; } /* Float */
-code > span.ch { color: #4070a0; } /* Char */
-code > span.st { color: #4070a0; } /* String */
-code > span.co { color: #60a0b0; font-style: italic; } /* Comment */
-code > span.ot { color: #007020; } /* Other */
-code > span.al { color: #ff0000; font-weight: bold; } /* Alert */
-code > span.fu { color: #06287e; } /* Function */
-code > span.er { color: #ff0000; font-weight: bold; } /* Error */
-code > span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
-code > span.cn { color: #880000; } /* Constant */
-code > span.sc { color: #4070a0; } /* SpecialChar */
-code > span.vs { color: #4070a0; } /* VerbatimString */
-code > span.ss { color: #bb6688; } /* SpecialString */
-code > span.im { } /* Import */
-code > span.va { color: #19177c; } /* Variable */
-code > span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
-code > span.op { color: #666666; } /* Operator */
-code > span.bu { } /* BuiltIn */
-code > span.ex { } /* Extension */
-code > span.pp { color: #bc7a00; } /* Preprocessor */
-code > span.at { color: #7d9029; } /* Attribute */
-code > span.do { color: #ba2121; font-style: italic; } /* Documentation */
-code > span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
-code > span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
-code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
+.sourceCode { overflow: visible; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
+pre.sourceCode { margin: 0; }
+@media screen {
+div.sourceCode { overflow: auto; }
+}
+@media print {
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+}
+pre.numberSource code
+  { counter-reset: source-line 0; }
+pre.numberSource code > span
+  { position: relative; left: -4em; counter-increment: source-line; }
+pre.numberSource code > span > a:first-child::before
+  { content: counter(source-line);
+    position: relative; left: -1em; text-align: right; vertical-align: baseline;
+    border: none; display: inline-block;
+    -webkit-touch-callout: none; -webkit-user-select: none;
+    -khtml-user-select: none; -moz-user-select: none;
+    -ms-user-select: none; user-select: none;
+    padding: 0 4px; width: 4em;
+    color: #aaaaaa;
+  }
+pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-left: 4px; }
+div.sourceCode
+  {   }
+@media screen {
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+}
+code span.al { color: #ff0000; font-weight: bold; } /* Alert */
+code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
+code span.at { color: #7d9029; } /* Attribute */
+code span.bn { color: #40a070; } /* BaseN */
+code span.bu { } /* BuiltIn */
+code span.cf { color: #007020; font-weight: bold; } /* ControlFlow */
+code span.ch { color: #4070a0; } /* Char */
+code span.cn { color: #880000; } /* Constant */
+code span.co { color: #60a0b0; font-style: italic; } /* Comment */
+code span.cv { color: #60a0b0; font-weight: bold; font-style: italic; } /* CommentVar */
+code span.do { color: #ba2121; font-style: italic; } /* Documentation */
+code span.dt { color: #902000; } /* DataType */
+code span.dv { color: #40a070; } /* DecVal */
+code span.er { color: #ff0000; font-weight: bold; } /* Error */
+code span.ex { } /* Extension */
+code span.fl { color: #40a070; } /* Float */
+code span.fu { color: #06287e; } /* Function */
+code span.im { } /* Import */
+code span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Information */
+code span.kw { color: #007020; font-weight: bold; } /* Keyword */
+code span.op { color: #666666; } /* Operator */
+code span.ot { color: #007020; } /* Other */
+code span.pp { color: #bc7a00; } /* Preprocessor */
+code span.sc { color: #4070a0; } /* SpecialChar */
+code span.ss { color: #bb6688; } /* SpecialString */
+code span.st { color: #4070a0; } /* String */
+code span.va { color: #19177c; } /* Variable */
+code span.vs { color: #4070a0; } /* VerbatimString */
+code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warning */
 </style>
 
 
@@ -109,24 +137,66 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
 <li><a href="./">Movie Genres</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#how-have-the-genres-of-movies-been-changing-since-last-century"><i class="fa fa-check"></i><b>1.1</b> How have the genres of movies been changing since last century?</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#what-was-the-relationship-between-genres-and-ratings-for-example-what-genres-were-more-likely-to-gain-higher-ratings"><i class="fa fa-check"></i><b>1.2</b> What was the relationship between genres and ratings? For example, what genres were more likely to gain higher ratings?</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#for-each-director-did-heshe-have-a-preference-in-any-genres"><i class="fa fa-check"></i><b>1.3</b> For each director, did he/she have a preference in any genres?</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a></li>
-<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a></li>
-<li class="chapter" data-level="4" data-path="missing-values.html"><a href="missing-values.html"><i class="fa fa-check"></i><b>4</b> Missing values</a><ul>
-<li class="chapter" data-level="4.1" data-path="missing-values.html"><a href="missing-values.html#repuired-libraries"><i class="fa fa-check"></i><b>4.1</b> Repuired libraries</a></li>
-<li class="chapter" data-level="4.2" data-path="missing-values.html"><a href="missing-values.html#load-and-show-the-initial-data"><i class="fa fa-check"></i><b>4.2</b> Load and show the initial data</a></li>
-<li class="chapter" data-level="4.3" data-path="missing-values.html"><a href="missing-values.html#replace-n-with-na"><i class="fa fa-check"></i><b>4.3</b> Replace &quot;\\N&quot; with NA</a></li>
-<li class="chapter" data-level="4.4" data-path="missing-values.html"><a href="missing-values.html#show-the-data-after-transformation"><i class="fa fa-check"></i><b>4.4</b> Show the data after transformation</a></li>
-<li class="chapter" data-level="4.5" data-path="missing-values.html"><a href="missing-values.html#missing-patterns"><i class="fa fa-check"></i><b>4.5</b> Missing patterns</a><ul>
-<li class="chapter" data-level="4.5.1" data-path="missing-values.html"><a href="missing-values.html#missing-values-by-column"><i class="fa fa-check"></i><b>4.5.1</b> Missing values by column</a></li>
-<li class="chapter" data-level="4.5.2" data-path="missing-values.html"><a href="missing-values.html#show-the-missing-patterns"><i class="fa fa-check"></i><b>4.5.2</b> Show the missing patterns</a></li>
+<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a>
+<ul>
+<li class="chapter" data-level="2.1" data-path="data-sources.html"><a href="data-sources.html#url-of-data-sources"><i class="fa fa-check"></i><b>2.1</b> URL of data sources</a></li>
+<li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#basic-information"><i class="fa fa-check"></i><b>2.2</b> Basic information</a>
+<ul>
+<li class="chapter" data-level="2.2.1" data-path="data-sources.html"><a href="data-sources.html#title.basics"><i class="fa fa-check"></i><b>2.2.1</b> title.basics</a></li>
+<li class="chapter" data-level="2.2.2" data-path="data-sources.html"><a href="data-sources.html#name.basics"><i class="fa fa-check"></i><b>2.2.2</b> name.basics</a></li>
+<li class="chapter" data-level="2.2.3" data-path="data-sources.html"><a href="data-sources.html#title.ratings"><i class="fa fa-check"></i><b>2.2.3</b> title.ratings</a></li>
+<li class="chapter" data-level="2.2.4" data-path="data-sources.html"><a href="data-sources.html#title.crew"><i class="fa fa-check"></i><b>2.2.4</b> title.crew</a></li>
+<li class="chapter" data-level="2.2.5" data-path="data-sources.html"><a href="data-sources.html#title.principals"><i class="fa fa-check"></i><b>2.2.5</b> title.principals</a></li>
+</ul></li>
+<li class="chapter" data-level="2.3" data-path="data-sources.html"><a href="data-sources.html#issues"><i class="fa fa-check"></i><b>2.3</b> Issues</a></li>
+</ul></li>
+<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#missing-values"><i class="fa fa-check"></i><b>3.1</b> Missing values</a>
+<ul>
+<li class="chapter" data-level="3.1.1" data-path="data-transformation.html"><a href="data-transformation.html#initial-data"><i class="fa fa-check"></i><b>3.1.1</b> Initial data</a></li>
+<li class="chapter" data-level="3.1.2" data-path="data-transformation.html"><a href="data-transformation.html#replace-n-with-na"><i class="fa fa-check"></i><b>3.1.2</b> Replace “\\N” with NA</a></li>
+<li class="chapter" data-level="3.1.3" data-path="data-transformation.html"><a href="data-transformation.html#data-after-transformation-of-missing-values"><i class="fa fa-check"></i><b>3.1.3</b> Data after transformation of missing values</a></li>
+</ul></li>
+<li class="chapter" data-level="3.2" data-path="data-transformation.html"><a href="data-transformation.html#correct-data-type-of-columns"><i class="fa fa-check"></i><b>3.2</b> Correct data type of columns</a></li>
+<li class="chapter" data-level="3.3" data-path="data-transformation.html"><a href="data-transformation.html#genres"><i class="fa fa-check"></i><b>3.3</b> Genres</a></li>
+<li class="chapter" data-level="3.4" data-path="data-transformation.html"><a href="data-transformation.html#save-the-transformed-dataframes"><i class="fa fa-check"></i><b>3.4</b> Save the transformed dataframes</a></li>
+</ul></li>
+<li class="chapter" data-level="4" data-path="missing-values-1.html"><a href="missing-values-1.html"><i class="fa fa-check"></i><b>4</b> Missing values</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="missing-values-1.html"><a href="missing-values-1.html#title.bacis"><i class="fa fa-check"></i><b>4.1</b> title.bacis</a>
+<ul>
+<li class="chapter" data-level="4.1.1" data-path="missing-values-1.html"><a href="missing-values-1.html#missing-values-by-column"><i class="fa fa-check"></i><b>4.1.1</b> Missing values by column</a></li>
+<li class="chapter" data-level="4.1.2" data-path="missing-values-1.html"><a href="missing-values-1.html#missing-patterns"><i class="fa fa-check"></i><b>4.1.2</b> Missing patterns</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a></li>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#movie-ratings-of-different-years"><i class="fa fa-check"></i><b>5.1</b> Movie ratings of different years</a>
+<ul>
+<li class="chapter" data-level="5.1.1" data-path="results.html"><a href="results.html#ratings-for-all-movies"><i class="fa fa-check"></i><b>5.1.1</b> Ratings for all movies</a></li>
+<li class="chapter" data-level="5.1.2" data-path="results.html"><a href="results.html#rating-distributions-for-100-best-movies"><i class="fa fa-check"></i><b>5.1.2</b> Rating distributions for 100 best movies</a></li>
+</ul></li>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#number-of-votes"><i class="fa fa-check"></i><b>5.2</b> Number of votes</a></li>
+<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#dependency-between-votes-ratings-and-runtime"><i class="fa fa-check"></i><b>5.3</b> Dependency between votes, ratings and runtime</a></li>
+<li class="chapter" data-level="5.4" data-path="results.html"><a href="results.html#movie-titles"><i class="fa fa-check"></i><b>5.4</b> Movie titles</a>
+<ul>
+<li class="chapter" data-level="5.4.1" data-path="results.html"><a href="results.html#most-common-words-in-titles"><i class="fa fa-check"></i><b>5.4.1</b> Most common words in titles</a></li>
+<li class="chapter" data-level="5.4.2" data-path="results.html"><a href="results.html#length-of-titles"><i class="fa fa-check"></i><b>5.4.2</b> Length of Titles</a></li>
+</ul></li>
+<li class="chapter" data-level="5.5" data-path="results.html"><a href="results.html#analysis-of-director"><i class="fa fa-check"></i><b>5.5</b> Analysis of Director</a>
+<ul>
+<li class="chapter" data-level="5.5.1" data-path="results.html"><a href="results.html#top-10-directors-in-action-genre"><i class="fa fa-check"></i><b>5.5.1</b> Top 10 directors in action genre</a></li>
+<li class="chapter" data-level="5.5.2" data-path="results.html"><a href="results.html#distribution-of-genres-for-the-top-10-directors"><i class="fa fa-check"></i><b>5.5.2</b> Distribution of genres for the top 10 directors</a></li>
+<li class="chapter" data-level="5.5.3" data-path="results.html"><a href="results.html#average-rating-of-top-10-directors-by-genre"><i class="fa fa-check"></i><b>5.5.3</b> Average rating of top 10 directors by genre</a></li>
+</ul></li>
+</ul></li>
 <li class="chapter" data-level="6" data-path="interactive-component.html"><a href="interactive-component.html"><i class="fa fa-check"></i><b>6</b> Interactive component</a></li>
 <li class="chapter" data-level="7" data-path="conclusion.html"><a href="conclusion.html"><i class="fa fa-check"></i><b>7</b> Conclusion</a></li>
 <li class="divider"></li>
@@ -148,16 +218,380 @@ code > span.in { color: #60a0b0; font-weight: bold; font-style: italic; } /* Inf
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="results" class="section level1">
+<div id="results" class="section level1" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Results</h1>
+<div id="movie-ratings-of-different-years" class="section level2" number="5.1">
+<h2><span class="header-section-number">5.1</span> Movie ratings of different years</h2>
+<div id="ratings-for-all-movies" class="section level3" number="5.1.1">
+<h3><span class="header-section-number">5.1.1</span> Ratings for all movies</h3>
+<p>IMDB rating is a good reference if we want to know the quality of different movies. Do different genres have obviously different average ratings? Has the quality of movies changed over time? We can find something from the figure below:</p>
+<div class="sourceCode" id="cb36"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb36-1"><a href="results.html#cb36-1" aria-hidden="true" tabindex="-1"></a>main_genres <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="st">&#39;Drama&#39;</span>,<span class="st">&#39;Comedy&#39;</span>,<span class="st">&#39;Music&#39;</span>,<span class="st">&#39;Documentary&#39;</span>,<span class="st">&#39;Action&#39;</span>, <span class="st">&#39;Romance&#39;</span>, <span class="st">&quot;Thriller&quot;</span>,<span class="st">&#39;Crime&#39;</span>, <span class="st">&#39;Horror&#39;</span>, <span class="st">&#39;Adventure&#39;</span>, <span class="st">&#39;Biography&#39;</span>, <span class="st">&#39;Sci-Fi&#39;</span>)</span>
+<span id="cb36-2"><a href="results.html#cb36-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-3"><a href="results.html#cb36-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">left_join</span>(title.genres, title.basics, <span class="at">by=</span><span class="st">&#39;tconst&#39;</span>)</span>
+<span id="cb36-4"><a href="results.html#cb36-4" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">left_join</span>(x, title.ratings, <span class="at">by=</span><span class="st">&#39;tconst&#39;</span>)</span>
+<span id="cb36-5"><a href="results.html#cb36-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-6"><a href="results.html#cb36-6" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> x <span class="sc">%&gt;%</span> </span>
+<span id="cb36-7"><a href="results.html#cb36-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(startYear<span class="sc">&lt;=</span><span class="dv">2020</span>,startYear<span class="sc">&gt;=</span><span class="dv">1980</span>, genres.x <span class="sc">%in%</span> main_genres, <span class="fu">is.na</span>(numVotes)<span class="sc">==</span><span class="cn">FALSE</span>, <span class="fu">is.na</span>(averageRating)<span class="sc">==</span><span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb36-8"><a href="results.html#cb36-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">totalratings=</span>numVotes<span class="sc">*</span>averageRating) <span class="sc">%&gt;%</span></span>
+<span id="cb36-9"><a href="results.html#cb36-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(startYear, genres.x) <span class="sc">%&gt;%</span></span>
+<span id="cb36-10"><a href="results.html#cb36-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">rating2=</span><span class="fu">sum</span>(totalratings)<span class="sc">/</span><span class="fu">sum</span>(numVotes), <span class="at">.groups =</span> <span class="st">&#39;drop&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb36-11"><a href="results.html#cb36-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() </span>
+<span id="cb36-12"><a href="results.html#cb36-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-13"><a href="results.html#cb36-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-14"><a href="results.html#cb36-14" aria-hidden="true" tabindex="-1"></a>xlabels <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1980</span><span class="sc">:</span><span class="dv">2020</span>)</span>
+<span id="cb36-15"><a href="results.html#cb36-15" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(xlabels)){</span>
+<span id="cb36-16"><a href="results.html#cb36-16" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">strtoi</span>(xlabels[i])<span class="sc">%%</span><span class="dv">5</span><span class="sc">!=</span><span class="dv">0</span>){</span>
+<span id="cb36-17"><a href="results.html#cb36-17" aria-hidden="true" tabindex="-1"></a>    xlabels[i] <span class="ot">&lt;-</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb36-18"><a href="results.html#cb36-18" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb36-19"><a href="results.html#cb36-19" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb36-20"><a href="results.html#cb36-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-21"><a href="results.html#cb36-21" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span><span class="fu">ggplot</span>(df, <span class="fu">aes</span>(startYear, <span class="fu">fct_rev</span>(<span class="fu">factor</span>(genres.x)), <span class="at">fill =</span> rating2)) <span class="sc">+</span></span>
+<span id="cb36-22"><a href="results.html#cb36-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb36-23"><a href="results.html#cb36-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb36-24"><a href="results.html#cb36-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low=</span><span class="st">&quot;white&quot;</span>, <span class="at">high=</span><span class="st">&quot;blue&quot;</span>, <span class="at">guide =</span> <span class="fu">guide_colourbar</span>(<span class="at">title=</span><span class="st">&#39;Weighted </span><span class="sc">\n</span><span class="st"> Rating&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb36-25"><a href="results.html#cb36-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels=</span>xlabels) <span class="sc">+</span></span>
+<span id="cb36-26"><a href="results.html#cb36-26" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb36-27"><a href="results.html#cb36-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>)</span>
+<span id="cb36-28"><a href="results.html#cb36-28" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-29"><a href="results.html#cb36-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-30"><a href="results.html#cb36-30" aria-hidden="true" tabindex="-1"></a>main_genres <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="st">&#39;Drama&#39;</span>,<span class="st">&#39;Comedy&#39;</span>,<span class="st">&#39;Music&#39;</span>,<span class="st">&#39;Documentary&#39;</span>,<span class="st">&#39;Action&#39;</span>, <span class="st">&#39;Romance&#39;</span>, <span class="st">&quot;Thriller&quot;</span>,<span class="st">&#39;Crime&#39;</span>, <span class="st">&#39;Horror&#39;</span>, <span class="st">&#39;Adventure&#39;</span>, <span class="st">&#39;Biography&#39;</span>, <span class="st">&#39;Sci-Fi&#39;</span>)</span>
+<span id="cb36-31"><a href="results.html#cb36-31" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-32"><a href="results.html#cb36-32" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-33"><a href="results.html#cb36-33" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-34"><a href="results.html#cb36-34" aria-hidden="true" tabindex="-1"></a>df <span class="ot">&lt;-</span> x <span class="sc">%&gt;%</span> </span>
+<span id="cb36-35"><a href="results.html#cb36-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(startYear<span class="sc">&lt;=</span><span class="dv">2020</span>,startYear<span class="sc">&gt;=</span><span class="dv">1980</span>, genres.x <span class="sc">%in%</span> main_genres, <span class="fu">is.na</span>(numVotes)<span class="sc">==</span><span class="cn">FALSE</span>, <span class="fu">is.na</span>(averageRating)<span class="sc">==</span><span class="cn">FALSE</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb36-36"><a href="results.html#cb36-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(startYear, genres.x) <span class="sc">%&gt;%</span></span>
+<span id="cb36-37"><a href="results.html#cb36-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">rating=</span><span class="fu">mean</span>(averageRating), <span class="at">.groups =</span> <span class="st">&#39;drop&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb36-38"><a href="results.html#cb36-38" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() </span>
+<span id="cb36-39"><a href="results.html#cb36-39" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-40"><a href="results.html#cb36-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-41"><a href="results.html#cb36-41" aria-hidden="true" tabindex="-1"></a>xlabels <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1980</span><span class="sc">:</span><span class="dv">2020</span>)</span>
+<span id="cb36-42"><a href="results.html#cb36-42" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(xlabels)){</span>
+<span id="cb36-43"><a href="results.html#cb36-43" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">strtoi</span>(xlabels[i])<span class="sc">%%</span><span class="dv">5</span><span class="sc">!=</span><span class="dv">0</span>){</span>
+<span id="cb36-44"><a href="results.html#cb36-44" aria-hidden="true" tabindex="-1"></a>    xlabels[i] <span class="ot">&lt;-</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb36-45"><a href="results.html#cb36-45" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb36-46"><a href="results.html#cb36-46" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb36-47"><a href="results.html#cb36-47" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-48"><a href="results.html#cb36-48" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(df, <span class="fu">aes</span>(startYear, <span class="fu">fct_rev</span>(<span class="fu">factor</span>(genres.x)), <span class="at">fill =</span> rating)) <span class="sc">+</span></span>
+<span id="cb36-49"><a href="results.html#cb36-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_tile</span>(<span class="at">color =</span> <span class="st">&quot;white&quot;</span>) <span class="sc">+</span></span>
+<span id="cb36-50"><a href="results.html#cb36-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">coord_equal</span>() <span class="sc">+</span></span>
+<span id="cb36-51"><a href="results.html#cb36-51" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_fill_gradient</span>(<span class="at">low=</span><span class="st">&quot;white&quot;</span>, <span class="at">high=</span><span class="st">&quot;blue&quot;</span>, <span class="at">guide =</span> <span class="fu">guide_colourbar</span>(<span class="at">title=</span><span class="st">&#39;Avg Rating&#39;</span>)) <span class="sc">+</span></span>
+<span id="cb36-52"><a href="results.html#cb36-52" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_discrete</span>(<span class="at">labels=</span>xlabels) <span class="sc">+</span></span>
+<span id="cb36-53"><a href="results.html#cb36-53" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb36-54"><a href="results.html#cb36-54" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>)</span>
+<span id="cb36-55"><a href="results.html#cb36-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-56"><a href="results.html#cb36-56" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb36-57"><a href="results.html#cb36-57" aria-hidden="true" tabindex="-1"></a>g1 <span class="sc">/</span> g2  <span class="sc">+</span>    <span class="co"># Create grid of plots with title</span></span>
+<span id="cb36-58"><a href="results.html#cb36-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_annotation</span>(<span class="at">title =</span> <span class="st">&quot;Ratings of different genres&quot;</span>, <span class="at">caption=</span><span class="st">&quot;Year&quot;</span>,</span>
+<span id="cb36-59"><a href="results.html#cb36-59" aria-hidden="true" tabindex="-1"></a>                  <span class="at">theme =</span> <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>), <span class="at">plot.caption =</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>,<span class="at">hjust =</span> <span class="fl">0.5</span>,<span class="at">vjust=</span><span class="dv">6</span>) ))</span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-41-1.png" width="672" /></p>
+<p>This is an interesting plot about the ratings of different genres changing with time. The top one calculates the average ratings of movies from each genre and each year. It seems that <code>Documentary</code>, <code>Biograph</code> and <code>Music</code> have the highest ratings, while ratings for <code>Horro</code> movies are the lowest. And there is no obvious trend along the <code>Year</code> dimension.</p>
+<p>However, let’s consider this situation: there are two <code>Action</code> movies in 2050.One gets 10000 votes of 10 star, one gets gets 1 vote of 0 star. The average rating would be 5 star. This seems a little unfair, right?</p>
+<p>So we also use <code>weighted average</code>, where weights are their number of votes, and we get the bottom plot. Surprisingly, the ratings between different genres are not so large as we thought. <code>Documentary</code> and <code>Biography</code> are not much higher than the others, although <code>Horro</code> still seems the lowest.</p>
+<p>Another interesting discovery is that there is a trend along time: movies before 2000 clearly have higher weighted ratings than movies after 2000. Maybe this is a reflection that the quality of movies in recent years are not as well as before?</p>
+</div>
+<div id="rating-distributions-for-100-best-movies" class="section level3" number="5.1.2">
+<h3><span class="header-section-number">5.1.2</span> Rating distributions for 100 best movies</h3>
+<p>Now that we have a view of ratings of all movies, what about those top-rating movies? Do people have preference among different genres when they are rating? We select 100 top-rating movies of different genres and plot their distributions:</p>
+<div class="sourceCode" id="cb37"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb37-1"><a href="results.html#cb37-1" aria-hidden="true" tabindex="-1"></a>main_genres <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="st">&#39;Drama&#39;</span>,<span class="st">&#39;Comedy&#39;</span>,<span class="st">&#39;Music&#39;</span>,<span class="st">&#39;Documentary&#39;</span>,<span class="st">&#39;Action&#39;</span>, <span class="st">&#39;Romance&#39;</span>, <span class="st">&quot;Thriller&quot;</span>,<span class="st">&#39;Crime&#39;</span>, <span class="st">&#39;Horror&#39;</span>, <span class="st">&#39;Adventure&#39;</span>, <span class="st">&#39;Biography&#39;</span>, <span class="st">&#39;Sci-Fi&#39;</span>)</span>
+<span id="cb37-2"><a href="results.html#cb37-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-3"><a href="results.html#cb37-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">left_join</span>(title.genres, title.ratings, <span class="at">by=</span><span class="st">&#39;tconst&#39;</span>)</span>
+<span id="cb37-4"><a href="results.html#cb37-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-5"><a href="results.html#cb37-5" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> x <span class="sc">%&gt;%</span></span>
+<span id="cb37-6"><a href="results.html#cb37-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(genres <span class="sc">%in%</span> main_genres, numVotes<span class="sc">&gt;</span><span class="dv">5000</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb37-7"><a href="results.html#cb37-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(genres) <span class="sc">%&gt;%</span></span>
+<span id="cb37-8"><a href="results.html#cb37-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">r=</span><span class="fu">rank</span>(averageRating<span class="sc">*</span>(<span class="sc">-</span><span class="dv">1</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb37-9"><a href="results.html#cb37-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb37-10"><a href="results.html#cb37-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(r<span class="sc">&lt;=</span><span class="dv">100</span>)</span>
+<span id="cb37-11"><a href="results.html#cb37-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-12"><a href="results.html#cb37-12" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(x1, title.basics, <span class="at">by=</span><span class="st">&#39;tconst&#39;</span>)</span>
+<span id="cb37-13"><a href="results.html#cb37-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-14"><a href="results.html#cb37-14" aria-hidden="true" tabindex="-1"></a>x2<span class="sc">$</span>genres.x <span class="ot">&lt;-</span> <span class="fu">with</span>(x2 ,<span class="fu">reorder</span>(genres.x,averageRating,median))</span>
+<span id="cb37-15"><a href="results.html#cb37-15" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-16"><a href="results.html#cb37-16" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-17"><a href="results.html#cb37-17" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">left_join</span>(title.genres, title.ratings, <span class="at">by=</span><span class="st">&#39;tconst&#39;</span>)</span>
+<span id="cb37-18"><a href="results.html#cb37-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-19"><a href="results.html#cb37-19" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> x <span class="sc">%&gt;%</span></span>
+<span id="cb37-20"><a href="results.html#cb37-20" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(genres <span class="sc">%in%</span> main_genres) <span class="sc">%&gt;%</span></span>
+<span id="cb37-21"><a href="results.html#cb37-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(genres) <span class="sc">%&gt;%</span></span>
+<span id="cb37-22"><a href="results.html#cb37-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">r=</span><span class="fu">rank</span>(averageRating<span class="sc">*</span>(<span class="sc">-</span><span class="dv">1</span>))) <span class="sc">%&gt;%</span></span>
+<span id="cb37-23"><a href="results.html#cb37-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>() <span class="sc">%&gt;%</span></span>
+<span id="cb37-24"><a href="results.html#cb37-24" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(r<span class="sc">&lt;=</span><span class="dv">100</span>)</span>
+<span id="cb37-25"><a href="results.html#cb37-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-26"><a href="results.html#cb37-26" aria-hidden="true" tabindex="-1"></a>x22 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(x1, title.basics, <span class="at">by=</span><span class="st">&#39;tconst&#39;</span>)</span>
+<span id="cb37-27"><a href="results.html#cb37-27" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-28"><a href="results.html#cb37-28" aria-hidden="true" tabindex="-1"></a><span class="co">#x2$genres.x &lt;- with(x2 ,reorder(genres.x,averageRating,median))</span></span>
+<span id="cb37-29"><a href="results.html#cb37-29" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb37-30"><a href="results.html#cb37-30" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(ggridges)</span>
+<span id="cb37-31"><a href="results.html#cb37-31" aria-hidden="true" tabindex="-1"></a>g <span class="ot">&lt;-</span> <span class="fu">ggplot</span>() <span class="sc">+</span></span>
+<span id="cb37-32"><a href="results.html#cb37-32" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>(<span class="at">data =</span> x2, <span class="fu">aes</span>(<span class="at">y =</span> genres.x, <span class="at">x =</span> averageRating), <span class="at">alpha=</span><span class="fl">0.8</span>,<span class="at">color=</span><span class="st">&#39;white&#39;</span>, <span class="at">fill=</span><span class="st">&#39;lightslateblue&#39;</span>)<span class="sc">+</span></span>
+<span id="cb37-33"><a href="results.html#cb37-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_density_ridges</span>(<span class="at">data =</span> x22, <span class="fu">aes</span>(<span class="at">y =</span> genres.x, <span class="at">x =</span> averageRating), <span class="at">alpha=</span><span class="fl">0.2</span>,<span class="at">color=</span><span class="fu">rgb</span>(<span class="dv">0</span>,<span class="dv">0</span>,<span class="dv">0</span>, <span class="at">alpha=</span><span class="dv">0</span>, <span class="at">maxColorValue =</span> <span class="dv">1</span>),</span>
+<span id="cb37-34"><a href="results.html#cb37-34" aria-hidden="true" tabindex="-1"></a>                      <span class="at">fill=</span><span class="st">&#39;red&#39;</span>) <span class="sc">+</span></span>
+<span id="cb37-35"><a href="results.html#cb37-35" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>)<span class="sc">+</span><span class="fu">xlab</span>(<span class="st">&quot;Rating&quot;</span>)<span class="sc">+</span></span>
+<span id="cb37-36"><a href="results.html#cb37-36" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Rating distributions for 100 top-rating movies of each genre&#39;</span>)</span>
+<span id="cb37-37"><a href="results.html#cb37-37" aria-hidden="true" tabindex="-1"></a>g</span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
+<p>If we select movies from all of them, we get the red distributions. But if we only consider movies with more than 5000 votes, we get the purple ones. We find that <code>Documentary</code> has the highest median if we consider all movies, but it gets lower if we exclude those without enough votes. It turns out that there are many documentary movies only have 20 or 50 votes with almost 10 star ratings. It’s the same with biography and music movies.</p>
+<p>If we exclude these not well-know works, we can get a picture of the preferences of the most population. It shows that people tend to give higher ratings for <code>Romance</code> movies, while it’s very hard for <code>Horro</code> movies to get high scores.</p>
+</div>
+</div>
+<div id="number-of-votes" class="section level2" number="5.2">
+<h2><span class="header-section-number">5.2</span> Number of votes</h2>
+<p>As we can see, those movies with few votes can cause big difference when we are analysing the data. What are these movies like? We select those movies with less than 5,000 votes on IMDB and see where they come from:</p>
+<div class="sourceCode" id="cb38"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb38-1"><a href="results.html#cb38-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">left_join</span>(title.genres, title.ratings, <span class="at">by=</span><span class="st">&#39;tconst&#39;</span>)</span>
+<span id="cb38-2"><a href="results.html#cb38-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-3"><a href="results.html#cb38-3" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> x <span class="sc">%&gt;%</span></span>
+<span id="cb38-4"><a href="results.html#cb38-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(numVotes<span class="sc">&lt;</span><span class="dv">5000</span>)</span>
+<span id="cb38-5"><a href="results.html#cb38-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-6"><a href="results.html#cb38-6" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> <span class="fu">left_join</span>(x1, title.basics, <span class="at">by=</span><span class="st">&#39;tconst&#39;</span>)</span>
+<span id="cb38-7"><a href="results.html#cb38-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb38-8"><a href="results.html#cb38-8" aria-hidden="true" tabindex="-1"></a>x3 <span class="ot">&lt;-</span> x2 <span class="sc">%&gt;%</span></span>
+<span id="cb38-9"><a href="results.html#cb38-9" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(genres.x) <span class="sc">%&gt;%</span></span>
+<span id="cb38-10"><a href="results.html#cb38-10" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">c=</span><span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb38-11"><a href="results.html#cb38-11" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ungroup</span>()</span>
+<span id="cb38-12"><a href="results.html#cb38-12" aria-hidden="true" tabindex="-1"></a>    </span>
+<span id="cb38-13"><a href="results.html#cb38-13" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(treemap)</span>
+<span id="cb38-14"><a href="results.html#cb38-14" aria-hidden="true" tabindex="-1"></a><span class="fu">treemap</span>(x3, <span class="at">index=</span><span class="st">&quot;genres.x&quot;</span>, <span class="at">vSize=</span><span class="st">&quot;c&quot;</span>, <span class="at">type=</span><span class="st">&quot;index&quot;</span>,</span>
+<span id="cb38-15"><a href="results.html#cb38-15" aria-hidden="true" tabindex="-1"></a>        <span class="at">title=</span><span class="st">&#39;Movies (votes&lt;5000)&#39;</span>,<span class="at">fontsize.title=</span><span class="dv">12</span>)</span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-43-1.png" width="672" /></p>
+<p>These movies mostly come from <code>Drama</code>, <code>Comedy</code>, <code>Documentary</code>, which is not very surprising. However, we can sense that they may have different ratings, because when we exclude these movies, the average ratings of different genres change differently.</p>
+<p>So now we plot the ratings of these movies and get this:</p>
+<div class="sourceCode" id="cb39"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb39-1"><a href="results.html#cb39-1" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">left_join</span>(title.genres, title.ratings, <span class="at">by=</span><span class="st">&#39;tconst&#39;</span>)</span>
+<span id="cb39-2"><a href="results.html#cb39-2" aria-hidden="true" tabindex="-1"></a>main_genres <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&#39;Documentary&#39;</span>, <span class="st">&#39;Horror&#39;</span>, <span class="st">&#39;Action&#39;</span>, <span class="st">&#39;Drama&#39;</span>)</span>
+<span id="cb39-3"><a href="results.html#cb39-3" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> x <span class="sc">%&gt;%</span></span>
+<span id="cb39-4"><a href="results.html#cb39-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(numVotes<span class="sc">&lt;</span><span class="dv">5000</span>,numVotes<span class="sc">&gt;</span><span class="dv">0</span>, genres <span class="sc">%in%</span> main_genres)</span>
+<span id="cb39-5"><a href="results.html#cb39-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-6"><a href="results.html#cb39-6" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-7"><a href="results.html#cb39-7" aria-hidden="true" tabindex="-1"></a>cl <span class="ot">&lt;-</span> <span class="cf">function</span>(r){</span>
+<span id="cb39-8"><a href="results.html#cb39-8" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (r<span class="sc">&gt;=</span><span class="dv">0</span> <span class="sc">&amp;</span> r<span class="sc">&lt;</span><span class="dv">4</span>) <span class="fu">return</span>(<span class="st">&#39;0-4&#39;</span>)</span>
+<span id="cb39-9"><a href="results.html#cb39-9" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (r<span class="sc">&gt;=</span><span class="dv">4</span> <span class="sc">&amp;</span> r<span class="sc">&lt;</span><span class="dv">6</span>) <span class="fu">return</span>(<span class="st">&#39;4-6&#39;</span>)</span>
+<span id="cb39-10"><a href="results.html#cb39-10" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (r<span class="sc">&gt;=</span><span class="dv">6</span> <span class="sc">&amp;</span> r<span class="sc">&lt;</span><span class="dv">8</span>) <span class="fu">return</span>(<span class="st">&#39;6-8&#39;</span>)</span>
+<span id="cb39-11"><a href="results.html#cb39-11" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (r<span class="sc">&gt;=</span><span class="dv">8</span> <span class="sc">&amp;</span> r<span class="sc">&lt;=</span><span class="dv">10</span>) <span class="fu">return</span>(<span class="st">&#39;8-10&#39;</span>)</span>
+<span id="cb39-12"><a href="results.html#cb39-12" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb39-13"><a href="results.html#cb39-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-14"><a href="results.html#cb39-14" aria-hidden="true" tabindex="-1"></a>x1<span class="sc">$</span>rating1 <span class="ot">&lt;-</span> <span class="fu">lapply</span>(x1<span class="sc">$</span>averageRating, cl)</span>
+<span id="cb39-15"><a href="results.html#cb39-15" aria-hidden="true" tabindex="-1"></a>x1<span class="sc">$</span>rating2 <span class="ot">&lt;-</span> <span class="fu">unlist</span>(x1<span class="sc">$</span>rating1)</span>
+<span id="cb39-16"><a href="results.html#cb39-16" aria-hidden="true" tabindex="-1"></a>x1<span class="sc">$</span>Rating <span class="ot">&lt;-</span> <span class="fu">fct_rev</span>(<span class="fu">factor</span>(x1<span class="sc">$</span>rating2))</span>
+<span id="cb39-17"><a href="results.html#cb39-17" aria-hidden="true" tabindex="-1"></a>x1<span class="sc">$</span>genres <span class="ot">&lt;-</span> <span class="fu">factor</span>(x1<span class="sc">$</span>genres)</span>
+<span id="cb39-18"><a href="results.html#cb39-18" aria-hidden="true" tabindex="-1"></a><span class="co">#levels(x1$genres) &lt;- c(&#39;Documentary&#39;, &#39;Drama&#39;,&#39;Crime&#39;,&#39;Action&#39;,&#39;Horror&#39;)</span></span>
+<span id="cb39-19"><a href="results.html#cb39-19" aria-hidden="true" tabindex="-1"></a>x1<span class="sc">$</span>Genre <span class="ot">&lt;-</span> <span class="fu">fct_rev</span>(<span class="fu">fct_relevel</span>(x1<span class="sc">$</span>genres,<span class="st">&#39;Documentary&#39;</span>, <span class="st">&#39;Drama&#39;</span>,<span class="st">&#39;Action&#39;</span>,<span class="st">&#39;Horror&#39;</span>))</span>
+<span id="cb39-20"><a href="results.html#cb39-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb39-21"><a href="results.html#cb39-21" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(Lock5withR)</span>
+<span id="cb39-22"><a href="results.html#cb39-22" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(vcd)</span>
+<span id="cb39-23"><a href="results.html#cb39-23" aria-hidden="true" tabindex="-1"></a><span class="fu">mosaic</span>(Rating<span class="sc">~</span>Genre, <span class="at">direction =</span> <span class="fu">c</span>(<span class="st">&quot;v&quot;</span>,<span class="st">&quot;h&quot;</span>),x1,<span class="at">main=</span><span class="st">&#39;Ratings of movies (votes&lt;5000)&#39;</span>)</span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-44-1.png" width="768" /></p>
+<p>As we can see, among these movies, <code>Documentary</code> mostly have 6-8 stars, while <code>Horro</code> movies mostly have 0-6 stars. This proves what we think: there exists many documentary movies with small number of votes but very high ratings.</p>
+</div>
+<div id="dependency-between-votes-ratings-and-runtime" class="section level2" number="5.3">
+<h2><span class="header-section-number">5.3</span> Dependency between votes, ratings and runtime</h2>
+<p>Now we may wonder if votes and ratings have some relationship. The graph below shows the relationship among three variables: votes, ratings, and runtime. Note that we only select popular movies (with number of votes larger than 200,000) to exclude those ‘noisy’ less popular movies.</p>
+<div class="sourceCode" id="cb40"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb40-1"><a href="results.html#cb40-1" aria-hidden="true" tabindex="-1"></a>main_genres <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="st">&#39;Drama&#39;</span>,<span class="st">&#39;Comedy&#39;</span>,<span class="st">&#39;Music&#39;</span>,<span class="st">&#39;Documentary&#39;</span>,<span class="st">&#39;Action&#39;</span>,<span class="st">&#39;Sci-Fi&#39;</span>)</span>
+<span id="cb40-2"><a href="results.html#cb40-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">left_join</span>(title.basics, title.ratings, <span class="at">by=</span><span class="st">&#39;tconst&#39;</span>)</span>
+<span id="cb40-3"><a href="results.html#cb40-3" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>runtimeMinutes <span class="ot">&lt;-</span> <span class="fu">as.integer</span>(x<span class="sc">$</span>runtimeMinutes)</span>
+<span id="cb40-4"><a href="results.html#cb40-4" aria-hidden="true" tabindex="-1"></a>x<span class="sc">$</span>numVotes <span class="ot">&lt;-</span> x<span class="sc">$</span>numVotes<span class="sc">/</span><span class="fl">1e3</span></span>
+<span id="cb40-5"><a href="results.html#cb40-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb40-6"><a href="results.html#cb40-6" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> x<span class="sc">%&gt;%</span></span>
+<span id="cb40-7"><a href="results.html#cb40-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(genres <span class="sc">%in%</span> main_genres,<span class="fu">is.na</span>(runtimeMinutes)<span class="sc">==</span><span class="cn">FALSE</span>, <span class="fu">is.na</span>(averageRating)<span class="sc">==</span><span class="cn">FALSE</span>, <span class="fu">is.na</span>(numVotes)<span class="sc">==</span><span class="cn">FALSE</span>, runtimeMinutes<span class="sc">&lt;</span><span class="dv">400</span>,startYear<span class="sc">&gt;=</span><span class="dv">1940</span>,startYear<span class="sc">&lt;=</span><span class="dv">2020</span>, numVotes<span class="sc">&gt;</span><span class="dv">200</span>)</span>
+<span id="cb40-8"><a href="results.html#cb40-8" aria-hidden="true" tabindex="-1"></a>x1<span class="sc">$</span>votes_in_thousand <span class="ot">&lt;-</span> x1<span class="sc">$</span>numVotes</span>
+<span id="cb40-9"><a href="results.html#cb40-9" aria-hidden="true" tabindex="-1"></a>  </span>
+<span id="cb40-10"><a href="results.html#cb40-10" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> x1 <span class="sc">%&gt;%</span><span class="fu">select</span>(runtimeMinutes, averageRating, votes_in_thousand)</span>
+<span id="cb40-11"><a href="results.html#cb40-11" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(GGally)</span>
+<span id="cb40-12"><a href="results.html#cb40-12" aria-hidden="true" tabindex="-1"></a><span class="fu">ggpairs</span>(x2, <span class="fu">aes</span>(<span class="at">alpha=</span><span class="fl">0.5</span>))</span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-45-1.png" width="672" /></p>
+<p>The average rating and number of votes have obvious relationship. This is not difficult to understand: better movies are usually more popular so more people would vote. We also find that longer movies tend to have higher ratings. This is an interesting discovery. One reason could be that longer movies usually come from those with meaningful topics, while entertainment movies are usually shorter.</p>
+</div>
+<div id="movie-titles" class="section level2" number="5.4">
+<h2><span class="header-section-number">5.4</span> Movie titles</h2>
+<div id="most-common-words-in-titles" class="section level3" number="5.4.1">
+<h3><span class="header-section-number">5.4.1</span> Most common words in titles</h3>
+<p>Do movies of different genres prefer different words in titles? For example, maybe there are a lot of <code>heart</code> in <code>Romance</code> movies titles? Here we select 15 most common words from <code>Action</code>, <code>Animation</code>, <code>Romance</code>, <code>Sci_Fi</code> (meaningless words like ‘the’, ‘to’ are excluded):</p>
+<div class="sourceCode" id="cb41"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb41-1"><a href="results.html#cb41-1" aria-hidden="true" tabindex="-1"></a>main_genres <span class="ot">&lt;-</span> <span class="fu">c</span>( <span class="st">&#39;Drama&#39;</span>,<span class="st">&#39;Comedy&#39;</span>,<span class="st">&#39;Music&#39;</span>,<span class="st">&#39;Documentary&#39;</span>,<span class="st">&#39;Action&#39;</span>, <span class="st">&#39;Romance&#39;</span>, <span class="st">&quot;Thriller&quot;</span>,<span class="st">&#39;Crime&#39;</span>, <span class="st">&#39;Horror&#39;</span>, <span class="st">&#39;Adventure&#39;</span>, <span class="st">&#39;Biography&#39;</span>, <span class="st">&#39;Sci-Fi&#39;</span>)</span>
+<span id="cb41-2"><a href="results.html#cb41-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-3"><a href="results.html#cb41-3" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">left_join</span>(title.genres, title.basics, <span class="at">by=</span><span class="st">&#39;tconst&#39;</span>)</span>
+<span id="cb41-4"><a href="results.html#cb41-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-5"><a href="results.html#cb41-5" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> x <span class="sc">%&gt;%</span></span>
+<span id="cb41-6"><a href="results.html#cb41-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(startYear<span class="sc">&gt;=</span><span class="dv">1990</span>, startYear<span class="sc">&lt;=</span><span class="dv">2020</span>)</span>
+<span id="cb41-7"><a href="results.html#cb41-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-8"><a href="results.html#cb41-8" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-9"><a href="results.html#cb41-9" aria-hidden="true" tabindex="-1"></a>WordFreq <span class="ot">&lt;-</span> <span class="cf">function</span>(text) {</span>
+<span id="cb41-10"><a href="results.html#cb41-10" aria-hidden="true" tabindex="-1"></a>  txt <span class="ot">=</span> text[text<span class="sc">!=</span><span class="st">&quot;&quot;</span>]</span>
+<span id="cb41-11"><a href="results.html#cb41-11" aria-hidden="true" tabindex="-1"></a>  txt <span class="ot">=</span> <span class="fu">tolower</span>(txt)</span>
+<span id="cb41-12"><a href="results.html#cb41-12" aria-hidden="true" tabindex="-1"></a>  txtList <span class="ot">=</span> <span class="fu">lapply</span>(txt, strsplit,<span class="st">&quot; &quot;</span>)</span>
+<span id="cb41-13"><a href="results.html#cb41-13" aria-hidden="true" tabindex="-1"></a>  txtChar <span class="ot">=</span> <span class="fu">unlist</span>(txtList)</span>
+<span id="cb41-14"><a href="results.html#cb41-14" aria-hidden="true" tabindex="-1"></a>  txtChar <span class="ot">=</span> <span class="fu">gsub</span>(<span class="st">&quot;</span><span class="sc">\\</span><span class="st">.|,|</span><span class="sc">\\</span><span class="st">!|:|;|</span><span class="sc">\\</span><span class="st">?&quot;</span>,<span class="st">&quot;&quot;</span>,txtChar) <span class="co">#clean symbol(.,!:;?)</span></span>
+<span id="cb41-15"><a href="results.html#cb41-15" aria-hidden="true" tabindex="-1"></a>  txtChar <span class="ot">=</span> txtChar[txtChar<span class="sc">!=</span><span class="st">&quot;&quot;</span>]</span>
+<span id="cb41-16"><a href="results.html#cb41-16" aria-hidden="true" tabindex="-1"></a>  data <span class="ot">=</span> <span class="fu">as.data.frame</span>(<span class="fu">table</span>(txtChar))</span>
+<span id="cb41-17"><a href="results.html#cb41-17" aria-hidden="true" tabindex="-1"></a>  <span class="fu">colnames</span>(data) <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&quot;Word&quot;</span>,<span class="st">&quot;freq&quot;</span>)</span>
+<span id="cb41-18"><a href="results.html#cb41-18" aria-hidden="true" tabindex="-1"></a>  ordFreq <span class="ot">=</span> data[<span class="fu">order</span>(data<span class="sc">$</span>freq,<span class="at">decreasing=</span>T),]</span>
+<span id="cb41-19"><a href="results.html#cb41-19" aria-hidden="true" tabindex="-1"></a>  meaningless <span class="ot">=</span> <span class="fu">c</span>(<span class="st">&#39;the&#39;</span>,<span class="st">&#39;of&#39;</span>,<span class="st">&#39;a&#39;</span>,<span class="st">&#39;and&#39;</span>,<span class="st">&#39;2&#39;</span>,<span class="st">&#39;3&#39;</span>,<span class="st">&#39;in&#39;</span>,<span class="st">&#39;movie&#39;</span>,<span class="st">&#39;an&#39;</span>,<span class="st">&#39;last&#39;</span>,<span class="st">&#39;i&#39;</span>,<span class="st">&#39;you&#39;</span>,<span class="st">&#39;my&#39;</span>,<span class="st">&#39;me&#39;</span>,<span class="st">&#39;man&#39;</span>,<span class="st">&#39;en&#39;</span>,<span class="st">&#39;del&#39;</span>,<span class="st">&#39;le&#39;</span>,<span class="st">&#39;un&#39;</span>,<span class="st">&#39;der&#39;</span>,<span class="st">&#39;les&#39;</span>,<span class="st">&#39;to&#39;</span>,<span class="st">&#39;one&#39;</span>,<span class="st">&#39;no&#39;</span>,<span class="st">&#39;not&#39;</span>,<span class="st">&#39;it&#39;</span>,<span class="st">&#39;from&#39;</span>,<span class="st">&#39;-&#39;</span>,<span class="st">&#39;de&#39;</span>,<span class="st">&#39;la&#39;</span>,<span class="st">&#39;el&#39;</span>,<span class="st">&#39;&amp;&#39;</span>,<span class="st">&#39;for&#39;</span>,<span class="st">&#39;on&#39;</span>,<span class="st">&#39;is&#39;</span>,<span class="st">&#39;with&#39;</span>,<span class="st">&#39;at&#39;</span>,<span class="st">&#39;ka&#39;</span>,<span class="st">&#39;ii&#39;</span>,<span class="st">&#39;ang&#39;</span>,<span class="st">&#39;up&#39;</span>,<span class="st">&#39;ng&#39;</span>,<span class="st">&#39;na&#39;</span>,<span class="st">&#39;your&#39;</span>)</span>
+<span id="cb41-20"><a href="results.html#cb41-20" aria-hidden="true" tabindex="-1"></a>  ordFreq <span class="ot">&lt;-</span> ordFreq <span class="sc">%&gt;%</span> <span class="fu">filter</span>(<span class="sc">!</span>(Word <span class="sc">%in%</span> meaningless))</span>
+<span id="cb41-21"><a href="results.html#cb41-21" aria-hidden="true" tabindex="-1"></a>  <span class="fu">return</span>(ordFreq)</span>
+<span id="cb41-22"><a href="results.html#cb41-22" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb41-23"><a href="results.html#cb41-23" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-24"><a href="results.html#cb41-24" aria-hidden="true" tabindex="-1"></a>text <span class="ot">=</span> x1 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(genres.x<span class="sc">==</span><span class="st">&#39;Romance&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-25"><a href="results.html#cb41-25" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(primaryTitle)</span>
+<span id="cb41-26"><a href="results.html#cb41-26" aria-hidden="true" tabindex="-1"></a>ordFreq1 <span class="ot">&lt;-</span> <span class="fu">WordFreq</span>(text)</span>
+<span id="cb41-27"><a href="results.html#cb41-27" aria-hidden="true" tabindex="-1"></a>ordFreq1<span class="sc">$</span>genre <span class="ot">&lt;-</span> <span class="st">&#39;Romance&#39;</span> </span>
+<span id="cb41-28"><a href="results.html#cb41-28" aria-hidden="true" tabindex="-1"></a>text <span class="ot">=</span> x1 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(genres.x<span class="sc">==</span><span class="st">&#39;Action&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-29"><a href="results.html#cb41-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(primaryTitle)</span>
+<span id="cb41-30"><a href="results.html#cb41-30" aria-hidden="true" tabindex="-1"></a>ordFreq2 <span class="ot">&lt;-</span> <span class="fu">WordFreq</span>(text)</span>
+<span id="cb41-31"><a href="results.html#cb41-31" aria-hidden="true" tabindex="-1"></a>ordFreq2<span class="sc">$</span>genre <span class="ot">&lt;-</span> <span class="st">&#39;Action&#39;</span></span>
+<span id="cb41-32"><a href="results.html#cb41-32" aria-hidden="true" tabindex="-1"></a>text <span class="ot">=</span> x1 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(genres.x<span class="sc">==</span><span class="st">&#39;Animation&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-33"><a href="results.html#cb41-33" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(primaryTitle)</span>
+<span id="cb41-34"><a href="results.html#cb41-34" aria-hidden="true" tabindex="-1"></a>ordFreq3 <span class="ot">&lt;-</span> <span class="fu">WordFreq</span>(text)</span>
+<span id="cb41-35"><a href="results.html#cb41-35" aria-hidden="true" tabindex="-1"></a>ordFreq3<span class="sc">$</span>genre <span class="ot">&lt;-</span> <span class="st">&#39;&#39;</span></span>
+<span id="cb41-36"><a href="results.html#cb41-36" aria-hidden="true" tabindex="-1"></a>text <span class="ot">=</span> x1 <span class="sc">%&gt;%</span> <span class="fu">filter</span>(genres.x<span class="sc">==</span><span class="st">&#39;Sci-Fi&#39;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb41-37"><a href="results.html#cb41-37" aria-hidden="true" tabindex="-1"></a>  <span class="fu">select</span>(primaryTitle)</span>
+<span id="cb41-38"><a href="results.html#cb41-38" aria-hidden="true" tabindex="-1"></a>ordFreq4 <span class="ot">&lt;-</span> <span class="fu">WordFreq</span>(text)</span>
+<span id="cb41-39"><a href="results.html#cb41-39" aria-hidden="true" tabindex="-1"></a>ordFreq4<span class="sc">$</span>genre <span class="ot">&lt;-</span> <span class="st">&#39;Sci-Fi&#39;</span></span>
+<span id="cb41-40"><a href="results.html#cb41-40" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-41"><a href="results.html#cb41-41" aria-hidden="true" tabindex="-1"></a>ordFreq <span class="ot">&lt;-</span> <span class="fu">rbind</span>(ordFreq1[<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>,], ordFreq2[<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>,])</span>
+<span id="cb41-42"><a href="results.html#cb41-42" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-43"><a href="results.html#cb41-43" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-44"><a href="results.html#cb41-44" aria-hidden="true" tabindex="-1"></a>g1 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ordFreq1[<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>,], <span class="fu">aes</span>(<span class="at">x=</span>freq, <span class="at">y=</span><span class="fu">fct_reorder</span>(Word, freq))) <span class="sc">+</span></span>
+<span id="cb41-45"><a href="results.html#cb41-45" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>( <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">xend=</span>freq, <span class="at">y=</span><span class="fu">fct_reorder</span>(Word, freq), <span class="at">yend=</span><span class="fu">fct_reorder</span>(Word, freq)), <span class="at">color=</span><span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb41-46"><a href="results.html#cb41-46" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>( <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">size=</span><span class="dv">1</span>, <span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb41-47"><a href="results.html#cb41-47" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Guess 1&quot;</span>) <span class="sc">+</span></span>
+<span id="cb41-48"><a href="results.html#cb41-48" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb41-49"><a href="results.html#cb41-49" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span>  <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb41-50"><a href="results.html#cb41-50" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb41-51"><a href="results.html#cb41-51" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb41-52"><a href="results.html#cb41-52" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.border =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb41-53"><a href="results.html#cb41-53" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb41-54"><a href="results.html#cb41-54" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb41-55"><a href="results.html#cb41-55" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-56"><a href="results.html#cb41-56" aria-hidden="true" tabindex="-1"></a>g2 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ordFreq2[<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>,], <span class="fu">aes</span>(<span class="at">x=</span>freq, <span class="at">y=</span><span class="fu">fct_reorder</span>(Word, freq))) <span class="sc">+</span></span>
+<span id="cb41-57"><a href="results.html#cb41-57" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>( <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">xend=</span>freq, <span class="at">y=</span><span class="fu">fct_reorder</span>(Word, freq), <span class="at">yend=</span><span class="fu">fct_reorder</span>(Word, freq)), <span class="at">color=</span><span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb41-58"><a href="results.html#cb41-58" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>( <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">size=</span><span class="dv">1</span>, <span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb41-59"><a href="results.html#cb41-59" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Guess 2&quot;</span>) <span class="sc">+</span></span>
+<span id="cb41-60"><a href="results.html#cb41-60" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb41-61"><a href="results.html#cb41-61" aria-hidden="true" tabindex="-1"></a>  <span class="fu">scale_x_continuous</span>(<span class="at">breaks =</span> <span class="fu">c</span>(<span class="dv">0</span>,<span class="dv">100</span>,<span class="dv">200</span>,<span class="dv">300</span>,<span class="dv">400</span>), <span class="at">labels=</span><span class="fu">c</span>(<span class="dv">0</span>,<span class="st">&quot;&quot;</span>,<span class="dv">200</span>,<span class="st">&quot;&quot;</span>,<span class="dv">400</span>))<span class="sc">+</span></span>
+<span id="cb41-62"><a href="results.html#cb41-62" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb41-63"><a href="results.html#cb41-63" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb41-64"><a href="results.html#cb41-64" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb41-65"><a href="results.html#cb41-65" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb41-66"><a href="results.html#cb41-66" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.border =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb41-67"><a href="results.html#cb41-67" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb41-68"><a href="results.html#cb41-68" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb41-69"><a href="results.html#cb41-69" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-70"><a href="results.html#cb41-70" aria-hidden="true" tabindex="-1"></a>g3 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ordFreq3[<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>,], <span class="fu">aes</span>(<span class="at">x=</span>freq, <span class="at">y=</span><span class="fu">fct_reorder</span>(Word, freq))) <span class="sc">+</span></span>
+<span id="cb41-71"><a href="results.html#cb41-71" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>( <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">xend=</span>freq, <span class="at">y=</span><span class="fu">fct_reorder</span>(Word, freq), <span class="at">yend=</span><span class="fu">fct_reorder</span>(Word, freq)), <span class="at">color=</span><span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb41-72"><a href="results.html#cb41-72" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>( <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">size=</span><span class="dv">1</span>, <span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb41-73"><a href="results.html#cb41-73" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Guess 4&quot;</span>) <span class="sc">+</span></span>
+<span id="cb41-74"><a href="results.html#cb41-74" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb41-75"><a href="results.html#cb41-75" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb41-76"><a href="results.html#cb41-76" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb41-77"><a href="results.html#cb41-77" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb41-78"><a href="results.html#cb41-78" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb41-79"><a href="results.html#cb41-79" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.border =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb41-80"><a href="results.html#cb41-80" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb41-81"><a href="results.html#cb41-81" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb41-82"><a href="results.html#cb41-82" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-83"><a href="results.html#cb41-83" aria-hidden="true" tabindex="-1"></a>g4 <span class="ot">&lt;-</span> <span class="fu">ggplot</span>(ordFreq4[<span class="dv">1</span><span class="sc">:</span><span class="dv">15</span>,], <span class="fu">aes</span>(<span class="at">x=</span>freq, <span class="at">y=</span><span class="fu">fct_reorder</span>(Word, freq))) <span class="sc">+</span></span>
+<span id="cb41-84"><a href="results.html#cb41-84" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_segment</span>( <span class="fu">aes</span>(<span class="at">x=</span><span class="dv">0</span>, <span class="at">xend=</span>freq, <span class="at">y=</span><span class="fu">fct_reorder</span>(Word, freq), <span class="at">yend=</span><span class="fu">fct_reorder</span>(Word, freq)), <span class="at">color=</span><span class="st">&quot;skyblue&quot;</span>) <span class="sc">+</span></span>
+<span id="cb41-85"><a href="results.html#cb41-85" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_point</span>( <span class="at">color=</span><span class="st">&quot;blue&quot;</span>, <span class="at">size=</span><span class="dv">1</span>, <span class="at">alpha=</span><span class="fl">0.6</span>) <span class="sc">+</span></span>
+<span id="cb41-86"><a href="results.html#cb41-86" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&quot;Guess 3&quot;</span>) <span class="sc">+</span></span>
+<span id="cb41-87"><a href="results.html#cb41-87" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme_light</span>() <span class="sc">+</span></span>
+<span id="cb41-88"><a href="results.html#cb41-88" aria-hidden="true" tabindex="-1"></a>  <span class="fu">xlab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb41-89"><a href="results.html#cb41-89" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&quot;&quot;</span>) <span class="sc">+</span></span>
+<span id="cb41-90"><a href="results.html#cb41-90" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span>(</span>
+<span id="cb41-91"><a href="results.html#cb41-91" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.grid.major.y =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb41-92"><a href="results.html#cb41-92" aria-hidden="true" tabindex="-1"></a>    <span class="at">panel.border =</span> <span class="fu">element_blank</span>(),</span>
+<span id="cb41-93"><a href="results.html#cb41-93" aria-hidden="true" tabindex="-1"></a>    <span class="at">axis.ticks.y =</span> <span class="fu">element_blank</span>()</span>
+<span id="cb41-94"><a href="results.html#cb41-94" aria-hidden="true" tabindex="-1"></a>  )</span>
+<span id="cb41-95"><a href="results.html#cb41-95" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-96"><a href="results.html#cb41-96" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb41-97"><a href="results.html#cb41-97" aria-hidden="true" tabindex="-1"></a>ggp_all <span class="ot">&lt;-</span> (g1 <span class="sc">|</span>g2 <span class="sc">|</span> g4 <span class="sc">|</span> g3) <span class="sc">+</span>    <span class="co"># Create grid of plots with title</span></span>
+<span id="cb41-98"><a href="results.html#cb41-98" aria-hidden="true" tabindex="-1"></a>  <span class="fu">plot_annotation</span>(<span class="at">title =</span> <span class="st">&quot;Most common words in different genres&#39; titles&quot;</span>, <span class="at">caption=</span><span class="st">&quot;Frequence&quot;</span>,</span>
+<span id="cb41-99"><a href="results.html#cb41-99" aria-hidden="true" tabindex="-1"></a>                  <span class="at">theme =</span> <span class="fu">theme</span>(<span class="at">plot.title =</span> <span class="fu">element_text</span>(<span class="at">size =</span> <span class="dv">15</span>), <span class="at">plot.caption =</span><span class="fu">element_text</span>(<span class="at">size=</span><span class="dv">12</span>,<span class="at">hjust =</span> <span class="fl">0.5</span>,<span class="at">vjust=</span><span class="dv">6</span>) ))</span>
+<span id="cb41-100"><a href="results.html#cb41-100" aria-hidden="true" tabindex="-1"></a>ggp_all </span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-46-1.png" width="672" /></p>
+<p>The genre of each plot is hidden. Can you match these four plots with the four genres?</p>
+<p>It should be easy. The first one, with ‘love’ having highest frequency, is <code>Romance</code>. We can also see ‘girl’, ‘heart’, ‘wedding’ in these titles. The second one have ‘vs’, ‘blood’, ‘hero’, so it’s obvious <code>Action</code>. What about ‘alien’, ‘space’, ‘star’? <code>Sci_fi</code> movies love these topics! And lastly, for little children, ‘little’, ‘magic’, ‘christmas’. It must be <code>Animation</code>. Do you get them all right?</p>
+<p>Also we can notice that ‘love’ is one of the most common words for many genres. Maybe love is the eternal theme for human!</p>
+</div>
+<div id="length-of-titles" class="section level3" number="5.4.2">
+<h3><span class="header-section-number">5.4.2</span> Length of Titles</h3>
+<p>What’s the average length of movie titles and does it change with time? We plot the average length of titles:</p>
+<div class="sourceCode" id="cb42"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb42-1"><a href="results.html#cb42-1" aria-hidden="true" tabindex="-1"></a>main_genres <span class="ot">&lt;-</span> <span class="fu">c</span>(<span class="st">&#39;Comedy&#39;</span>,<span class="st">&#39;Music&#39;</span>,<span class="st">&#39;Documentary&#39;</span>,<span class="st">&#39;Action&#39;</span>,<span class="st">&#39;Sci-Fi&#39;</span>)</span>
+<span id="cb42-2"><a href="results.html#cb42-2" aria-hidden="true" tabindex="-1"></a>x <span class="ot">&lt;-</span> <span class="fu">left_join</span>(title.genres, title.basics, <span class="at">by=</span><span class="st">&#39;tconst&#39;</span>)</span>
+<span id="cb42-3"><a href="results.html#cb42-3" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-4"><a href="results.html#cb42-4" aria-hidden="true" tabindex="-1"></a>x1 <span class="ot">&lt;-</span> x <span class="sc">%&gt;%</span></span>
+<span id="cb42-5"><a href="results.html#cb42-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(genres.x <span class="sc">%in%</span> main_genres) <span class="sc">%&gt;%</span></span>
+<span id="cb42-6"><a href="results.html#cb42-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">mutate</span>(<span class="at">decade=</span><span class="fu">strtoi</span>(startYear)<span class="sc">-</span><span class="fu">strtoi</span>(startYear)<span class="sc">%%</span><span class="dv">4</span>)</span>
+<span id="cb42-7"><a href="results.html#cb42-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-8"><a href="results.html#cb42-8" aria-hidden="true" tabindex="-1"></a>x1<span class="sc">$</span>len_title <span class="ot">=</span> <span class="fu">lapply</span>(x1<span class="sc">$</span>primaryTitle, <span class="cf">function</span>(t){<span class="fu">return</span>(<span class="fu">length</span>(<span class="fu">strsplit</span>(t,<span class="st">&quot; &quot;</span>)[[<span class="dv">1</span>]]))})</span>
+<span id="cb42-9"><a href="results.html#cb42-9" aria-hidden="true" tabindex="-1"></a>x1<span class="sc">$</span>len_title <span class="ot">=</span> <span class="fu">as.integer</span>(x1<span class="sc">$</span>len_title)</span>
+<span id="cb42-10"><a href="results.html#cb42-10" aria-hidden="true" tabindex="-1"></a>x1<span class="sc">$</span>genres.x <span class="ot">&lt;-</span> <span class="fu">with</span>(x1 ,<span class="fu">reorder</span>(genres.x,len_title,median))</span>
+<span id="cb42-11"><a href="results.html#cb42-11" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-12"><a href="results.html#cb42-12" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-13"><a href="results.html#cb42-13" aria-hidden="true" tabindex="-1"></a>xlabels <span class="ot">=</span> <span class="fu">c</span>(<span class="dv">1920</span><span class="sc">:</span><span class="dv">2020</span>)</span>
+<span id="cb42-14"><a href="results.html#cb42-14" aria-hidden="true" tabindex="-1"></a><span class="cf">for</span> (i <span class="cf">in</span> <span class="dv">1</span><span class="sc">:</span><span class="fu">length</span>(xlabels)){</span>
+<span id="cb42-15"><a href="results.html#cb42-15" aria-hidden="true" tabindex="-1"></a>  <span class="cf">if</span> (<span class="fu">strtoi</span>(xlabels[i])<span class="sc">%%</span><span class="dv">10</span><span class="sc">!=</span><span class="dv">0</span>){</span>
+<span id="cb42-16"><a href="results.html#cb42-16" aria-hidden="true" tabindex="-1"></a>    xlabels[i] <span class="ot">&lt;-</span> <span class="st">&quot;&quot;</span></span>
+<span id="cb42-17"><a href="results.html#cb42-17" aria-hidden="true" tabindex="-1"></a>  }</span>
+<span id="cb42-18"><a href="results.html#cb42-18" aria-hidden="true" tabindex="-1"></a>}</span>
+<span id="cb42-19"><a href="results.html#cb42-19" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-20"><a href="results.html#cb42-20" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-21"><a href="results.html#cb42-21" aria-hidden="true" tabindex="-1"></a>x2 <span class="ot">&lt;-</span> x1 <span class="sc">%&gt;%</span>   <span class="fu">filter</span>(genres.x <span class="sc">%in%</span> main_genres, decade<span class="sc">&gt;=</span><span class="dv">1940</span>, decade<span class="sc">&lt;=</span><span class="dv">2020</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb42-22"><a href="results.html#cb42-22" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(genres.x, decade) <span class="sc">%&gt;%</span></span>
+<span id="cb42-23"><a href="results.html#cb42-23" aria-hidden="true" tabindex="-1"></a>  <span class="fu">summarise</span>(<span class="at">len=</span><span class="fu">mean</span>(len_title),<span class="at">low=</span>len<span class="sc">-</span><span class="fu">sd</span>(len_title)<span class="sc">/</span><span class="dv">30</span>,<span class="at">high=</span>len<span class="sc">+</span><span class="fu">sd</span>(len_title)<span class="sc">/</span><span class="dv">30</span> ,<span class="at">.groups=</span><span class="st">&#39;drop&#39;</span>) </span>
+<span id="cb42-24"><a href="results.html#cb42-24" aria-hidden="true" tabindex="-1"></a>x2<span class="sc">$</span>genres.x <span class="ot">&lt;-</span> <span class="fu">fct_relevel</span>(x2<span class="sc">$</span>genres.x, <span class="st">&#39;Music&#39;</span>, <span class="st">&#39;Documentary&#39;</span>, <span class="st">&#39;Comedy&#39;</span>, <span class="st">&#39;Action&#39;</span>, <span class="st">&#39;Sci-Fi&#39;</span>)</span>
+<span id="cb42-25"><a href="results.html#cb42-25" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb42-26"><a href="results.html#cb42-26" aria-hidden="true" tabindex="-1"></a>x2 <span class="sc">%&gt;%</span> <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>decade, <span class="at">y=</span>len, <span class="at">color=</span>genres.x))<span class="sc">+</span></span>
+<span id="cb42-27"><a href="results.html#cb42-27" aria-hidden="true" tabindex="-1"></a>  <span class="fu">geom_line</span>()<span class="sc">+</span></span>
+<span id="cb42-28"><a href="results.html#cb42-28" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggtitle</span>(<span class="st">&#39;Average length of movie titles&#39;</span>)<span class="sc">+</span></span>
+<span id="cb42-29"><a href="results.html#cb42-29" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ylab</span>(<span class="st">&#39;Length&#39;</span>) <span class="sc">+</span><span class="fu">xlab</span>(<span class="st">&#39;&#39;</span>)<span class="sc">+</span></span>
+<span id="cb42-30"><a href="results.html#cb42-30" aria-hidden="true" tabindex="-1"></a>  <span class="fu">guides</span>(<span class="at">color=</span><span class="fu">guide_legend</span>(<span class="at">title=</span><span class="st">&quot;Genre&quot;</span>))</span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
+<p>We can see that at first they don’t have much difference, but as time develops <code>Music</code> and <code>Documentary</code> have longer titles with average length of 4, and <code>Comedy</code>, <code>Action</code>, <code>Sci-Fi</code> have shorter average titles. It can also be noticed that their average title length was decreasing from 1970 to 2000, but after 2000 their length has been increasing.</p>
+</div>
+</div>
+<div id="analysis-of-director" class="section level2" number="5.5">
+<h2><span class="header-section-number">5.5</span> Analysis of Director</h2>
+<div id="top-10-directors-in-action-genre" class="section level3" number="5.5.1">
+<h3><span class="header-section-number">5.5.1</span> Top 10 directors in action genre</h3>
+<div class="sourceCode" id="cb43"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb43-1"><a href="results.html#cb43-1" aria-hidden="true" tabindex="-1"></a>top_10 <span class="ot">&lt;-</span> <span class="fu">inner_join</span>(title.genres, title.crew, <span class="at">by=</span><span class="st">&quot;tconst&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb43-2"><a href="results.html#cb43-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(directors)) <span class="sc">%&gt;%</span> <span class="fu">filter</span>(genres<span class="sc">==</span><span class="st">&quot;Action&quot;</span>) <span class="sc">%&gt;%</span> </span>
+<span id="cb43-3"><a href="results.html#cb43-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(name.basics <span class="sc">%&gt;%</span> <span class="fu">select</span>(nconst, primaryName), <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;directors&quot;</span><span class="ot">=</span><span class="st">&quot;nconst&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb43-4"><a href="results.html#cb43-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(directors, primaryName) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">count=</span><span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb43-5"><a href="results.html#cb43-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">arrange</span>(<span class="fu">desc</span>(count)) <span class="sc">%&gt;%</span> <span class="fu">head</span>(<span class="dv">10</span>) </span>
+<span id="cb43-6"><a href="results.html#cb43-6" aria-hidden="true" tabindex="-1"></a><span class="fu">ggplot</span>(<span class="at">data=</span>top_10, <span class="fu">aes</span>(<span class="at">x=</span><span class="fu">reorder</span>(primaryName, count), <span class="at">y=</span>count)) <span class="sc">+</span> <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">&quot;cornflowerblue&quot;</span>) <span class="sc">+</span> <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb43-7"><a href="results.html#cb43-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Director&quot;</span>, <span class="at">y=</span><span class="st">&quot;Number of movies&quot;</span>, </span>
+<span id="cb43-8"><a href="results.html#cb43-8" aria-hidden="true" tabindex="-1"></a>       <span class="at">title=</span><span class="st">&quot;Top 10 directors (Action)&quot;</span>)</span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-48-1.png" width="672" /></p>
+</div>
+<div id="distribution-of-genres-for-the-top-10-directors" class="section level3" number="5.5.2">
+<h3><span class="header-section-number">5.5.2</span> Distribution of genres for the top 10 directors</h3>
+<div class="sourceCode" id="cb44"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb44-1"><a href="results.html#cb44-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(title.genres, title.crew, <span class="at">by=</span><span class="st">&quot;tconst&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb44-2"><a href="results.html#cb44-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(directors))  <span class="sc">%&gt;%</span></span>
+<span id="cb44-3"><a href="results.html#cb44-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(directors <span class="sc">%in%</span> top_10<span class="sc">$</span>directors) <span class="sc">%&gt;%</span></span>
+<span id="cb44-4"><a href="results.html#cb44-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(genres) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">count=</span><span class="fu">n</span>()) <span class="sc">%&gt;%</span></span>
+<span id="cb44-5"><a href="results.html#cb44-5" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span><span class="fu">reorder</span>(genres, count), <span class="at">y=</span>count)) <span class="sc">+</span> <span class="fu">geom_col</span>(<span class="at">fill=</span><span class="st">&quot;cornflowerblue&quot;</span>) <span class="sc">+</span> <span class="fu">coord_flip</span>() <span class="sc">+</span></span>
+<span id="cb44-6"><a href="results.html#cb44-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">labs</span>(<span class="at">x=</span><span class="st">&quot;Genres&quot;</span>, <span class="at">y=</span><span class="st">&quot;Number of movies&quot;</span>)</span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-49-1.png" width="672" /></p>
+</div>
+<div id="average-rating-of-top-10-directors-by-genre" class="section level3" number="5.5.3">
+<h3><span class="header-section-number">5.5.3</span> Average rating of top 10 directors by genre</h3>
+<div class="sourceCode" id="cb45"><pre class="sourceCode r"><code class="sourceCode r"><span id="cb45-1"><a href="results.html#cb45-1" aria-hidden="true" tabindex="-1"></a><span class="fu">inner_join</span>(title.genres, title.crew, <span class="at">by=</span><span class="st">&quot;tconst&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb45-2"><a href="results.html#cb45-2" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(<span class="sc">!</span><span class="fu">is.na</span>(directors)) <span class="sc">%&gt;%</span> </span>
+<span id="cb45-3"><a href="results.html#cb45-3" aria-hidden="true" tabindex="-1"></a>  <span class="fu">filter</span>(directors <span class="sc">%in%</span> top_10<span class="sc">$</span>directors) <span class="sc">%&gt;%</span></span>
+<span id="cb45-4"><a href="results.html#cb45-4" aria-hidden="true" tabindex="-1"></a>  <span class="fu">inner_join</span>(title.ratings, <span class="at">by=</span><span class="st">&quot;tconst&quot;</span>) <span class="sc">%&gt;%</span></span>
+<span id="cb45-5"><a href="results.html#cb45-5" aria-hidden="true" tabindex="-1"></a>   <span class="fu">inner_join</span>(name.basics <span class="sc">%&gt;%</span> <span class="fu">select</span>(nconst, primaryName), <span class="at">by=</span><span class="fu">c</span>(<span class="st">&quot;directors&quot;</span><span class="ot">=</span><span class="st">&quot;nconst&quot;</span>)) <span class="sc">%&gt;%</span></span>
+<span id="cb45-6"><a href="results.html#cb45-6" aria-hidden="true" tabindex="-1"></a>  <span class="fu">group_by</span>(genres, primaryName) <span class="sc">%&gt;%</span> <span class="fu">summarise</span>(<span class="at">rating=</span><span class="fu">mean</span>(averageRating)) <span class="sc">%&gt;%</span></span>
+<span id="cb45-7"><a href="results.html#cb45-7" aria-hidden="true" tabindex="-1"></a>  <span class="fu">ggplot</span>(<span class="fu">aes</span>(<span class="at">x=</span>primaryName, <span class="at">y=</span>genres, <span class="at">fill=</span>rating)) <span class="sc">+</span> <span class="fu">geom_tile</span>() <span class="sc">+</span></span>
+<span id="cb45-8"><a href="results.html#cb45-8" aria-hidden="true" tabindex="-1"></a>  <span class="fu">theme</span> (<span class="at">axis.text.x =</span> <span class="fu">element_text</span> (<span class="at">angle =</span> <span class="dv">90</span>, <span class="at">vjust =</span> <span class="dv">1</span>, <span class="at">hjust=</span><span class="dv">1</span>)) </span></code></pre></div>
+<p><img src="finalproj_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
 
+</div>
+</div>
 </div>
             </section>
 
           </div>
         </div>
       </div>
-<a href="missing-values.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
+<a href="missing-values-1.html" class="navigation navigation-prev " aria-label="Previous page"><i class="fa fa-angle-left"></i></a>
 <a href="interactive-component.html" class="navigation navigation-next " aria-label="Next page"><i class="fa fa-angle-right"></i></a>
     </div>
   </div>

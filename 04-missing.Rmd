@@ -4,51 +4,27 @@
 knitr::opts_chunk$set(warning = FALSE, message = FALSE, echo = TRUE)
 ```
 
-## Repuired libraries
-
-```{r}
+```{r, echo=FALSE}
 library(tidyverse)
-library(readr)
 ```
 
-## Load and show the initial data
-```{r}
-basic <- read_tsv("data/name.basics.tsv.gz")
-head(basic)
+## title.bacis
+```{r, echo=FALSE}
+load('data/title.basics.RData')
 ```
-
-From the output table, we can see that the missing values in this dataset are represented with "\\\\N". Next, we are going to replace "\\\\N" with NA.
-
-## Replace "\\\\N" with NA
-```{r}
-basic$nconst <- gsub("\\N", NA, basic$nconst, fix=TRUE)
-basic$primaryName <- gsub("\\N", NA, basic$primaryName, fix=TRUE)
-basic$birthYear <- gsub("\\N", NA, basic$birthYear, fix=TRUE)
-basic$deathYear<- gsub("\\N", NA,basic$deathYear, fix=TRUE)
-basic$primaryProfession <- gsub("\\N", NA, basic$primaryProfession, fix=TRUE)
-basic$knownForTitles <- gsub("\\N", NA, basic$knownForTitles, fix=TRUE)
-```
-
-## Show the data after transformation
-```{r}
-head(basic)
-```
-
-
-## Missing patterns
 
 ### Missing values by column
 ```{r}
-colSums(is.na(basic)) %>%
+colSums(is.na(title.basics)) %>%
   sort(decreasing = TRUE)
 ```
 
 
-### Show the missing patterns 
+### Missing patterns 
 ```{r}
 source("scripts/visna.R")
-visna(basic)
-visna(basic, percent=TRUE)
+visna(title.basics)
+visna(title.basics, percent=TRUE)
 ```
 
 From the graph, we can see that there are no missing values in columns `nconst` and `primaryName`. Most missing values are in columns `deathYear` and `birthYear`. This might be due to the difficulty of getting the specific birth and death time and the fact that some people are not dead. Only a minority of missing values are in columns `primaryProfession` and `knownForTitles`. Furthermore, `deathYear` and `birthYear` are both missing in most rows with missing data. It might be due to the high correlation between these 2 columns. Only a very small proportion of rows have no missing values. 
