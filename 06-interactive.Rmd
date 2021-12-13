@@ -1,29 +1,38 @@
 # Interactive component
 
 
-<script src="https://d3js.org/d3.v7.js"></script>
+<script src="https://d3js.org/d3.v6.js"></script>
 
 
 
 <div id="plot"></div>
+<svg id="thesvg" width="600" height="300">
+    <text id="svgtypo" x="220" y="285" fill="red" font-weight="bold" font-size="15px">Click to play again!</text>
+</svg>
 
-
-<script src="scripts/interactive.js"></script>
-
+<script src="scripts/interactive.js">
+</script>
 <p>
-From the animation, it can be found that from 1915 to 2020, for most of years, the proportion of each genre has not changed much. The number of dramas has always been the largest among all genres though the proportion of dramas has decreased compared with the proportion 100 years ago. 
-
-However, an interesting fact is that the proportion of documentaries has surged since 1990. In 1990, the proportion of documentaries ranked 4th or 5th. But in the 21st century, the proportion of documentaries ranked 2nd and got very close to the proportion of dramas. It seems that the number of documentaries will surpass the number of dramas in a few years.
-
-We guess the spike in the number of documentaries is due to rapid development of film technology in recent decades. As everyone knows, some documentaries are recreating the original appearance of history, which require the most advanced film technology compared with other genres (drama, comedy, thriller, action and romance).  
-
-We searched the internet for reason for the spike in the number of documentaries since 1990. We found an article that also attributes the spike to the development of technology. The following 2 paragraphs are extracts from the original article (https://medium.com/@brianrowe_70270/the-growing-technology-in-documentary-filmmaking-78ae31d48ac3). 
-
-*Cut to the dawn of the new millennium, when a movie called The Blair Witch Project comes along to shake up the industry. When a movie like that, which cost just pennies in relation to the millions of dollars it made at the box office, comes along, people start to take notice, and other filmmakers begin to see that in order to be successful, one doesn’t need fifty million dollars to make a movie.*
-
-*The last two decades have shown an explosion of documentary films, primarily because the technology now allows for anyone with a dream to go out and make a movie. All one literally needs is a camera, a computer, an editing program, and an idea.*
-
+    From the animation, it can be found that from 1915 to 2020, for most of years, the proportion of each genre has not changed much. The number of dramas has always been the largest among all genres though the proportion of dramas has decreased compared with the proportion 100 years ago. 
+    
+    However, an interesting fact is that the proportion of documentaries has surged since 1990. In 1990, the proportion of documentaries ranked 4th or 5th. But in the 21st century, the proportion of documentaries ranked 2nd and got very close to the proportion of dramas. It seems that the number of documentaries will surpass the number of dramas in a few years.
+    
+    We guess the spike in the number of documentaries is due to rapid development of film technology in recent decades. As everyone knows, some documentaries are recreating the original appearance of history, which require the most advanced film technology compared with other genres (drama, comedy, thriller, action and romance).  
+    
+    We searched the internet for reason for the spike in the number of documentaries since 1990. We found an article that also attributes the spike to the development of technology. The following 2 paragraphs are extracts from the original article (https://medium.com/@brianrowe_70270/the-growing-technology-in-documentary-filmmaking-78ae31d48ac3). 
+    
+    *Cut to the dawn of the new millennium, when a movie called The Blair Witch Project comes along to shake up the industry. When a movie like that, which cost just pennies in relation to the millions of dollars it made at the box office, comes along, people start to take notice, and other filmmakers begin to see that in order to be successful, one doesn’t need fifty million dollars to make a movie.*
+    
+    *The last two decades have shown an explosion of documentary films, primarily because the technology now allows for anyone with a dream to go out and make a movie. All one literally needs is a camera, a computer, an editing program, and an idea.*
+    
 </p>
+
+<script>d3.select("#svgtypo")
+    .on("click", animate2);
+</script>
+
+
+
 
 
 
