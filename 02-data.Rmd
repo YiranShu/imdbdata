@@ -31,7 +31,7 @@ load('data/title.genres.RData')
 
 ### title.basics
 
-Here are the first few rows of the dataframe of `title.basics`. 
+Here are the first few rows of the dataframe of `title.basics`. Note that we only use `titleType='movie'` for our project, since we focus on movies. 
 ```{r}
 head(title.basics)
 ```

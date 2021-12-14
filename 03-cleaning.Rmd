@@ -17,7 +17,7 @@ title.ratings <- read_tsv("data/title.ratings.tsv.gz")
 name.basics <- read_tsv("data/name.basics.tsv.gz") # 
 title.basics <- read_tsv("data/title.basics.tsv.gz") # 可以只筛选movie类型
 title.crew <- read_tsv("data/title.crew.tsv.gz")
-title.principals <- read_tsv("data/title.principals.tsv.gz") # job 和 characters 可以去掉
+#title.principals <- read_tsv("data/title.principals.tsv.gz") # job 和 characters 可以去掉
 ```
 
 ```{r, echo=FALSE}
@@ -117,7 +117,7 @@ This plot shows frequencies of all kinds of genres.
 title.genres %>% 
 	group_by(genres) %>% 
 	summarise(count = n()) %>% 
-	ggplot(aes(x = reorder(genres, count), y=count/sum(count))) + 
+	ggplot(aes(x = reorder(genres, count), y=count)) + 
   geom_bar(stat="identity", fill="lightblue") + 
   xlab("Genres") +
   ylab("Frequency") +
@@ -128,7 +128,7 @@ title.genres %>%
 We can see that the number of dramas is the largest, almost twice as large as the number of documentaries and comedies. The frequencies of action movies, romantic movies, thrillers, crime movies, horror movies and adventure movies are close and more than the frequencies of other genres. In the `interactive component` section, we will mainly analyze some interesting facts about the most frequent genres.
 
 ## Save the transformed dataframes
-Finally, we want to save the transformed dataframes so that we can load them anytime we want without perfroming the transformation again.
+Finally, we want to save the transformed dataframes so that we can load them anytime we want without performing the transformation again.
 ```{r, eval=FALSE}
 save(title.genres, file='data/title.genres.RData')
 save(title.basics, file='data/title.basics.RData')

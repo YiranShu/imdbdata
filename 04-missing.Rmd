@@ -21,6 +21,9 @@ colSums(is.na(title.basics)) %>%
 
 
 ### Missing patterns 
+```{r, echo=FALSE}
+title.basics <- rename(title.basics, c('time'='runtimeMinutes', 'tiType'='titleType','primTitle'='primaryTitle','orign'='originalTitle'))
+```
 ```{r}
 source("scripts/visna.R")
 visna(title.basics)
