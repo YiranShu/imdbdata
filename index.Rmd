@@ -23,4 +23,4 @@ We will find out these questions:
   We can first group movies by directors using **title.crew.tsv.gz** and **title.basics.tsv.gz**. For each director, we will explore his/her movies and genres so we could conclude if the director preferred certain genres.
   
 ## How have the genres of movies been changing since last century?
-  We will use **title.basics.tsv.gz** on https://datasets.imdbws.com/. It has not only `tconst`, which identifies the title of each movie, but also `startYear` and `genres` features so we visualized the change of popularity of dramas, documentaries, comedies, thrillers, action movies and romantic movies since 1915 in the interactive component. 
+  We will use **title.basics.tsv.gz** on https://datasets.imdbws.com/. It has not only `tconst`, which identifies the title of each movie, but also `startYear` and `genres` features so we visualized the change of popularity of dramas, documentaries, comedies, thrillers, horror movies, action movies, romantic movies, crime movies and sci-fi movies since 1920 in the interactive component. 
