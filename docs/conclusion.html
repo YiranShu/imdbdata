@@ -33,6 +33,7 @@
   
 <link rel="prev" href="interactive-component.html"/>
 
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -50,24 +51,23 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -137,15 +137,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Movie Genres</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#what-was-the-relationship-between-genres-and-ratings-for-example-what-genres-were-more-likely-to-gain-higher-ratings"><i class="fa fa-check"></i><b>1.1</b> What was the relationship between genres and ratings? For example, what genres were more likely to gain higher ratings?</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#what-are-the-most-common-words-in-movie-titles-of-different-genres"><i class="fa fa-check"></i><b>1.2</b> What are the most common words in movie titles of different genres?</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#for-each-director-did-heshe-have-a-preference-in-any-genres"><i class="fa fa-check"></i><b>1.3</b> For each director, did he/she have a preference in any genres?</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#how-have-the-genres-of-movies-been-changing-since-last-century"><i class="fa fa-check"></i><b>1.4</b> How have the genres of movies been changing since last century?</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a><ul>
+<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="data-sources.html"><a href="data-sources.html#url-of-data-sources"><i class="fa fa-check"></i><b>2.1</b> URL of data sources</a></li>
-<li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#basic-information"><i class="fa fa-check"></i><b>2.2</b> Basic information</a><ul>
+<li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#basic-information"><i class="fa fa-check"></i><b>2.2</b> Basic information</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="data-sources.html"><a href="data-sources.html#title.basics"><i class="fa fa-check"></i><b>2.2.1</b> title.basics</a></li>
 <li class="chapter" data-level="2.2.2" data-path="data-sources.html"><a href="data-sources.html#name.basics"><i class="fa fa-check"></i><b>2.2.2</b> name.basics</a></li>
 <li class="chapter" data-level="2.2.3" data-path="data-sources.html"><a href="data-sources.html#title.ratings"><i class="fa fa-check"></i><b>2.2.3</b> title.ratings</a></li>
@@ -153,8 +156,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="data-sources.html"><a href="data-sources.html#issues"><i class="fa fa-check"></i><b>2.3</b> Issues</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a><ul>
-<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#missing-values"><i class="fa fa-check"></i><b>3.1</b> Missing values</a><ul>
+<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#missing-values"><i class="fa fa-check"></i><b>3.1</b> Missing values</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="data-transformation.html"><a href="data-transformation.html#initial-data"><i class="fa fa-check"></i><b>3.1.1</b> Initial data</a></li>
 <li class="chapter" data-level="3.1.2" data-path="data-transformation.html"><a href="data-transformation.html#replace-n-with-na"><i class="fa fa-check"></i><b>3.1.2</b> Replace “\\N” with NA</a></li>
 <li class="chapter" data-level="3.1.3" data-path="data-transformation.html"><a href="data-transformation.html#data-after-transformation-of-missing-values"><i class="fa fa-check"></i><b>3.1.3</b> Data after transformation of missing values</a></li>
@@ -163,25 +168,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3" data-path="data-transformation.html"><a href="data-transformation.html#genres"><i class="fa fa-check"></i><b>3.3</b> Genres</a></li>
 <li class="chapter" data-level="3.4" data-path="data-transformation.html"><a href="data-transformation.html#save-the-transformed-dataframes"><i class="fa fa-check"></i><b>3.4</b> Save the transformed dataframes</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="missing-values-1.html"><a href="missing-values-1.html"><i class="fa fa-check"></i><b>4</b> Missing values</a><ul>
-<li class="chapter" data-level="4.1" data-path="missing-values-1.html"><a href="missing-values-1.html#title.bacis"><i class="fa fa-check"></i><b>4.1</b> title.bacis</a><ul>
+<li class="chapter" data-level="4" data-path="missing-values-1.html"><a href="missing-values-1.html"><i class="fa fa-check"></i><b>4</b> Missing values</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="missing-values-1.html"><a href="missing-values-1.html#title.bacis"><i class="fa fa-check"></i><b>4.1</b> title.bacis</a>
+<ul>
 <li class="chapter" data-level="4.1.1" data-path="missing-values-1.html"><a href="missing-values-1.html#missing-values-by-column"><i class="fa fa-check"></i><b>4.1.1</b> Missing values by column</a></li>
 <li class="chapter" data-level="4.1.2" data-path="missing-values-1.html"><a href="missing-values-1.html#missing-patterns"><i class="fa fa-check"></i><b>4.1.2</b> Missing patterns</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a><ul>
-<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#movie-ratings"><i class="fa fa-check"></i><b>5.1</b> Movie ratings</a><ul>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#movie-ratings"><i class="fa fa-check"></i><b>5.1</b> Movie ratings</a>
+<ul>
 <li class="chapter" data-level="5.1.1" data-path="results.html"><a href="results.html#ratings-for-all-movies"><i class="fa fa-check"></i><b>5.1.1</b> Ratings for all movies</a></li>
 <li class="chapter" data-level="5.1.2" data-path="results.html"><a href="results.html#rating-distributions-for-highly-rated-movies"><i class="fa fa-check"></i><b>5.1.2</b> Rating distributions for highly rated movies</a></li>
 <li class="chapter" data-level="5.1.3" data-path="results.html"><a href="results.html#number-of-votes"><i class="fa fa-check"></i><b>5.1.3</b> Number of votes</a></li>
 <li class="chapter" data-level="5.1.4" data-path="results.html"><a href="results.html#dependency-between-votes-ratings-and-runtime"><i class="fa fa-check"></i><b>5.1.4</b> Dependency between votes, ratings and runtime</a></li>
 <li class="chapter" data-level="5.1.5" data-path="results.html"><a href="results.html#movies-with-most-stars"><i class="fa fa-check"></i><b>5.1.5</b> Movies with most stars</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#most-popular-directors"><i class="fa fa-check"></i><b>5.2</b> Most popular directors</a><ul>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#most-popular-directors"><i class="fa fa-check"></i><b>5.2</b> Most popular directors</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="results.html"><a href="results.html#top10-directors-with-most-stars"><i class="fa fa-check"></i><b>5.2.1</b> Top10 directors with most stars</a></li>
 <li class="chapter" data-level="5.2.2" data-path="results.html"><a href="results.html#genre-preference-of-top10-directors"><i class="fa fa-check"></i><b>5.2.2</b> Genre preference of top10 directors</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#movie-titles"><i class="fa fa-check"></i><b>5.3</b> Movie titles</a><ul>
+<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#movie-titles"><i class="fa fa-check"></i><b>5.3</b> Movie titles</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="results.html"><a href="results.html#most-common-words-in-titles"><i class="fa fa-check"></i><b>5.3.1</b> Most common words in titles</a></li>
 <li class="chapter" data-level="5.3.2" data-path="results.html"><a href="results.html#length-of-titles"><i class="fa fa-check"></i><b>5.3.2</b> Length of Titles</a></li>
 </ul></li>
@@ -207,11 +218,21 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="conclusion" class="section level1">
+<div id="conclusion" class="section level1" number="7">
 <h1><span class="header-section-number">Chapter 7</span> Conclusion</h1>
-<p>The goal of our project is to find out some interesting things about different movie genres. We firstly focused on ratings and tried to find the most popular movies. During this process we found that the number of votes can have a big influence on your results. You can get very different results when you use different standards. We found that although there are more than 600,000 movies in IMDB database, many of them have very few votes. From the interactive part we see that the number of movies has been increasing dramatically in recent decades, especially <code>Documentary</code> movies. Many of them have high ratings but few votes. Using both average rating and number of votes, we define a metric ‘number of stars’ to find most influential movies and directors. Most of them are very famous. We also looked into titles of different genres and found some interesting results.</p>
-<p>We learned a lot during this project. Firstly we practiced what we have learned this whole semester and created different types of graphs, including the coding techniques in R and theoretical knowledge about data visualization. We also learned how to use javascript on your web page to make animations and interactive components. Mostly importantly, we understood why it is called <code>Exploratory Data Analysis</code>: you never know what you will find and what graphs you will draw before you start. It is a process of “exploration”, you may find new things and decide to try new techniques at the middle of it. It’s different from our usual assignments where we already have the question and requirements about what graphs to plot.</p>
-<p>Of course there are some limitations in our project. Firstly we actually don’t have some important variables such as budget, box office and country. We can explore much more interesting things if we have these data. Secondly we can dig more into the reasons behind the results, such as why some genres like <code>Documentary</code> has been increasing so fast, are there many student or unprofessional works, or why people have preference in different genres.</p>
+<p>The goals of our project is to find out some interesting things in the field of <code>Movies</code>. Before doing the research we did not have any idea about the relationship between ratings and genres or the relationship genres and directors. However now we have basic ideas about <code>Movies</code>. Here are some conclusions we have found:</p>
+<ol style="list-style-type: decimal">
+<li>Using average ratings and weighted ratings came out difference results.</li>
+<li>There is a trend along time: movies before 2000 clearly have higher weighted ratings than movies after 2000.</li>
+<li>Large number of movies with less than 5000 votes comes from <code>Drama</code>, <code>Comedy</code> and <code>Documentary</code>.</li>
+<li>There exists many documentary movies with small number of votes but very high ratings.</li>
+<li>The higher the rating is, the more the number of votes.</li>
+<li>Longer movies tend to have higher ratings.</li>
+<li><code>Love</code> is one of the most common words for movie titles of many genres.</li>
+<li>Top10 directors have a preference in producing <code>Drama</code>, <code>Action</code> and <code>Adventure</code> movies.</li>
+<li>The proportion of documentaries has surged since 1990 perhaps because of the rapid development of technology.</li>
+</ol>
+<p>And we still have some limitations. For example, based on conclusion 2, we did not really know the exact reason that caused the trend. So we may need some further research on the causes. Also since there are a lot of movies with less than 5000 votes and we did not analyze it specifically, it may have some other interesting conclusions we can find through it. Another important direction we want to figure out is the relationship between different genres and directors. Since the data here has more than 220000 directors, it is really hard to analyze all the directors in such a short time. So we have only analyzed top 10 directors. Therefore, there are still many things we can do in the future to enhance our knowledge in movies.</p>
 
 </div>
             </section>
