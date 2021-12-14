@@ -1,15 +1,8 @@
 # Conclusion
 
-The goals of our project is to find out some interesting things in the field of `Movies`. Before doing the research we did not have any idea about the relationship between ratings and genres or the relationship genres and directors. However now we have basic ideas about `Movies`. Here are some conclusions we have found:
+The goal of our project is to find out some interesting things about different movie genres. We firstly focused on ratings and tried to find the most popular movies. During this process we found that the number of votes can have a big influence on your results. You can get very different results when you use different standards. We found that although there are more than 600,000 movies in IMDB database, many of them have very few votes. From the interactive part we see that the number of movies has been increasing dramatically in recent decades, especially `Documentary` movies. Many of them have high ratings but few votes. Using both average rating and number of votes, we define a metric 'number of stars' to find most influential movies and directors. Most of them are very famous. We also looked into titles of different genres and found some interesting results. 
 
-1. Using average ratings and weighted ratings came out difference results.
-2. There is a trend along time: movies before 2000 clearly have higher weighted ratings than movies after 2000. 
-3. Large number of movies with less than 5000 votes comes from `Drama`, `Comedy` and `Documentary`. 
-4. There exists many documentary movies with small number of votes but very high ratings.
-5. The higher the rating is, the more the number of votes.
-6. Longer movies tend to have higher ratings. 
-7. `Love` is one of the most common words for movie titles of many genres.
-8. Top10 directors have a preference in producing `Drama`, `Action` and `Adventure` movies.
-9. The proportion of documentaries has surged since 1990 perhaps because of the rapid development of technology.
+We learned a lot during this project. Firstly we practiced what we have learned this whole semester and created different types of graphs, including the coding techniques in R and theoretical knowledge about data visualization. We also learned how to use javascript on your web page to make animations and interactive components. Mostly importantly, we understood why it is called `Exploratory Data Analysis`: you never know what you will find and what graphs you will draw before you start. It is a process of "exploration", you may find new things and decide to try new techniques at the middle of it. It's different from our usual assignments where we already have the question and requirements about what graphs to plot. 
 
-And we still have some limitations. For example, based on conclusion 2, we did not really know the exact reason that caused the trend. So we may need some further research on the causes. Also since there are a lot of movies with less than 5000 votes and we did not analyze it specifically, it may have some other interesting conclusions we can find through it. Another important direction we want to figure out is the relationship between different genres and directors. Since the data here has more than 220000 directors, it is really hard to analyze all the directors in such a short time. So we have only analyzed top 10 directors. Therefore, there are still many things we can do in the future to enhance our knowledge in movies. 
+Of course there are some limitations in our project. Firstly we actually don't have some important variables such as budget, box office and country. We can explore much more interesting things if we have these data. Secondly we can dig more into the reasons behind the results, such as why some genres like `Documentary` has been increasing so fast, are there many student or unprofessional works, or why people have preference in different genres. 
+
