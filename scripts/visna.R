@@ -25,12 +25,29 @@ visna <- function(df, percent=FALSE) {
     ungroup() %>%
     arrange(desc(f))
   
+  
+  
   pattern_freq <- missing_patterns[,(ncol(missing_patterns)-1):ncol(missing_patterns)]
   pattern_freq$fil <- 1
   if (complete_row != 0) pattern_freq$fil[complete_row] <- 2
   var_levels <- var_freq$varname
   patterns_tidy$order = fct_rev(factor(patterns_tidy$order))
   patterns_tidy[patterns_tidy$order==complete_row, "ifmissing"] = 2
+  
+  unit1=""
+  unit2=""
+  
+  if (max(var_freq$f)>1000){
+    var_freq$f <- var_freq$f/1000
+    unit1="/k"
+  }
+  
+  if (max(pattern_freq$count)>1000){
+    pattern_freq$count <- pattern_freq$count/1000
+    unit2="/k"
+  }
+  
+  
   
   main <- ggplot(patterns_tidy, aes(x=factor(varname, levels=var_levels), y=order)) +
     geom_tile(aes(fill=factor(ifmissing)), color="white") +
@@ -79,10 +96,10 @@ visna <- function(df, percent=FALSE) {
       scale_y_continuous(expand = c(0, 0),limits=c(0,100))
   } else {
     up <- up + 
-      ylab("num rows \n missing") +
+      ylab(paste("num rows \n missing",unit1)) +
       scale_y_continuous(expand = c(0, 0),breaks=function(x) pretty(x, n=4)) 
     right <- right + 
-      ylab("row count") +
+      ylab(paste("row count",unit2)) +
       scale_y_continuous(expand = c(0, 0),breaks=function(x) pretty(x, n=4)) 
   }
   
