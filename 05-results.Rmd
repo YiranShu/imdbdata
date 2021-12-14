@@ -148,7 +148,7 @@ knitr::include_graphics("data/ridgr.png")
 
 If we select movies from all of them, we get the red distributions. But if we only consider movies with more than 5000 votes, we get the purple ones. We find that `Documentary` has the highest median if we consider all movies, but it gets lower if we exclude those without enough votes. It turns out that there are many documentary movies only have 20 or 50 votes with almost 10 star ratings. It's the same with biography and music movies. 
 
-If we exclude these not well-known works, we can get a picture of the preferences of the most population. It shows that people tend to give higher ratings for `Romance` movies, while it's very hard for `Horro` movies to get high scores. 
+If we exclude these not well-known works, we can get a picture of the preferences of the most population. It shows that people tend to give higher ratings for `Romance` movies, while it's very hard for `Horror` movies to get high scores. 
 
 
 ### Number of votes
@@ -272,7 +272,7 @@ The second one and the third one are both directed by Christopher Nolan, one of 
 
 ## Most popular directors
 ### Top10 directors with most stars
-Let's use the same way to find the most popular directors! Here we find the top 10 directos and their rating distributions: 
+Let's use the same way to find the most popular directors! Here we find the top 10 directors and their rating distributions: 
 
 ```{r, echo=FALSE}
 library(ggrepel)
@@ -374,7 +374,7 @@ up +  plot_spacer() + main + right + plot_layout(nrow=2,ncol=2, widths=c(4,1),he
 knitr::include_graphics("data/director.png")
 ```  
 
-The top10 directos made 227 movies in total! It shows that `Drama`, `Action` and `Adventure` are the most. Martin Scorsese seems like `Biography` and `Documentary` compared with the others. Robert Zemeckis make the most number of `Comedy`, although his most famous work is Forrest Gump. `Crime` seems to be Quentin's favorite.
+The top10 directors made 227 movies in total! It shows that `Drama`, `Action` and `Adventure` are the most. Martin Scorsese seems like `Biography` and `Documentary` compared with the others. Robert Zemeckis make the most number of `Comedy`, although his most famous work is Forrest Gump. `Crime` seems to be Quentin's favorite.
 
 
 ## Movie titles

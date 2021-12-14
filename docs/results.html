@@ -33,6 +33,7 @@
   
 <link rel="prev" href="missing-values-1.html"/>
 <link rel="next" href="interactive-component.html"/>
+<script src="libs/header-attrs-2.11/header-attrs.js"></script>
 <script src="libs/jquery-3.6.0/jquery-3.6.0.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/fuse.js@6.4.6/dist/fuse.min.js"></script>
 <link href="libs/gitbook-2.6.7/css/style.css" rel="stylesheet" />
@@ -50,24 +51,23 @@
 
 
 
-<script src="libs/accessible-code-block-0.0.1/empty-anchor.js"></script>
 <link href="libs/anchor-sections-1.0.1/anchor-sections.css" rel="stylesheet" />
 <script src="libs/anchor-sections-1.0.1/anchor-sections.js"></script>
 
 
 <style type="text/css">
-code.sourceCode > span { display: inline-block; line-height: 1.25; }
-code.sourceCode > span { color: inherit; text-decoration: inherit; }
-code.sourceCode > span:empty { height: 1.2em; }
+pre > code.sourceCode { white-space: pre; position: relative; }
+pre > code.sourceCode > span { display: inline-block; line-height: 1.25; }
+pre > code.sourceCode > span:empty { height: 1.2em; }
 .sourceCode { overflow: visible; }
-code.sourceCode { white-space: pre; position: relative; }
+code.sourceCode > span { color: inherit; text-decoration: inherit; }
 pre.sourceCode { margin: 0; }
 @media screen {
 div.sourceCode { overflow: auto; }
 }
 @media print {
-code.sourceCode { white-space: pre-wrap; }
-code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
+pre > code.sourceCode { white-space: pre-wrap; }
+pre > code.sourceCode > span { text-indent: -5em; padding-left: 5em; }
 }
 pre.numberSource code
   { counter-reset: source-line 0; }
@@ -87,7 +87,7 @@ pre.numberSource { margin-left: 3em; border-left: 1px solid #aaaaaa;  padding-le
 div.sourceCode
   {   }
 @media screen {
-code.sourceCode > span > a:first-child::before { text-decoration: underline; }
+pre > code.sourceCode > span > a:first-child::before { text-decoration: underline; }
 }
 code span.al { color: #ff0000; font-weight: bold; } /* Alert */
 code span.an { color: #60a0b0; font-weight: bold; font-style: italic; } /* Annotation */
@@ -137,15 +137,18 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li><a href="./">Movie Genres</a></li>
 
 <li class="divider"></li>
-<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a><ul>
+<li class="chapter" data-level="1" data-path="index.html"><a href="index.html"><i class="fa fa-check"></i><b>1</b> Introduction</a>
+<ul>
 <li class="chapter" data-level="1.1" data-path="index.html"><a href="index.html#what-was-the-relationship-between-genres-and-ratings-for-example-what-genres-were-more-likely-to-gain-higher-ratings"><i class="fa fa-check"></i><b>1.1</b> What was the relationship between genres and ratings? For example, what genres were more likely to gain higher ratings?</a></li>
 <li class="chapter" data-level="1.2" data-path="index.html"><a href="index.html#what-are-the-most-common-words-in-movie-titles-of-different-genres"><i class="fa fa-check"></i><b>1.2</b> What are the most common words in movie titles of different genres?</a></li>
 <li class="chapter" data-level="1.3" data-path="index.html"><a href="index.html#for-each-director-did-heshe-have-a-preference-in-any-genres"><i class="fa fa-check"></i><b>1.3</b> For each director, did he/she have a preference in any genres?</a></li>
 <li class="chapter" data-level="1.4" data-path="index.html"><a href="index.html#how-have-the-genres-of-movies-been-changing-since-last-century"><i class="fa fa-check"></i><b>1.4</b> How have the genres of movies been changing since last century?</a></li>
 </ul></li>
-<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a><ul>
+<li class="chapter" data-level="2" data-path="data-sources.html"><a href="data-sources.html"><i class="fa fa-check"></i><b>2</b> Data sources</a>
+<ul>
 <li class="chapter" data-level="2.1" data-path="data-sources.html"><a href="data-sources.html#url-of-data-sources"><i class="fa fa-check"></i><b>2.1</b> URL of data sources</a></li>
-<li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#basic-information"><i class="fa fa-check"></i><b>2.2</b> Basic information</a><ul>
+<li class="chapter" data-level="2.2" data-path="data-sources.html"><a href="data-sources.html#basic-information"><i class="fa fa-check"></i><b>2.2</b> Basic information</a>
+<ul>
 <li class="chapter" data-level="2.2.1" data-path="data-sources.html"><a href="data-sources.html#title.basics"><i class="fa fa-check"></i><b>2.2.1</b> title.basics</a></li>
 <li class="chapter" data-level="2.2.2" data-path="data-sources.html"><a href="data-sources.html#name.basics"><i class="fa fa-check"></i><b>2.2.2</b> name.basics</a></li>
 <li class="chapter" data-level="2.2.3" data-path="data-sources.html"><a href="data-sources.html#title.ratings"><i class="fa fa-check"></i><b>2.2.3</b> title.ratings</a></li>
@@ -153,8 +156,10 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 </ul></li>
 <li class="chapter" data-level="2.3" data-path="data-sources.html"><a href="data-sources.html#issues"><i class="fa fa-check"></i><b>2.3</b> Issues</a></li>
 </ul></li>
-<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a><ul>
-<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#missing-values"><i class="fa fa-check"></i><b>3.1</b> Missing values</a><ul>
+<li class="chapter" data-level="3" data-path="data-transformation.html"><a href="data-transformation.html"><i class="fa fa-check"></i><b>3</b> Data transformation</a>
+<ul>
+<li class="chapter" data-level="3.1" data-path="data-transformation.html"><a href="data-transformation.html#missing-values"><i class="fa fa-check"></i><b>3.1</b> Missing values</a>
+<ul>
 <li class="chapter" data-level="3.1.1" data-path="data-transformation.html"><a href="data-transformation.html#initial-data"><i class="fa fa-check"></i><b>3.1.1</b> Initial data</a></li>
 <li class="chapter" data-level="3.1.2" data-path="data-transformation.html"><a href="data-transformation.html#replace-n-with-na"><i class="fa fa-check"></i><b>3.1.2</b> Replace “\\N” with NA</a></li>
 <li class="chapter" data-level="3.1.3" data-path="data-transformation.html"><a href="data-transformation.html#data-after-transformation-of-missing-values"><i class="fa fa-check"></i><b>3.1.3</b> Data after transformation of missing values</a></li>
@@ -163,25 +168,31 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <li class="chapter" data-level="3.3" data-path="data-transformation.html"><a href="data-transformation.html#genres"><i class="fa fa-check"></i><b>3.3</b> Genres</a></li>
 <li class="chapter" data-level="3.4" data-path="data-transformation.html"><a href="data-transformation.html#save-the-transformed-dataframes"><i class="fa fa-check"></i><b>3.4</b> Save the transformed dataframes</a></li>
 </ul></li>
-<li class="chapter" data-level="4" data-path="missing-values-1.html"><a href="missing-values-1.html"><i class="fa fa-check"></i><b>4</b> Missing values</a><ul>
-<li class="chapter" data-level="4.1" data-path="missing-values-1.html"><a href="missing-values-1.html#title.bacis"><i class="fa fa-check"></i><b>4.1</b> title.bacis</a><ul>
+<li class="chapter" data-level="4" data-path="missing-values-1.html"><a href="missing-values-1.html"><i class="fa fa-check"></i><b>4</b> Missing values</a>
+<ul>
+<li class="chapter" data-level="4.1" data-path="missing-values-1.html"><a href="missing-values-1.html#title.bacis"><i class="fa fa-check"></i><b>4.1</b> title.bacis</a>
+<ul>
 <li class="chapter" data-level="4.1.1" data-path="missing-values-1.html"><a href="missing-values-1.html#missing-values-by-column"><i class="fa fa-check"></i><b>4.1.1</b> Missing values by column</a></li>
 <li class="chapter" data-level="4.1.2" data-path="missing-values-1.html"><a href="missing-values-1.html#missing-patterns"><i class="fa fa-check"></i><b>4.1.2</b> Missing patterns</a></li>
 </ul></li>
 </ul></li>
-<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a><ul>
-<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#movie-ratings"><i class="fa fa-check"></i><b>5.1</b> Movie ratings</a><ul>
+<li class="chapter" data-level="5" data-path="results.html"><a href="results.html"><i class="fa fa-check"></i><b>5</b> Results</a>
+<ul>
+<li class="chapter" data-level="5.1" data-path="results.html"><a href="results.html#movie-ratings"><i class="fa fa-check"></i><b>5.1</b> Movie ratings</a>
+<ul>
 <li class="chapter" data-level="5.1.1" data-path="results.html"><a href="results.html#ratings-for-all-movies"><i class="fa fa-check"></i><b>5.1.1</b> Ratings for all movies</a></li>
 <li class="chapter" data-level="5.1.2" data-path="results.html"><a href="results.html#rating-distributions-for-highly-rated-movies"><i class="fa fa-check"></i><b>5.1.2</b> Rating distributions for highly rated movies</a></li>
 <li class="chapter" data-level="5.1.3" data-path="results.html"><a href="results.html#number-of-votes"><i class="fa fa-check"></i><b>5.1.3</b> Number of votes</a></li>
 <li class="chapter" data-level="5.1.4" data-path="results.html"><a href="results.html#dependency-between-votes-ratings-and-runtime"><i class="fa fa-check"></i><b>5.1.4</b> Dependency between votes, ratings and runtime</a></li>
 <li class="chapter" data-level="5.1.5" data-path="results.html"><a href="results.html#movies-with-most-stars"><i class="fa fa-check"></i><b>5.1.5</b> Movies with most stars</a></li>
 </ul></li>
-<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#most-popular-directors"><i class="fa fa-check"></i><b>5.2</b> Most popular directors</a><ul>
+<li class="chapter" data-level="5.2" data-path="results.html"><a href="results.html#most-popular-directors"><i class="fa fa-check"></i><b>5.2</b> Most popular directors</a>
+<ul>
 <li class="chapter" data-level="5.2.1" data-path="results.html"><a href="results.html#top10-directors-with-most-stars"><i class="fa fa-check"></i><b>5.2.1</b> Top10 directors with most stars</a></li>
 <li class="chapter" data-level="5.2.2" data-path="results.html"><a href="results.html#genre-preference-of-top10-directors"><i class="fa fa-check"></i><b>5.2.2</b> Genre preference of top10 directors</a></li>
 </ul></li>
-<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#movie-titles"><i class="fa fa-check"></i><b>5.3</b> Movie titles</a><ul>
+<li class="chapter" data-level="5.3" data-path="results.html"><a href="results.html#movie-titles"><i class="fa fa-check"></i><b>5.3</b> Movie titles</a>
+<ul>
 <li class="chapter" data-level="5.3.1" data-path="results.html"><a href="results.html#most-common-words-in-titles"><i class="fa fa-check"></i><b>5.3.1</b> Most common words in titles</a></li>
 <li class="chapter" data-level="5.3.2" data-path="results.html"><a href="results.html#length-of-titles"><i class="fa fa-check"></i><b>5.3.2</b> Length of Titles</a></li>
 </ul></li>
@@ -207,11 +218,11 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
           <div class="page-inner">
 
             <section class="normal" id="section-">
-<div id="results" class="section level1">
+<div id="results" class="section level1" number="5">
 <h1><span class="header-section-number">Chapter 5</span> Results</h1>
-<div id="movie-ratings" class="section level2">
+<div id="movie-ratings" class="section level2" number="5.1">
 <h2><span class="header-section-number">5.1</span> Movie ratings</h2>
-<div id="ratings-for-all-movies" class="section level3">
+<div id="ratings-for-all-movies" class="section level3" number="5.1.1">
 <h3><span class="header-section-number">5.1.1</span> Ratings for all movies</h3>
 <p>IMDB rating is a good reference if we want to know the quality of different movies. Do different genres have obviously different average ratings? Has the quality of movies changed over time? We can find something from the figure below:</p>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-39-1.png" width="672" /></p>
@@ -220,14 +231,14 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>So we also use <code>weighted average</code>, where weights are their number of votes, and we get the bottom plot. Surprisingly, the ratings between different genres are not so large as we thought. <code>Documentary</code> and <code>Biography</code> are not much higher than the others, although <code>Horror</code> still seems the lowest.</p>
 <p>Another interesting discovery is that there is a trend along time: movies before 2000 clearly have higher weighted ratings than movies after 2000. Maybe this is a reflection that the quality of movies in recent years are not as well as before?</p>
 </div>
-<div id="rating-distributions-for-highly-rated-movies" class="section level3">
+<div id="rating-distributions-for-highly-rated-movies" class="section level3" number="5.1.2">
 <h3><span class="header-section-number">5.1.2</span> Rating distributions for highly rated movies</h3>
 <p>Now that we have a view of ratings of all movies, what about those top-rating movies? Do people have preference among different genres when they are rating? We select 100 top-rating movies of different genres and plot their distributions:</p>
 <p><img src="data/ridgr.png" width="80%" style="display: block; margin: auto;" /></p>
 <p>If we select movies from all of them, we get the red distributions. But if we only consider movies with more than 5000 votes, we get the purple ones. We find that <code>Documentary</code> has the highest median if we consider all movies, but it gets lower if we exclude those without enough votes. It turns out that there are many documentary movies only have 20 or 50 votes with almost 10 star ratings. It’s the same with biography and music movies.</p>
-<p>If we exclude these not well-known works, we can get a picture of the preferences of the most population. It shows that people tend to give higher ratings for <code>Romance</code> movies, while it’s very hard for <code>Horro</code> movies to get high scores.</p>
+<p>If we exclude these not well-known works, we can get a picture of the preferences of the most population. It shows that people tend to give higher ratings for <code>Romance</code> movies, while it’s very hard for <code>Horror</code> movies to get high scores.</p>
 </div>
-<div id="number-of-votes" class="section level3">
+<div id="number-of-votes" class="section level3" number="5.1.3">
 <h3><span class="header-section-number">5.1.3</span> Number of votes</h3>
 <p>As we can see, those movies with few votes can cause big difference when we are analysing the data. What are these movies like? We select those movies with less than 5,000 votes on IMDB and see where they come from:</p>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-42-1.png" width="672" /></p>
@@ -236,13 +247,13 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p><img src="finalproj_files/figure-html/unnamed-chunk-43-1.png" width="768" /></p>
 <p>As we can see, among these movies, <code>Documentary</code> mostly have 6-10 stars, while <code>Horror</code> movies mostly have 0-6 stars. This proves what we think: there exists many documentary movies with small number of votes but very high ratings.</p>
 </div>
-<div id="dependency-between-votes-ratings-and-runtime" class="section level3">
+<div id="dependency-between-votes-ratings-and-runtime" class="section level3" number="5.1.4">
 <h3><span class="header-section-number">5.1.4</span> Dependency between votes, ratings and runtime</h3>
 <p>Now we may wonder if votes and ratings have some relationship. The graph below shows the relationship among three variables: votes, ratings, and runtime. Note that we only select popular movies (with number of votes larger than 200,000) to exclude those ‘noisy’ less popular movies.</p>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-44-1.png" width="672" /></p>
 <p>The average rating and number of votes have obvious relationship. This is not difficult to understand: better movies are usually more popular so more people would vote. We also find that longer movies tend to have higher ratings. This is an interesting discovery. One reason could be that longer movies usually come from those with meaningful topics, while entertainment movies are usually shorter.</p>
 </div>
-<div id="movies-with-most-stars" class="section level3">
+<div id="movies-with-most-stars" class="section level3" number="5.1.5">
 <h3><span class="header-section-number">5.1.5</span> Movies with most stars</h3>
 <p>We have learned that average ratings and number of votes both reflect a movie’s quality. Now let’s combine these two metrics together to find the best movies on IMDB. If we consider 10 score as 10 stars, we want to find the movies with most stars in history. We can consider them the most influential movies.</p>
 <p><img src="data/20movies.png" width="100%" style="display: block; margin: auto;" /></p>
@@ -250,24 +261,24 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>The second one and the third one are both directed by Christopher Nolan, one of the most popular directors nowadays. There are totally 5 of the top 20 movies directed by Nolan! Two of three <code>The Lord of the Rings</code>, directed by Peter Jackson, get into top 10. Other famous directors, including Quentin Tarantino, Steven Spielberg and David Fincher, also have more than one movies in top 20.</p>
 </div>
 </div>
-<div id="most-popular-directors" class="section level2">
+<div id="most-popular-directors" class="section level2" number="5.2">
 <h2><span class="header-section-number">5.2</span> Most popular directors</h2>
-<div id="top10-directors-with-most-stars" class="section level3">
+<div id="top10-directors-with-most-stars" class="section level3" number="5.2.1">
 <h3><span class="header-section-number">5.2.1</span> Top10 directors with most stars</h3>
-<p>Let’s use the same way to find the most popular directors! Here we find the top 10 directos and their rating distributions:</p>
+<p>Let’s use the same way to find the most popular directors! Here we find the top 10 directors and their rating distributions:</p>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-47-1.png" width="672" /></p>
 <p>I am sure you have heard most of them. Note than the width of boxes reflects the number of movies directed by that director. As we can see, Nolan has the highest median ratings, although his number of movies are not a lot. Steve Spielberg directed most movies among them, while James Cameron directed the least number. We can also notice that the directors with more movies have lower average ratings, which is understandable since it’s hard to make all of your works liked by most of the people.</p>
 </div>
-<div id="genre-preference-of-top10-directors" class="section level3">
+<div id="genre-preference-of-top10-directors" class="section level3" number="5.2.2">
 <h3><span class="header-section-number">5.2.2</span> Genre preference of top10 directors</h3>
 <p>Which genres are prefered by these famous directors? We can find them in this plot:</p>
 <p><img src="data/director.png" width="80%" style="display: block; margin: auto;" /></p>
-<p>The top10 directos made 227 movies in total! It shows that <code>Drama</code>, <code>Action</code> and <code>Adventure</code> are the most. Martin Scorsese seems like <code>Biography</code> and <code>Documentary</code> compared with the others. Robert Zemeckis make the most number of <code>Comedy</code>, although his most famous work is Forrest Gump. <code>Crime</code> seems to be Quentin’s favorite.</p>
+<p>The top10 directors made 227 movies in total! It shows that <code>Drama</code>, <code>Action</code> and <code>Adventure</code> are the most. Martin Scorsese seems like <code>Biography</code> and <code>Documentary</code> compared with the others. Robert Zemeckis make the most number of <code>Comedy</code>, although his most famous work is Forrest Gump. <code>Crime</code> seems to be Quentin’s favorite.</p>
 </div>
 </div>
-<div id="movie-titles" class="section level2">
+<div id="movie-titles" class="section level2" number="5.3">
 <h2><span class="header-section-number">5.3</span> Movie titles</h2>
-<div id="most-common-words-in-titles" class="section level3">
+<div id="most-common-words-in-titles" class="section level3" number="5.3.1">
 <h3><span class="header-section-number">5.3.1</span> Most common words in titles</h3>
 <p>Do movies of different genres prefer different words in titles? For example, maybe there are a lot of <code>heart</code> in <code>Romance</code> movies titles? Here we select 15 most common words from <code>Action</code>, <code>Animation</code>, <code>Romance</code>, <code>Sci_Fi</code> (meaningless words like ‘the’, ‘to’ are excluded):</p>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-50-1.png" width="672" /></p>
@@ -275,7 +286,7 @@ code span.wa { color: #60a0b0; font-weight: bold; font-style: italic; } /* Warni
 <p>It should be easy. The first one, with ‘love’ having highest frequency, is <code>Romance</code>. We can also see ‘girl’, ‘heart’, ‘wedding’ in these titles. The second one have ‘vs’, ‘blood’, ‘hero’, so it is obviously <code>Action</code>. What about ‘alien’, ‘space’, ‘star’? <code>Sci_Fi</code> movies love these topics! And lastly, for little children, ‘little’, ‘magic’, ‘christmas’. It must be <code>Animation</code>. Do you get them all right?</p>
 <p>Also we can notice that ‘love’ is one of the most common words for many genres. Maybe love is the eternal theme for human!</p>
 </div>
-<div id="length-of-titles" class="section level3">
+<div id="length-of-titles" class="section level3" number="5.3.2">
 <h3><span class="header-section-number">5.3.2</span> Length of Titles</h3>
 <p>What’s the average length of movie titles and does it change with time? We plot the average length of titles:</p>
 <p><img src="finalproj_files/figure-html/unnamed-chunk-51-1.png" width="672" /></p>
