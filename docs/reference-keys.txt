@@ -1,8 +1,7 @@
 introduction
-what-was-the-relationship-between-genres-and-ratings-for-example-what-genres-were-more-likely-to-gain-higher-ratings
-what-are-the-most-common-words-in-movie-titles-of-different-genres
-for-each-director-did-heshe-have-a-preference-in-any-genres
 how-have-the-genres-of-movies-been-changing-since-last-century
+what-was-the-relationship-between-genres-and-ratings-for-example-what-genres-were-more-likely-to-gain-higher-ratings
+for-each-director-did-heshe-have-a-preference-in-any-genres
 data-sources
 url-of-data-sources
 basic-information
